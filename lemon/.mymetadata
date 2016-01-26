@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-module
+  type="WEB"
+  name="lemon"
+  id="myeclipse.1444272500132"
+  context-root="/lemon"
+  j2ee-spec="5.0"
+  archive="lemon.war">
+  <attributes>
+    <attribute name="webrootdir" value="WebRoot" />
+  </attributes>
+</project-module>
+

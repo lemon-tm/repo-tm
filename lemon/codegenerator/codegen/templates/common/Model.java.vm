@@ -1,0 +1,109 @@
+## This is an the velocity template
+## to generate a.oa.model class from an sql table input
+#set ($table = $sqlTable.Table.toLowerCase())
+#set ($class = $utility.makeClassName($sqlTable.Table))
+#set ($pojoClass = $utility.makeClassName($sqlTable.EntityName))
+#set ($classVar = $utility.makeFirstLetterLowerCase($class))
+#set ($pojoClassVar = $utility.makeFirstLetterLowerCase($pojoClass))
+#set ($packagePrefix  = $prop.getProperty("packagePrefix"))
+#set ($packageModot  = $prop.getProperty("packageModot"))
+#set ($keyColumn = $sqlTable.getPrimaryKey(0))
+#set ($mailId    = $prop.getProperty("mailId"))
+#set ($mailName  = $prop.getProperty("mailName"))
+#set ($keyGenerated = "N")
+package ${packagePrefix}.entity;
+
+#if ($sqlTable.hasCompositeKey)
+import java.util.Map;
+import java.util.HashMap;
+#end
+
+import java.math.BigDecimal;
+import java.util.Date;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+import org.apache.commons.lang.builder.HashCodeBuilder;
+import org.apache.commons.lang.builder.ToStringBuilder;
+import org.apache.commons.lang.builder.EqualsBuilder;
+
+/**
+ * $class (table = $table)
+ * 
+ * $sqlTable.remarks
+ */
+@Entity
+@Table(name = "$table")
+public class ${class} extends BaseEntity {
+
+#foreach( $column in $sqlTable.sqlColumns)
+#if (!$column.isKey()&&!$column.attName.equals("createDate")&&!$column.attName.equals("modifyDate"))
+#if($column.remarks)
+	private $column.attType $column.attName;//${column.remarks}
+#else
+	private $column.attType $column.attName;
+#end
+#end
+#end
+#foreach( $column in $sqlTable.sqlColumns)
+#if (!$column.isKey()&&!$column.attName.equals("createDate")&&!$column.attName.equals("modifyDate"))
+
+   /**
+#if($column.remarks)
+	* ${column.remarks}
+#end
+	* @return $column.attType
+	* @hibernate.property column="$column.colname" type="$column.javaType" length="$column.colsize" not-null="$column.notNullable"
+	*/
+	@Column(name = "$column.colname", length = $column.colsize)
+	public $column.attType get${column.attNameUC}() {
+		return this.$column.attName;
+	}
+
+   /**
+	* Set the $column.attName
+	*/
+	public void set${column.attNameUC}(${column.attType} aValue) {
+		this.$column.attName = aValue;
+	}
+#end
+#end
+
+	/**
+	 * @see java.lang.Object#equals(Object)
+	 */
+	public boolean equals(Object object) {
+		if (!(object instanceof ${class})) {
+			return false;
+		}
+		${class} rhs = (${class}) object;
+		return new EqualsBuilder()
+#foreach( $column in $sqlTable.sqlColumns)
+		.append(this.$column.attName, rhs.$column.attName)
+#end
+		.isEquals();
+	}
+
+	/**
+	 * @see java.lang.Object#hashCode()
+	 */
+	public int hashCode() {
+		return new HashCodeBuilder(-82280557, -700257973)
+#foreach( $column in $sqlTable.sqlColumns)
+		.append(this.$column.attName) 
+#end
+		.toHashCode();
+	}
+
+	/**
+	 * @see java.lang.Object#toString()
+	 */
+	public String toString() {
+		return new ToStringBuilder(this)
+#foreach( $column in $sqlTable.sqlColumns)
+		.append("$column.attName", this.$column.attName) 
+#end
+		.toString();
+	}
+}

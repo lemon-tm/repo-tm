@@ -1,0 +1,18 @@
+@charset "utf-8";
+/*公共的但不是全局的样式*/
+.clear{height:0;font-size:0;clear:both; }
+.top{height:30px;line-height:30px; width:100%;background:black; overflow:hidden; color:#fff; font-size:12px;}
+.tellus{background:url("../image/ico_tel.png") no-repeat 0px center; padding-left:18px;margin-left:20px;}
+.login{background:url("../image/ico_account.png") no-repeat 0px center;padding-left:22px;padding-right:20px;}
+
+.btn{display: inline-block;overflow: visible;vertical-align: middle;text-align: center;border-radius: 5px;-moz-border-radius: 5px;-webkit-border-radius: 5px;cursor: pointer;background-color: #F74D58;
+color:#fff;text-decoration: none; padding:5px;}
+.btn-blue{background-color:#5caae6; border:1px solid #4798d6 ;color:#fff;padding:7px 20px;border-radius:2px; display:block;}
+.btn-blue{background-color:#5caae6; border:1px solid #4798d6 ;color:#fff;padding:7px 20px;border-radius:2px; display:block;}
+
+
+/* =====  分页样式 ===== */
+.pagelist{overflow:hidden; float:right; }
+.pagelist span,.pagelist a{display:inline-block;border:1px solid #ccc;border-radius:5px;padding:5px 12px;margin:0px 6px;color:#888;}
+.pagelist span.current{background:#f74d58;color:#fff;border-color:#f74d58;}
+.pagelist span.disabled{color:#ccc;}

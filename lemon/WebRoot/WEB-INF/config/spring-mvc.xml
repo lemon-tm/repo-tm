@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" 
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans 
+         http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+         http://www.springframework.org/schema/tx 
+         http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+         http://www.springframework.org/schema/jee 
+         http://www.springframework.org/schema/jee/spring-jee-4.0.xsd
+         http://www.springframework.org/schema/context 
+         http://www.springframework.org/schema/context/spring-context-4.0.xsd"
+       default-lazy-init="true">
+       
+    <!-- 开启Spring的注解处理器 -->
+    <!-- <context:annotation-config/>
+    	有scan就不需要这个配置了，这个配置的作用是
+    	注册AutowiredAnnotationBeanPostProcessor、CommonAnnotationBeanPostProcessor、PersistenceAnnotationBeanPostProcessor、RequiredAnnotationBeanPostProcessor 这 4 个BeanPostProcessor。
+     -->
+    <context:component-scan base-package="com.lemon" /> 
+	
+	<!-- 使用annotation定义事务 -->
+	<!-- 基于注释的事务，当注释中发现@Transactional时，使用id为“transactionManager”的事务管理器  -->
+    <!-- 如果没有设置transaction-manager的值，则spring以缺省默认的事务管理器来处理事务，默认事务管理器为第一个加载的事务管理器 -->
+	<!-- 注意!!!必须先扫描包在使用transactionManager，不然事务没有办法自动flush -->
+	<tx:annotation-driven transaction-manager="transactionManager" />
+
+	
+	
+	<!-- 定义视图解析器 -->
+	<bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping">
+		<property name="interceptors">
+			<list>
+				<!-- <ref bean="frontContextInterceptor"/> -->
+			</list>
+		</property>
+	</bean>
+	
+	
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"/>
+	
+	
+    <bean id="frontContextInterceptor" class="com.lemon.FrontContextInterceptor"/>
+    <!--  -->
+    <import resource="servlet-front-cor.xml"/>
+    
+</beans>

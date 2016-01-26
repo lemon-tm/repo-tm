@@ -1,0 +1,50 @@
+@charset "utf-8";
+
+
+.container-in{background-color:white; margin:0 auto;min-height:690px;}
+
+.container-in td{padding:5px;}
+.container-in input {border:0;outline:0;vertical-align:middle;width:324px;border:1px solid #D3D3D3;border-radius:5px;margin-right:15px;margin-top:-1px;padding:3px 0 3px 10px;height:30px;line-height:36px;}
+
+.container-l,.container-r{float:left;}
+.container-l{width:20%;}
+
+.container-l dl{width:100%;background-color:#ff6666;color:#999;}
+.container-l dt{cursor:pointer; background:white; padding:15px 5%;}
+.container-l dd{cursor:pointer; background:white; display:none;}
+.container-l dd a{padding:15px 5% 15px 15%; color:#999; display:block; height:100%;width:80%; }
+.container-l dl.open dt{width:89%;}
+.container-l dl.open dd{display:block}
+.container-l dl.open dd.click{background-color:#ff6666;}
+.container-l dl.open dd.click a{color:#fff;}
+
+.container-r{width:80%;}
+.container-r .frame{width:100%;min-height:690px;border:none;}
+
+.container-frame{width:100%; min-height:620px; background-color:#fff;}
+.showimgsm{clear:both;}
+.showimg{position:relative;width:98px;height:98px;background-color:#fff;border:1px solid #ccc;border-radius:5px;overflow:hidden;display:table-cell;vertical-align:middle;text-align:center;*font-family:Arial;*font-size:90px;*display:block;}
+.showimg img{vertical-align:middle;max-width:98px;max-height:98px;}
+.showimg .delimg{background:url("../image/Usercenter-icon.png") no-repeat -53px -135px; width:25px; height:25px; position:absolute;top:0;right:0;text-indent:-999px;}
+
+.imgud{overflow:hidden; clear:both; padding:24px;}
+/*input(file)使用font-size可以控制大小*/
+.fileinput{cursor:pointer;width:100px;height:35px;opacity:0;filter:alpha(opacity=0);position:absolute;left:0px;top:0px;font-size:19px;}
+.likefile{width:100px; text-align:center; height:35px; line-height:35px;font-size:16px;  border-radius:2px; }
+.fileinputbox{position:relative; left:0;top:0; margin-left:8px;}
+.textareafbox{overflow:hidden; width:100%; display:none; }
+.textareaf{border:solid 1px #4798d6; width:550px;min-height:150px; }
+
+.ucontainer-in{margin:0 auto;}
+.ucontainer-in input {border:0;outline:0;vertical-align:middle;width:324px;border:1px solid #D3D3D3;border-radius:5px;margin-right:15px;margin-top:-1px; height:30px;line-height:30px;}
+.myimg li{line-height:30px;}
+
+
+
+
+
+
+
+
+
+
