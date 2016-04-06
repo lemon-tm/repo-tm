@@ -27,18 +27,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </head>
 
 <script type="text/javascript">
-$(document).ready(function(){
-	var height = $(document).height();alert(height) ;
-	$(".container").css("height",height-60-30-30-60-50-16) ;
-	
-});
-
-
 $(function(){
 	$(".container").rowGrid({itemSelector: ".container ul li", minMargin: 5, maxMargin: 5, firstItemClass: "first-item"});
 });
-
-
 </script>
 
 
