@@ -3,8 +3,8 @@
 .navigation-box{font-size:14px; color:#e3e3e3; background-color:rgb(48, 48, 48); border:solid 1px #424242 ;height:60px;}
 .navigation-box ul li{height:59px; line-height:59px; padding:0 16px 0 16px;float:left; border-right:solid 1px #424242;}
 
-.container{margin:25px 50px ; }
-.container:before,  .container:after { content: ""; display: table; }
+.container{padding:25px 50px ; }
+.container:before,.container:after { content: ""; display: table; }
 .container:after { clear: both; }
 .imgbox{overflow:hidden;}
 .imgbox li { float: left; margin-bottom: 5px; }
