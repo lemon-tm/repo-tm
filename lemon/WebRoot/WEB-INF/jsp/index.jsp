@@ -28,32 +28,25 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 <script type="text/javascript">
 $(document).ready(function(){
-	//var height = $(document).height();
-	//$(".container").css("min-height",height-30-60-30-60) ;
-　　/* alert($(window).height()); //浏览器当前窗口可视区域高度
-　　alert($(document).height()); //浏览器当前窗口文档的高度
-　　alert($(document.body).height());//浏览器当前窗口文档body的高度
-　　alert($(document.body).outerHeight(true));//浏览器当前窗口文档body的总高度 包括border padding margin
-
-　　alert($(window).width()); //浏览器当前窗口可视区域宽度
-　　alert($(document).width());//浏览器当前窗口文档对象宽度
-　　alert($(document.body).width());//浏览器当前窗口文档body的宽度
-　　alert($(document.body).outerWidth(true));//浏览器当前窗口文档body的总宽度 包括border padding margin */
-})
+	var height = $(document).height();alert(height) ;
+	$(".container").css("height",height-60-30-30-60-50-16) ;
+	
+});
 
 
 $(function(){
 	$(".container").rowGrid({itemSelector: ".container ul li", minMargin: 5, maxMargin: 5, firstItemClass: "first-item"});
 });
+
+
 </script>
 
 
 
 <body>
 <jsp:include  page="./common/head.jsp"/>
-<div style="overflow:hidden;padding-top:20px;">
 <jsp:include  page="./common/pager.jsp"/>
-</div>
+
 <div class="container">
 	<ul class="imgbox">
 		<c:forEach items="${pager.result}" var="img">
