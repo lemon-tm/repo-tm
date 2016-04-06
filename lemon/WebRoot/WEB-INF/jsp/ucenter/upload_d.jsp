@@ -28,7 +28,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 	<div class="container">
 		<div class="ucontainer-in">
-		<form>
+		<form action="" method="post">
 			<div class="pb10">
 				<span class="blue2 fl">照片名称：</span>
 				<input class="fl" type="text" name="name" />
