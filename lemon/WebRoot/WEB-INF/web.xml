@@ -53,20 +53,20 @@
     <url-pattern>*.jspx</url-pattern>
   </servlet-mapping>
   
-  
   <welcome-file-list>
     <welcome-file>/home.jspx</welcome-file>
   </welcome-file-list>
+  <!-- 
   <error-page>
     <error-code>403</error-code>
     <location>/WEB-INF/error/403.html</location>
   </error-page>
   <error-page>
     <error-code>404</error-code>
-    <location>/404.html</location>
+    <location>/WEB-INF/error/404.html</location>
   </error-page>
   <error-page>
     <error-code>500</error-code>
     <location>/WEB-INF/error/500.html</location>
-  </error-page>
+  </error-page> -->
 </web-app>
