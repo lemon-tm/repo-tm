@@ -4,16 +4,20 @@
        xmlns:aop="http://www.springframework.org/schema/aop"
        xmlns:context="http://www.springframework.org/schema/context"
        xmlns:tx="http://www.springframework.org/schema/tx"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans 
+       xmlns:mvc="http://www.springframework.org/schema/mvc" 
+       xsi:schemaLocation="http://www.springframework.org/schema/mvc 
+         http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
+		 http://www.springframework.org/schema/beans 
          http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
          http://www.springframework.org/schema/tx 
          http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
          http://www.springframework.org/schema/jee 
          http://www.springframework.org/schema/jee/spring-jee-4.0.xsd
          http://www.springframework.org/schema/context 
-         http://www.springframework.org/schema/context/spring-context-4.0.xsd"
+         http://www.springframework.org/schema/context/spring-context-4.0.xsd
+         "
        default-lazy-init="true">
-       
+    <mvc:annotation-driven/>   
     <!-- 开启Spring的注解处理器 -->
     <!-- <context:annotation-config/>
     	有scan就不需要这个配置了，这个配置的作用是
@@ -26,8 +30,21 @@
     <!-- 如果没有设置transaction-manager的值，则spring以缺省默认的事务管理器来处理事务，默认事务管理器为第一个加载的事务管理器 -->
 	<!-- 注意!!!必须先扫描包在使用transactionManager，不然事务没有办法自动flush -->
 	<tx:annotation-driven transaction-manager="transactionManager" />
-
 	
+	<!-- 静态资源访问 -->  
+	<mvc:resources location="/static/" mapping="/static/**"/>
+	 
+	<!-- 拦截器 -->  
+	<mvc:interceptors>    
+		<!-- 多个拦截器,顺序执行 -->    
+		<mvc:interceptor>    
+			<!-- 如果不配置或/**,将拦截所有的Controller -->  
+			<mvc:mapping path="/user/*" /> 
+			<!-- 在界面展示之前做一些通用处理   --> 
+			<bean class="com.lemon.common.intercept.AuthorityInterceptor" />    
+		</mvc:interceptor>
+	</mvc:interceptors>
+
 	
 	<!-- 定义视图解析器 -->
 	<bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping">
