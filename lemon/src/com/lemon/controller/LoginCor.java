@@ -81,6 +81,7 @@ public class LoginCor {
 		JSONObject json = new JSONObject();
 		if(isUser!=null){
 			json.put("message", true);
+			request.getSession().setMaxInactiveInterval(18*1000);
 			request.getSession().setAttribute("user", isUser) ;
 		}else{
 			json.put("message", false);
@@ -89,12 +90,13 @@ public class LoginCor {
 		
 	}
 	@RequestMapping(value="/home.jspx", method=RequestMethod.GET)
-	public String home(Pager pager, LemonUser user, HttpServletRequest request, HttpServletResponse response, ModelMap model){
+	public String home(Pager pager, HttpServletRequest request, HttpServletResponse response, ModelMap model){
+		LemonUser user = (LemonUser) request.getSession().getAttribute("user") ;
 		String pUrl = request.getServletPath() ;
 		pager.setpUrl(pUrl) ;
 		FrontUtils.frontData(request, model) ;
 		pager = imgHouseService.getList(pager) ;
-
+		
 		model.put("pager", pager) ;
 		model.put("user", user) ;
 		return "/WEB-INF/jsp/index.jsp" ;
