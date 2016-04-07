@@ -1,7 +1,5 @@
 package com.lemon.controller;
 
-import java.util.List;
-
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -12,8 +10,6 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.lemon.common.bean.ImageBean;
-import com.lemon.entity.ImgHouse;
 import com.lemon.entity.LemonUser;
 import com.lemon.service.ImgHouseService;
 import com.lemon.service.LemonUserService;
@@ -28,6 +24,24 @@ public class LoginCor {
 	private LemonUserService lemonUserService ;
 	@Resource
 	private ImgHouseService imgHouseService ;
+	/**
+	 * 
+	 * 用于测试权限，可删除
+	 * */
+	@RequestMapping(value="/user/register.jspx", method = RequestMethod.GET)
+	public String register_test(LemonUser user, String username,String password, HttpServletRequest request, HttpServletResponse response, ModelMap model){
+		FrontUtils.frontData(request, model);
+		LemonUser isUser = lemonUserService.findLemonUser(user) ;
+		if(null==isUser){
+			lemonUserService.save(user) ;
+//			model.put("user", user) ;
+			request.getSession().setAttribute("user", user) ;
+		}else{
+			request.getSession().setAttribute("user", isUser) ;
+		}
+		return "/WEB-INF/jsp/index.jsp" ;
+	}
+	
 	
 	@RequestMapping(value="/register.jspx", method = RequestMethod.POST)
 	public String register(LemonUser user, String username,String password, HttpServletRequest request, HttpServletResponse response, ModelMap model){
