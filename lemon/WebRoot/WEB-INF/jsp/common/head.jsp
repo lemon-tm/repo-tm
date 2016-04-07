@@ -6,11 +6,11 @@
 <div class="top">
 	<div class="fl tellus">18601253417</div>
 	<c:if test="${empty user.username}">
-	<div class="fr mr15"><a href="${base}/login.jspx">登录</a></div>
-	<div class="fr mr15"><a href="${base}/to_register.jspx">注册</a></div>
+		<div class="fr mr15"><a href="${base}/login.jspx">登录</a></div>
+		<div class="fr mr15"><a href="${base}/to_register.jspx">注册</a></div>
 	</c:if>
 	<c:if test="${!empty user.username}">
-	<div class="fr login"><a href="${base}/ucenter/index.jspx">${user.username}</a></div>
+		<div class="fr login"><a href="${base}/ucenter/index.jspx">${user.username}</a></div>
 	</c:if>
 </div>
 <div class="navigation-box">
