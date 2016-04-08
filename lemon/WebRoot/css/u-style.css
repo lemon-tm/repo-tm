@@ -9,10 +9,10 @@
 .container-l{width:20%;}
 
 .container-l dl{width:100%;background-color:#ff6666;color:#999;}
-.container-l dt{cursor:pointer; background:white; padding:15px 5%;}
+.container-l dt{cursor:pointer; background:white; padding:15px 5%; width:90%; }
 .container-l dd{cursor:pointer; background:white; display:none;}
 .container-l dd a{padding:15px 5% 15px 15%; color:#999; display:block; height:100%;width:80%; }
-.container-l dl.open dt{width:89%;}
+.container-l dl.open dt{width:89.5%;}
 .container-l dl.open dd{display:block}
 .container-l dl.open dd.click{background-color:#ff6666;}
 .container-l dl.open dd.click a{color:#fff;}
