@@ -22,12 +22,12 @@ import magick.Magick;
 import magick.MagickException;
 import magick.MagickImage;
 import magick.PixelPacket;
-/*
+
 import com.sun.imageio.plugins.bmp.BMPImageReader;
 import com.sun.imageio.plugins.gif.GIFImageReader;
 import com.sun.imageio.plugins.jpeg.JPEGImageReader;
 import com.sun.imageio.plugins.png.PNGImageReader;
-*/
+
 public class ImageUtil {
 	private static final Color BACKGROUND_COLOR = Color.white;// 填充背景色
 	private static final String DEST_FORMAT_NAME = "jpg";// 缩放、水印后保存文件格式名称
@@ -73,15 +73,15 @@ public class ImageUtil {
 				return null;
 			}
 			ImageReader imageReader = iterator.next();
-//			if (imageReader instanceof JPEGImageReader) {
-//				formatName = JPEG_FORMAT_NAME;
-//			} else if (imageReader instanceof GIFImageReader) {
-//				formatName = GIF_FORMAT_NAME;
-//			} else if (imageReader instanceof BMPImageReader) {
-//				formatName = BMP_FORMAT_NAME;
-//			} else if (imageReader instanceof PNGImageReader) {
-//				formatName = PNG_FORMAT_NAME;
-//			}
+			if (imageReader instanceof JPEGImageReader) {
+				formatName = JPEG_FORMAT_NAME;
+			} else if (imageReader instanceof GIFImageReader) {
+				formatName = GIF_FORMAT_NAME;
+			} else if (imageReader instanceof BMPImageReader) {
+				formatName = BMP_FORMAT_NAME;
+			} else if (imageReader instanceof PNGImageReader) {
+				formatName = PNG_FORMAT_NAME;
+			}
 			imageInputStream.close();
 			return formatName; 
 		} catch (IOException e) {

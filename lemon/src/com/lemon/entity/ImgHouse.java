@@ -36,7 +36,7 @@ public class ImgHouse extends BaseEntity {
 	private Integer status;//状态1、出售2、拍卖3、已出售
 	private String name;//名称
 	private String describe;//描述
-	private String isverify ;//审核状态0审核中1审核通过2审核失败
+	private Integer isverify ;//审核状态0审核中1审核通过2审核失败
 	private List<ImageBean> imgurlb ;
 	
 	@Transient
@@ -66,11 +66,11 @@ public class ImgHouse extends BaseEntity {
 	}
 	
 	@Column(name = "isverify", length = 1)
-	public String getIsverify() {
+	public Integer getIsverify() {
 		return isverify;
 	}
-	
-	public void setIsverify(String isverify) {
+
+	public void setIsverify(Integer isverify) {
 		this.isverify = isverify;
 	}
    /**
@@ -83,7 +83,9 @@ public class ImgHouse extends BaseEntity {
 		return this.imgurl;
 	}
 
-   /**
+   
+
+/**
 	* Set the imgurl
 	*/
 	public void setImgurl(String aValue) {

@@ -45,11 +45,40 @@ public class UploadCor implements ServletContextAware {
 	private ImgHouseService imgHouseService ;
 	
 	/**
+	 * hhc add 2016-04-08 11:03
+	 * 上传图片成功后，调用这个方法完善图片信息
+	 * name
+	 * describe
+	 * 
+	 * */
+	@RequestMapping(value="/ucenter/savedes.jspx", method = RequestMethod.POST)
+	public String saveUploadDes(String imgId,String name, String describes,  HttpServletRequest request,HttpServletResponse response, ModelMap model){
+		
+		FrontUtils.frontData(request, model);
+		
+		ImgHouse imgHouse = null ;
+		
+		if(null!=imgId && !"".equals(imgId)){
+			imgHouse = imgHouseService.get(imgId) ;
+		}
+		if(null!=imgHouse){
+			LemonUser user = (LemonUser) request.getSession().getAttribute("user") ;
+			
+			imgHouse.setUserId(user.getId()) ;
+			imgHouse.setUploadTime(new Date()) ;
+			imgHouse.setName(name) ;
+			imgHouse.setDescribe(describes) ;
+			imgHouseService.saveOrUpdate(imgHouse) ;
+		}
+		model.put("imgHouse", imgHouse) ;
+		return "/WEB-INF/jsp/ucenter/upload.jsp" ;
+	}
+	/**
 	 * 操作
 	 * 保存图片路径 
 	 * 
 	 */
-	@RequestMapping(value="saveimg.jspx", method = RequestMethod.POST)
+	@RequestMapping(value="/ucenter/saveimg.jspx", method = RequestMethod.POST)
 	public String saveUploadImg(String[] imgurl, HttpServletRequest request,HttpServletResponse response, ModelMap model){
 		FrontUtils.frontData(request, model);
 		
@@ -80,8 +109,9 @@ public class UploadCor implements ServletContextAware {
 		imgHouse.setCreateTime(new Date()) ;
 		imgHouse.setUploadTime(new Date()) ;
 		imgHouse.setStatus(1) ;
-		imgHouse.setName("后台假数据name") ;
-		imgHouse.setDescribe("后台假数据describe") ;
+//		imgHouse.setName("") ;
+//		imgHouse.setDescribe("后台假数据describe") ;
+		imgHouse.setIsverify(0) ;
 		imgHouseService.save(imgHouse) ;
 		model.put("imgHouse", imgHouse) ;
 		return "/WEB-INF/jsp/ucenter/upload_d.jsp" ;
@@ -101,20 +131,18 @@ public class UploadCor implements ServletContextAware {
 	 * 上传图片
 	 * 使用MultipartFile需要在配置文件里配置
 	 */
-	@RequestMapping(value="upload.jspx", method = RequestMethod.POST)
+	@RequestMapping(value="/ucenter/uploadimg.jspx", method = RequestMethod.POST)
 	public void uploadImg(@RequestParam(value = "mediaFile") MultipartFile file,String filename, HttpServletRequest request,HttpServletResponse response, ModelMap model){
 		
 		
 		String origName = file.getOriginalFilename();
-		String ext = FilenameUtils.getExtension(origName).toLowerCase(
-				Locale.ENGLISH);
+		String ext = FilenameUtils.getExtension(origName).toLowerCase(Locale.ENGLISH);
 		
 		
 		// TODO 检查允许上传的后缀
 		String fileUrl="";
 		try {
-			fileUrl = storeByExt("/image/upload",
-						ext, file);
+			fileUrl = storeByExt("/image/upload", ext, file);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
