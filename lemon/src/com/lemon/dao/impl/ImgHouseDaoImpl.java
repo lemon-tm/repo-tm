@@ -28,7 +28,7 @@ public class ImgHouseDaoImpl extends BaseDaoImpl<ImgHouse,String> implements Img
 
 		Criteria criteria = getSession().createCriteria(ImgHouse.class);
 		
-		criteria.add(Restrictions.eq("isverify","1"));
+		criteria.add(Restrictions.eq("isverify",1));
 		
 		criteria.addOrder(Order.desc("createTime"));
 		

@@ -1,6 +1,9 @@
 package com.lemon.controller;
 
+import java.io.IOException;
+
 import javax.annotation.Resource;
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -16,6 +19,7 @@ import com.lemon.service.LemonUserService;
 import com.lemon.util.FrontUtils;
 import com.lemon.util.Pager;
 import com.lemon.util.ResponseUtils;
+import com.lemon.util.encoder.PwdEncoder;
 
 @Controller
 public class LoginCor {
@@ -24,22 +28,25 @@ public class LoginCor {
 	private LemonUserService lemonUserService ;
 	@Resource
 	private ImgHouseService imgHouseService ;
+	
+	@Resource
+	private PwdEncoder pwdEncoder;
+
 	/**
+	 * hhc add 2016-04-08 14:24
 	 * 
-	 * 用于测试权限，可删除
+	 * 登出
+	 * @throws IOException 
+	 * @throws ServletException 
+	 * 
 	 * */
-	@RequestMapping(value="/user/register.jspx", method = RequestMethod.GET)
-	public String register_test(LemonUser user, String username,String password, HttpServletRequest request, HttpServletResponse response, ModelMap model){
+	@RequestMapping(value="/logout.jspx", method = RequestMethod.GET)
+	public void logout(HttpServletRequest request, HttpServletResponse response, ModelMap model) throws ServletException, IOException{
 		FrontUtils.frontData(request, model);
-		LemonUser isUser = lemonUserService.findLemonUser(user) ;
-		if(null==isUser){
-			lemonUserService.save(user) ;
-//			model.put("user", user) ;
-			request.getSession().setAttribute("user", user) ;
-		}else{
-			request.getSession().setAttribute("user", isUser) ;
-		}
-		return "/WEB-INF/jsp/index.jsp" ;
+		request.getSession().removeAttribute("user") ;
+		request.getRequestDispatcher("/home.jspx").forward(request, response) ;
+		
+		
 	}
 	
 	
@@ -48,6 +55,7 @@ public class LoginCor {
 		FrontUtils.frontData(request, model);
 		LemonUser isUser = lemonUserService.findLemonUser(user) ;
 		if(null==isUser){
+			user.setPassword(pwdEncoder.encodePassword(password)) ;
 			lemonUserService.save(user) ;
 //			model.put("user", user) ;
 			request.getSession().setAttribute("user", user) ;
@@ -90,6 +98,18 @@ public class LoginCor {
 		
 	}
 	@RequestMapping(value="/home.jspx", method=RequestMethod.GET)
+	public String gethome(Pager pager, HttpServletRequest request, HttpServletResponse response, ModelMap model){
+		LemonUser user = (LemonUser) request.getSession().getAttribute("user") ;
+		String pUrl = request.getServletPath() ;
+		pager.setpUrl(pUrl) ;
+		FrontUtils.frontData(request, model) ;
+		pager = imgHouseService.getList(pager) ;
+		
+		model.put("pager", pager) ;
+		model.put("user", user) ;
+		return "/WEB-INF/jsp/index.jsp" ;
+	}
+	@RequestMapping(value="/home.jspx", method=RequestMethod.POST)
 	public String home(Pager pager, HttpServletRequest request, HttpServletResponse response, ModelMap model){
 		LemonUser user = (LemonUser) request.getSession().getAttribute("user") ;
 		String pUrl = request.getServletPath() ;
