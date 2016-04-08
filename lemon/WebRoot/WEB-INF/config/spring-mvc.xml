@@ -17,7 +17,8 @@
          http://www.springframework.org/schema/context/spring-context-4.0.xsd
          "
        default-lazy-init="true">
-    <mvc:annotation-driven/>   
+    <mvc:annotation-driven/>  
+
     <!-- 开启Spring的注解处理器 -->
     <!-- <context:annotation-config/>
     	有scan就不需要这个配置了，这个配置的作用是
