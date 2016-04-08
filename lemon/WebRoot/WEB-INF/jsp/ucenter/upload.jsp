@@ -26,7 +26,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 	<div class="container-frame">
 		
-		<form name="saveimgf" action="${base}/saveimg.jspx" method="post">
+		<form name="saveimgf" action="${base}/ucenter/saveimg.jspx" method="post">
 			<!-- 
 			<div class="textareafbox">
 				<span class="blue2 fl">描述：</span><textarea name="describes" class="textareaf fl"></textarea>
@@ -124,7 +124,7 @@ function isPicture(fileName){
  } 
 </script>
 
-<form id="mediaForm" action="${base}/upload.jspx" method="post" enctype="multipart/form-data" target="media_iframe" style="display:none;">
+<form id="mediaForm" action="${base}/ucenter/uploadimg.jspx" method="post" enctype="multipart/form-data" target="media_iframe" style="display:none;">
 <span id="mediaContent" style="position:relative;"></span>
 </form>
 <iframe name="media_iframe" id="media_iframe" frameborder="0" name="media_iframe" border="0" width="0" height="0" ></iframe>

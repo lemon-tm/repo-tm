@@ -72,7 +72,7 @@ function iFrameHeight() {
 				</dl>
 			</div>
 			<div class="container-r">
-				<iframe name="frame" class="frame" id="frame" scrolling="no" onLoad="javascript:iFrameHeight();" ></iframe>
+				<iframe name="frame" class="frame" id="frame" scrolling="no" frameborder="0" onLoad="javascript:iFrameHeight();" ></iframe>
 			</div>
 			
 			<div class="clear"></div>

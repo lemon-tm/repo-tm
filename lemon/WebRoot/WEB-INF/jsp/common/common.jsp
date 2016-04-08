@@ -15,7 +15,8 @@
 <script type="text/javascript">
 	$(document).ready(function(){
 		var height = $(document).height();
-		$(".container").css("height",height-60-30-30-60-50-16) ;
+		
+		$(".container").css("height",height-60-30-30-60-50-16-5) ;
 		
 	});
 </script>

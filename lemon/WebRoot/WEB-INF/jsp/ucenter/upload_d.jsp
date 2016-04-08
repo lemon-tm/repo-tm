@@ -28,7 +28,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 	<div class="container">
 		<div class="ucontainer-in">
-		<form action="" method="post">
+		<form action="${base}/ucenter/savedes.jspx" method="post">
 			<div class="pb10">
 				<span class="blue2 fl">照片名称：</span>
 				<input class="fl" type="text" name="name" />
@@ -42,6 +42,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			</div>
 			<div style="text-align:center;">
 				<input style="width:100px; margin-top:20px; font-size:14px;" class="bg-blue2" type="submit" value="保存">
+				<input type="hidden" name="imgId" value="${imgHouse.id}" />
 			</div>
 		</form>
 		</div>
