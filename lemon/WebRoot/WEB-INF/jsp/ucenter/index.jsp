@@ -68,7 +68,7 @@ function iFrameHeight() {
 					<dt>设置</dt>
 					<dd><a href="" target="frame">基本设置</a></dd>
 					<dd><a href="" target="frame">安全设置</a></dd>
-					<dd><a href="" target="frame">退出账户</a></dd>
+					<dd><a href="${base}/logout.jspx">退出账户</a></dd>
 				</dl>
 			</div>
 			<div class="container-r">
