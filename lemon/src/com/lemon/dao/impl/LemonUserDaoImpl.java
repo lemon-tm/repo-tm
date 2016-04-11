@@ -3,6 +3,7 @@ package com.lemon.dao.impl;
 import org.hibernate.Query;
 import org.springframework.stereotype.Repository;
 
+import com.lemon.admin.dao.impl.BaseDaoImpl;
 import com.lemon.dao.LemonUserDao;
 import com.lemon.entity.LemonUser;
 
