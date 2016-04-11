@@ -84,7 +84,7 @@ public class LoginCor {
 		FrontUtils.frontData(request, model);
 		LemonUser user = new LemonUser() ;
 		user.setUsername(username) ;
-		user.setPassword(password) ;
+		user.setPassword(pwdEncoder.encodePassword(password)) ;
 		LemonUser isUser = lemonUserService.findLemonUser(user) ;
 		JSONObject json = new JSONObject();
 		if(isUser!=null){
