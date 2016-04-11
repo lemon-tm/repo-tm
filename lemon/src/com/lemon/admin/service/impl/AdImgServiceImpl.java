@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 import com.lemon.admin.dao.AdImgDao;
 import com.lemon.admin.service.AdImgService;
 import com.lemon.entity.ImgHouse;
+import com.lemon.entity.LemonUser;
+import com.lemon.util.Pager;
 
 /*
  *  @author 
@@ -20,6 +22,11 @@ public class AdImgServiceImpl extends BaseServiceImpl<ImgHouse,String> implement
 	@Resource(name = "adImgDaoImpl")
 	public void setBaseDao(AdImgDao adImgDao) {
 		super.setBaseDao(adImgDao);
+	}
+
+	@Override
+	public Pager getList(Pager pager, LemonUser user, ImgHouse img) {
+		return adImgDao.getList(pager, user, img) ;
 	}
 
 	
