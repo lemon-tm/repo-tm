@@ -2,6 +2,7 @@
 /*公共的但不是全局的样式*/
 .clear{height:0;font-size:0;clear:both; }
 .top{height:30px;line-height:30px; width:100%;background:black; overflow:hidden; color:#fff; font-size:12px;}
+.top a{color:#fff;}
 .tellus{background:url("../image/ico_tel.png") no-repeat 0px center; padding-left:18px;margin-left:20px;}
 .login{background:url("../image/ico_account.png") no-repeat 0px center;padding-left:22px;padding-right:20px;}
 .login a{ color:#fff;}
