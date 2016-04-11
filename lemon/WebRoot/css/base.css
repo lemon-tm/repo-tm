@@ -16,8 +16,8 @@ iframe{display:block;}
 /* 去掉 firefox 下此元素的边框*/
 abbr,acronym{border:none;font-variant:normal;}
 /* 去除 ie6 & ie7 焦点点状线 */
-a:focus,*:focus{outline:none;}
-a{text-decoration: none; color:#fff;}
+a:focus,*:focus{outline:none; color:#000;}
+a{text-decoration: none;}
 /* 去除默认边框 */
 fieldset,img{border:0}
 address,caption,cite,code,dfn,em,strong,th,var{font-style:normal;font-weight:normal}

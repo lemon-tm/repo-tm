@@ -4,6 +4,7 @@
 .top{height:30px;line-height:30px; width:100%;background:black; overflow:hidden; color:#fff; font-size:12px;}
 .tellus{background:url("../image/ico_tel.png") no-repeat 0px center; padding-left:18px;margin-left:20px;}
 .login{background:url("../image/ico_account.png") no-repeat 0px center;padding-left:22px;padding-right:20px;}
+.login a{ color:#fff;}
 
 .btn{display: inline-block;overflow: visible;vertical-align: middle;text-align: center;border-radius: 5px;-moz-border-radius: 5px;-webkit-border-radius: 5px;cursor: pointer;background-color: #F74D58;
 color:#fff;text-decoration: none; padding:5px;}
