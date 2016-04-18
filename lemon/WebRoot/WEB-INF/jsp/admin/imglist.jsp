@@ -54,7 +54,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<td align="center">${item.createTime}</td>
 				<td align="center">
 					<c:forEach items="${item.imgurlb}" var="a">
-						<img src='${base}${a.sourceImagePath}' />
+						<img src='${base}${a.smallImagePath}' />
 					</c:forEach>
 				</td>
 				<td align="center">

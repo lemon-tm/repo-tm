@@ -30,7 +30,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 }); */
 </script>
 <body>
-<div>上传图片|批量删除|批量设置</div>
+<!-- <div>上传图片|批量删除|批量设置</div> -->
 	<div class="container">
 		<div class="ucontainer-in">
 		<ul class="myimg">
@@ -40,7 +40,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<li>${img.describe}</li>
 				<li>
 				<c:forEach items="${img.imgurlb}" var="a">
-					<img style="height:150px;" src='${base}${a.sourceImagePath}' />
+					<img style="height:150px;" src='${base}${a.bigImagePath}' />
 				</c:forEach>
 				</li>
 				

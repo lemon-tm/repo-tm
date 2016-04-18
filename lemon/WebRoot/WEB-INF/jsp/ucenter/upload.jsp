@@ -43,6 +43,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<div id="likefile" class="likefile bg-blue2">选择图片</div>
 					<input onchange="javascript:uploadMedia();" size="30" type="file" name="mediaFile" id="mediaFile"  class="fileinput" value="">
 				</div>
+				<div class="fl red ml50">每次上传图片不得超过6张！</div>
 				
 			</div>
 			<div id="showimgsm" class="showimgsm"></div>
@@ -69,6 +70,10 @@ $(document).on("click",".delimg", function(){
 });
 
 function imgSubmit(){
+	if($(".div-img").length>6){
+		alert("每次上传图片不得超过6张！") ;
+		return ;
+	} 
 	saveimgf.submit() ;
 }
 
@@ -135,8 +140,9 @@ $("#media_iframe").load(function() {
     var uploadResult = $.parseJSON(uploadResultJson);
     if (uploadResult && uploadResult.success ) {
     	$("#likefile").removeAttr("class");
-    	$("#likefile").attr("class","likefile bj-grey2");
+    	$("#likefile").attr("class","likefile bg-blue2");
 		$(".btn-blue").css("display","");
+		$(".btn-blue").attr("class","btn-grey");
         $("#showimgsm").append(
         				'<div style="float:left;padding-top:10px;padding-left:10px;" class="div-img">'+
         				'<div class="showimg">'+

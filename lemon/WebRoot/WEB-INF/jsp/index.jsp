@@ -42,7 +42,7 @@ $(function(){
 	<ul class="imgbox">
 		<c:forEach items="${pager.result}" var="img">
 			<c:forEach items="${img.imgurlb}" var="a">
-				<li><img src='${base}${a.sourceImagePath}' /></li>
+				<li><img src='${base}${a.bigImagePath}' /></li>
 			</c:forEach>
 		</c:forEach>
 	</ul>

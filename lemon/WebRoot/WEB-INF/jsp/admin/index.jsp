@@ -21,12 +21,27 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	-->
 	<%@include file="./../common/common.jsp" %>
 </head>
-<script type="text/javascript"></script>
+<script type="text/javascript">
+function iFrameHeight() {   
+	var ifm= document.getElementById("frame");   
+	
+	var subWeb = document.frames ? document.frames["frame"].document : ifm.contentDocument;   
+	
+	if(ifm != null && subWeb != null) {
+	
+	   ifm.height = subWeb.body.scrollHeight;
+	
+	   ifm.width = subWeb.body.scrollWidth;
+	
+	}   
+
+}
+</script>
 <body>
 	<div>欢迎：${user.username}</div>
 	<div>
 		<div><a href="${base}/ucenter/imglist.do" target="frame">图片管理</a></div>
-		<div><iframe name="frame" class="frame" id="frame" scrolling="no" frameborder="0" width="100%" height="100%"></iframe></div>
+		<div><iframe name="frame" class="frame" id="frame" scrolling="no" frameborder="0" width="100%" onLoad="javascript:iFrameHeight();" ></iframe></div>
 	</div>
 </body>
 
