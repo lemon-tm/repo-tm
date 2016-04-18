@@ -144,11 +144,14 @@ public class ImageUtil {
 		} else {
 			height = (int) Math.round(((destWidth * 1.0 / srcWidth) * srcHeight));
 		}
-		BufferedImage destBufferedImage = new BufferedImage(destWidth, destHeight, BufferedImage.TYPE_INT_RGB);
+		BufferedImage destBufferedImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
+		//BufferedImage destBufferedImage = new BufferedImage(destWidth, destHeight, BufferedImage.TYPE_INT_RGB);
 		Graphics2D graphics2D = destBufferedImage.createGraphics();
 		graphics2D.setBackground(BACKGROUND_COLOR);
-		graphics2D.clearRect(0, 0, destWidth, destHeight);
-		graphics2D.drawImage(srcBufferedImage.getScaledInstance(width, height, Image.SCALE_SMOOTH), (destWidth / 2) - (width / 2), (destHeight / 2) - (height / 2), null);
+		graphics2D.clearRect(0, 0, width, height);
+		graphics2D.drawImage(srcBufferedImage.getScaledInstance(width, height, Image.SCALE_SMOOTH), 0, 0, null);
+		//graphics2D.clearRect(0, 0, destWidth, destHeight);
+		//graphics2D.drawImage(srcBufferedImage.getScaledInstance(width, height, Image.SCALE_SMOOTH), (destWidth / 2) - (width / 2), (destHeight / 2) - (height / 2), null);
 		graphics2D.dispose();
 		return destBufferedImage;
 	}

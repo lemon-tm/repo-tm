@@ -169,6 +169,7 @@ public class UploadCor implements ServletContextAware {
 	private void store(MultipartFile file, File dest) throws IOException {
 		try {
 			UploadUtils.checkDirAndCreate(dest.getParentFile());
+			//执行这句话图片真实上传
 			file.transferTo(dest);
 		} catch (IOException e) {
 			throw e;
