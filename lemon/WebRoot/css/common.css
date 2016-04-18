@@ -10,7 +10,7 @@
 .btn{display: inline-block;overflow: visible;vertical-align: middle;text-align: center;border-radius: 5px;-moz-border-radius: 5px;-webkit-border-radius: 5px;cursor: pointer;background-color: #F74D58;
 color:#fff;text-decoration: none; padding:5px;}
 .btn-blue{background-color:#5caae6; border:1px solid #4798d6 ;color:#fff;padding:7px 20px;border-radius:2px; display:block;}
-.btn-blue{background-color:#5caae6; border:1px solid #4798d6 ;color:#fff;padding:7px 20px;border-radius:2px; display:block;}
+.btn-grey{background-color: #EFF0E7; border:solid 1px #dddedf; color:#989898;padding:7px 20px;border-radius:2px; display:block;}
 
 
 /* =====  分页样式 ===== */
