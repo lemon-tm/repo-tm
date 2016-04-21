@@ -30,6 +30,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 $(function(){
 	$(".container").rowGrid({itemSelector: ".container ul li", minMargin: 5, maxMargin: 5, firstItemClass: "first-item"});
 });
+
 </script>
 
 
@@ -41,11 +42,14 @@ $(function(){
 <div class="container">
 	<ul class="imgbox">
 		<c:forEach items="${pager.result}" var="img">
-			<c:forEach items="${img.imgurlb}" var="a">
-				<li><img src='${base}${a.bigImagePath}' /></li>
+			<c:forEach items="${img.imgurlb}" var="a" varStatus="status">
+				<li>
+					<a href="${base}/imgshow.jspx?imgId=${img.id}&index=${status.index}"><img height="200" src='${base}${a.thumbnailImagePath}' /></a>
+				</li>
 			</c:forEach>
 		</c:forEach>
 	</ul>
+	
 	<div class="clear"></div>
 </div>
 
