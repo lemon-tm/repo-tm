@@ -39,6 +39,16 @@ public class ImgHouse extends BaseEntity {
 	private Integer isverify ;//审核状态0审核中1审核通过2审核失败
 	private List<ImageBean> imgurlb ;
 	
+	private LemonUser user ;
+	@Transient
+	public LemonUser getUser() {
+		return user;
+	}
+
+	public void setUser(LemonUser user) {
+		this.user = user;
+	}
+
 	@Transient
 	public List<ImageBean> getImgurlb() {
 		if (StringUtils.isEmpty(imgurl)) {

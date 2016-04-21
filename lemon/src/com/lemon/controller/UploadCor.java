@@ -91,7 +91,6 @@ public class UploadCor implements ServletContextAware {
 			List<ImageBean> list = new ArrayList<ImageBean>();
 			for(int i=0; i<imgurl.length; i++){
 				String imgurlstr = imgurl[i];
-				
 				String a = request.getContextPath();//项目名称，如：/jeecms
 				String path = request.getSession().getServletContext().getRealPath("/") ;//服务器路径，如：E://
 				imgurlstr = path+imgurlstr ;//图片在服务器的全路径
@@ -99,7 +98,6 @@ public class UploadCor implements ServletContextAware {
 				ImageBean img = imageService.buildImage(file) ;
 				list.add(img) ;
 			}
-			
 			Collections.sort(list);
 			JSONArray jsonArray = JSONArray.fromObject(list);
 			String path = jsonArray.toString() ;
@@ -116,6 +114,7 @@ public class UploadCor implements ServletContextAware {
 		model.put("imgHouse", imgHouse) ;
 		return "/WEB-INF/jsp/ucenter/upload_d.jsp" ;
 	}
+	
 	/**
 	 * 跳转
 	 * 到上传图片页面

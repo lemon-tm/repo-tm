@@ -68,9 +68,9 @@ public class ImageServiceImpl implements ServletContextAware, ImageService {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		ImageUtil.reduce(imageFile, bigImageFile, 300,300);  //大图缩放比例 300*300  自己根据需求调
+		ImageUtil.reduce(imageFile, bigImageFile, 500,500);  //大图缩放比例 300*300  自己根据需求调
 		ImageUtil.reduce(imageFile, smallImageFile, 80, 80); //小图
-		ImageUtil.reduce(imageFile, thumbnailImageFile, 160, 160); //中图
+		ImageUtil.reduce(imageFile, thumbnailImageFile, 300, 300); //中图
 		
 		return imageBean;
 	}
