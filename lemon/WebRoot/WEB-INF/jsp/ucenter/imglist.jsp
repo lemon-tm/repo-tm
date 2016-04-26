@@ -35,9 +35,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<div class="ucontainer-in">
 		<ul class="myimg">
 			<c:forEach items="${page.result}" var="img">
-				<li>${img.createTime}</li>
-				<li>${img.name}</li>
-				<li>${img.describe}</li>
+				<li><span>审核状态：</span>${img.isverify.label}</li>
+				<li><span>上传时间：</span>${img.createTime}</li>
+				<li><span>图片名称：</span>${img.name}</li>
+				<li><span>图片描述：</span>${img.describe}</li>
 				<li>
 				<c:forEach items="${img.imgurlb}" var="a">
 					<img style="height:150px;" src='${base}${a.bigImagePath}' />
