@@ -30,23 +30,25 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 }); */
 </script>
 <body>
+
+<jsp:include  page="./../common/pager.jsp"/>
 <!-- <div>上传图片|批量删除|批量设置</div> -->
 	<div class="container">
 		<div class="ucontainer-in">
-		<ul class="myimg">
-			<c:forEach items="${page.result}" var="img">
-				<li><span>审核状态：</span>${img.isverify.label}</li>
-				<li><span>上传时间：</span>${img.createTime}</li>
-				<li><span>图片名称：</span>${img.name}</li>
-				<li><span>图片描述：</span>${img.describe}</li>
-				<li>
-				<c:forEach items="${img.imgurlb}" var="a">
-					<img style="height:150px;" src='${base}${a.bigImagePath}' />
-				</c:forEach>
-				</li>
-				
+			<c:forEach items="${pager.result}" var="img">
+			<ul class="myimg" >
+					<li><span>审核状态：</span>${img.isverify.label}</li>
+					<li><span>上传时间：</span>${img.createTime}</li>
+					<li><span>图片名称：</span>${img.name}</li>
+					<li><span>图片描述：</span>${img.describe}</li>
+					<li>
+					<c:forEach items="${img.imgurlb}" var="a" varStatus="status">
+						<a href="${base}/ucenter/uimgshow.jspx?imgId=${img.id}&index=${status.index}"><img style="height:150px;" src='${base}${a.bigImagePath}' alt="${img.name}" /></a>
+					</c:forEach>
+					</li>
+					
+			</ul>
 			</c:forEach>
-		</ul>
 		</div>
 	</div>
 
