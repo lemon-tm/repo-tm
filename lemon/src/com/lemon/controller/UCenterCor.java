@@ -24,11 +24,11 @@ public class UCenterCor {
 	public String uImglist(Pager page, HttpServletRequest request, HttpServletResponse response, ModelMap model){
 		FrontUtils.frontData(request, model);
 		LemonUser user = (LemonUser) request.getSession().getAttribute("user") ;
-
+		page.setpUrl("/ucenter/imglist.jspx") ;
 		if(null!=user){
 			page = imgHouseService.findByUser(page, user.getId()) ;
 		}
-		model.put("page", page) ;
+		model.put("pager", page) ;
 		
 		return "/WEB-INF/jsp/ucenter/imglist.jsp" ;
 	}
