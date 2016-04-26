@@ -17,8 +17,11 @@ import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
+import org.hibernate.annotations.Parameter;
+import org.hibernate.annotations.Type;
 
 import com.lemon.common.bean.ImageBean;
+import com.lemon.constant.font.enums.VerifyEnum;
 
 /**
  * ImgHouse (table = img_house)
@@ -36,7 +39,7 @@ public class ImgHouse extends BaseEntity {
 	private Integer status;//状态1、出售2、拍卖3、已出售
 	private String name;//名称
 	private String describe;//描述
-	private Integer isverify ;//审核状态0审核中1审核通过2审核失败
+	private VerifyEnum isverify ;//审核状态0审核中1审核通过2审核失败
 	private List<ImageBean> imgurlb ;
 	
 	private LemonUser user ;
@@ -76,11 +79,12 @@ public class ImgHouse extends BaseEntity {
 	}
 	
 	@Column(name = "isverify", length = 1)
-	public Integer getIsverify() {
+	@Type(type = "com.lemon.constant.CustomEnumType", parameters = {@Parameter(name = "enum", value = "com.lemon.constant.font.enums.VerifyEnum")})
+	public VerifyEnum getIsverify() {
 		return isverify;
 	}
 
-	public void setIsverify(Integer isverify) {
+	public void setIsverify(VerifyEnum isverify) {
 		this.isverify = isverify;
 	}
    /**
@@ -94,6 +98,8 @@ public class ImgHouse extends BaseEntity {
 	}
 
    
+
+
 
 /**
 	* Set the imgurl

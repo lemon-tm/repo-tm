@@ -6,6 +6,7 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
 import com.lemon.admin.dao.impl.BaseDaoImpl;
+import com.lemon.constant.font.enums.VerifyEnum;
 import com.lemon.dao.ImgHouseDao;
 import com.lemon.entity.ImgHouse;
 import com.lemon.util.Pager;
@@ -29,7 +30,7 @@ public class ImgHouseDaoImpl extends BaseDaoImpl<ImgHouse,String> implements Img
 
 		Criteria criteria = getSession().createCriteria(ImgHouse.class);
 		
-		criteria.add(Restrictions.eq("isverify",1));
+		criteria.add(Restrictions.eq("isverify",VerifyEnum.getVerifyEnum(1)));
 		
 		criteria.addOrder(Order.desc("createTime"));
 		

@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.lemon.admin.service.AdImgService;
+import com.lemon.constant.font.enums.VerifyEnum;
 import com.lemon.entity.ImgHouse;
 import com.lemon.entity.LemonUser;
 import com.lemon.util.FrontUtils;
@@ -68,7 +69,7 @@ public class AdLoginCor {
 
 		ImgHouse img = adImgService.get(imgId) ;
 		if(null!=img){
-			img.setIsverify(verify) ;
+			img.setIsverify(VerifyEnum.getVerifyEnum(verify)) ;
 		}
 		adImgService.saveOrUpdate(img) ;
 		JSONObject json = new JSONObject();
