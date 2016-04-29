@@ -22,7 +22,15 @@
 			});
 		});
 
+		function getlen(count){
+			$obj.each(function(i){
+				if(count==(i+1)){
+					len = parseInt($(this).width()) + parseInt($(this).css("marginLeft"))*2;
+				}
+			});
+		}
 		function showImg(){
+			len = getlen(count) ;
 			$obj.removeClass("current").eq(count-1).addClass("current");
 			$(".cur_img img").attr("src" , $obj.eq(count-1).find("img").attr("src") );
 			if(num>6 && count>=3 && count<=num-3){
