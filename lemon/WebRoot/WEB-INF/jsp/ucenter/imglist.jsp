@@ -28,6 +28,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 /* $(function(){
 	$(".container").rowGrid({itemSelector: ".container ul li", minMargin: 5, maxMargin: 5, firstItemClass: "first-item"});
 }); */
+$(function(){
+	$(".scrollTop").click(function(){
+		parent.scrollTop(); //调用父窗口中的scrollTop函数
+		//$('.container', parent.document).animate({scrollTop:0}, 'slow');
+		//$(window.parent.document.body).animate({scrollTop:0}, 'slow');
+	});
+});
 </script>
 <body>
 
@@ -43,7 +50,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<li><span>图片描述：</span>${img.describe}</li>
 					<li>
 					<c:forEach items="${img.imgurlb}" var="a" varStatus="status">
-						<a href="${base}/ucenter/uimgshow.jspx?imgId=${img.id}&index=${status.index}"><img style="height:150px;" src='${base}${a.bigImagePath}' alt="${img.name}" /></a>
+						<a href="${base}/ucenter/uimgshow.jspx?imgId=${img.id}&index=${status.index}" class="scrollTop">
+							<img style="height:150px;" src='${base}${a.bigImagePath}' alt="${img.name}" />
+						</a>
 					</c:forEach>
 					</li>
 					

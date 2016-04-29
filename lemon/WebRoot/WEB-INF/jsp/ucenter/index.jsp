@@ -33,7 +33,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		});
 	});
 	
-	
+	function scrollTop(){
+		$('html, body').animate({scrollTop:0}, 'slow');
+	}
 	
 	
   

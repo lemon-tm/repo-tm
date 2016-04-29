@@ -28,7 +28,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<script type="text/javascript" src="${base}/js/img/scrollimg.js" charset="UTF-8"></script>
 </head>
 <script type="text/javascript">
-	
+
 </script>
 <body>
 
@@ -41,7 +41,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<div class="showimg-all">
 				<div class="showimg-l">
 					<c:forEach items="${img.imgurlb}" var="a" varStatus="status">
-						<c:if test="${status.index<1}">
+						<c:if test="${status.index==index}">
 							<img height="500" src='${base}${a.bigImagePath}' alt="" />
 						</c:if>
 					</c:forEach>
@@ -58,10 +58,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<div class="box_img pr">
 				<a href="javascript:void(0);" class="prev pa"></a>
 				<a href="javascript:void(0);" class="next pa"></a>
-				<ul class="pa">
+				<ul class="pa" style="height:171px; overflow:hidden;">
 					<c:forEach items="${img.imgurlb}" var="a" varStatus="status">
 					<c:choose>
-						<c:when test="${status.index<1 }">
+						<c:when test="${status.index==index }">
 							<li class="current"><img height="160" src='${base}${a.bigImagePath}' alt="" /></li>
 						</c:when>
 						<c:otherwise>
