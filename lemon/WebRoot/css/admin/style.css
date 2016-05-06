@@ -1,0 +1,7 @@
+@charset "utf-8";
+
+.table{background:#B4D1E4; color:#888;}
+.table th{background:#E2F0FA;line-height:38px;}
+.table td{background:#fff;line-height:30px;}
+.l{float:left}
+.r{float:right;}

@@ -22,30 +22,29 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<!--
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
-	<%@include file="./../common/common.jsp" %>
+	<%@include file="./../admin/acommon.jsp" %>
   </head>
   
 <body>
 	<jsp:include  page="./../common/pager.jsp"/>
 <form id="tableForm" method="post" style="padding-top:5px">
 	
-	<table class="pn-ltable" style="" theadClass="pn-lthead" tbodyClass="pn-ltbody" border="0" bordercolor="red" width="100%" cellspacing="1">
-		<thead class="pn-lthead">
+	<table class="table" border="0" width="100%" cellspacing="1">
+		<thead>
 			<tr>
 				<th width="5%">图片名称</th>
-				<th width="5%">图片描述</th>
+				<th width="35%">图片描述</th>
 				<th width="15%">上传用户</th>
-				<th width="6%">审核状态</th>
+				<th width="5%">审核状态</th>
 				<th width="10%">创建时间</th>
-				<th width="6%">图片路径</th>
-				<th width="6%">审核</th>
-				
+				<th width="15%">图片路径</th>
+				<th width="10%">审核</th>
 			</tr>
 		</thead>
-		<tbody class="pn-ltbody">
+		<tbody>
 			<c:forEach items="${pager.result}" var="item">
 			
-			<tr bgcolor="#dbedf4">
+			<tr>
 				
 				<td align="center">${item.name}</td>
 				<td align="center">${item.describe}</td>
@@ -53,9 +52,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<td align="center">${item.isverify}</td>
 				<td align="center">${item.createTime}</td>
 				<td align="center">
-					<c:forEach items="${item.imgurlb}" var="a">
-						<img src='${base}${a.smallImagePath}' />
-					</c:forEach>
+					<a href="${base}/ucenter/showImglist.do?imgId=${item.id}">点击查看图片</a>
+					<%-- <c:forEach items="${item.imgurlb}" var="a" varStatus="status">
+							<img src='${base}${a.smallImagePath}' />
+					</c:forEach> --%>
 				</td>
 				<td align="center">
 					<a href="javascript:void(0);" onclick="verify(1,'${item.id}')">通过</a>

@@ -9,12 +9,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-<title>后台管理</title>
+<title>admin-right</title>
+
 </head>
-<frameset rows="71,*" frameborder="0" border="0" framespacing="0">
-	<frame src="../top.do" name="topFrame" noresize="noresize" id="leftFrame" />
-	<frame src="../main.do" name="mainFrame" id="mainFrame" />
-</frameset>
-<noframes><body></body></noframes>
+<body>
+<div class="box-positon">
+	
+	<div class="clear"></div>
+</div>
+<div class="body-box">
+</div>
+</body>
 </html>
-  
