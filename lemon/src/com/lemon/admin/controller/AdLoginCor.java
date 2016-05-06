@@ -57,6 +57,23 @@ public class AdLoginCor {
 		model.put("pager", pager) ;
 		return "/WEB-INF/jsp/admin/imglist.jsp" ;
 	}
+	
+	/**
+	 * hhc add 2016-05-06 15:25
+	 * 
+	 * 查看详细图片列表
+	 * */
+	@RequestMapping(value="/ucenter/showImglist.do", method = RequestMethod.GET)
+	public String showImglist(String imgId, HttpServletRequest request, HttpServletResponse response, ModelMap model) throws ServletException, IOException{
+		FrontUtils.frontData(request, model);
+		LemonUser user = (LemonUser) request.getSession().getAttribute("user") ;
+
+		ImgHouse img = adImgService.get(imgId) ;
+		
+		model.put("user", user) ;
+		model.put("img", img) ;
+		return "/WEB-INF/jsp/admin/ashowimg.jsp" ;
+	}
 
 	/**
 	 * hhc add 2016-04-11 16:35
