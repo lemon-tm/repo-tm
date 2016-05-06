@@ -41,6 +41,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<div class="showimg-r ml20 lh30">
 			<div>名称：${img.name}</div>
 			<div>描述：${img.describe}</div>
+			<div>上传时间：<fmt:formatDate value="${img.createTime}" pattern="yyyy-MM-dd HH:mm"/></div>
 			<div>作者名称：${img.user.trueName}</div>
 			<div>作者微信：${img.user.weixin}</div>
 		</div>
