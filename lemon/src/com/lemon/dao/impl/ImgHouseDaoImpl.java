@@ -5,7 +5,6 @@ import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
-import com.lemon.admin.dao.impl.BaseDaoImpl;
 import com.lemon.constant.font.enums.VerifyEnum;
 import com.lemon.dao.ImgHouseDao;
 import com.lemon.entity.ImgHouse;

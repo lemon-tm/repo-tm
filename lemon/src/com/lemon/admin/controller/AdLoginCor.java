@@ -1,6 +1,7 @@
 package com.lemon.admin.controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.ServletException;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.lemon.admin.service.AdImgService;
+import com.lemon.admin.service.AdLemonUserService;
 import com.lemon.constant.font.enums.VerifyEnum;
 import com.lemon.entity.ImgHouse;
 import com.lemon.entity.LemonUser;
@@ -27,6 +29,8 @@ public class AdLoginCor {
 	@Resource
 	private AdImgService adImgService ;
 	
+	@Resource
+	private AdLemonUserService adLemonUserService ;
 	
 	
 	/**
@@ -52,7 +56,11 @@ public class AdLoginCor {
 		ImgHouse img = new ImgHouse() ;
 
 		pager = adImgService.getList(pager, user, img) ;
-		
+		List<ImgHouse> imglist = (List<ImgHouse>) pager.getResult() ;
+		for(ImgHouse i:imglist){
+			LemonUser u = adLemonUserService.get(i.getUserId()) ;
+			i.setUser(u) ;
+		}
 		model.put("user", user) ;
 		model.put("pager", pager) ;
 		return "/WEB-INF/jsp/admin/imglist.jsp" ;

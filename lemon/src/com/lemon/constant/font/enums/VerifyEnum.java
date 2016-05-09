@@ -4,7 +4,7 @@ import com.lemon.constant.BaseEnum;
 
 
 public enum VerifyEnum implements BaseEnum<Integer> {
-	WAIT("审核不通过",2),
+	WAIT("等待审核",2),
 	YES("审核通过",1),
 	NO("审核不通过",0);
 	

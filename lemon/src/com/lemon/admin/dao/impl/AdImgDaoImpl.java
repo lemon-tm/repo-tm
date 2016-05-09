@@ -6,6 +6,7 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
 import com.lemon.admin.dao.AdImgDao;
+import com.lemon.dao.impl.BaseDaoImpl;
 import com.lemon.entity.ImgHouse;
 import com.lemon.entity.LemonUser;
 import com.lemon.util.Pager;

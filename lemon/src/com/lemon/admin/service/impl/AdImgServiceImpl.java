@@ -8,6 +8,7 @@ import com.lemon.admin.dao.AdImgDao;
 import com.lemon.admin.service.AdImgService;
 import com.lemon.entity.ImgHouse;
 import com.lemon.entity.LemonUser;
+import com.lemon.service.impl.BaseServiceImpl;
 import com.lemon.util.Pager;
 
 /*
