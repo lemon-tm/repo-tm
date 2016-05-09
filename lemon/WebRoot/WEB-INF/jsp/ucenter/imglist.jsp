@@ -44,7 +44,7 @@ $(function(){
 		<div class="ucontainer-in">
 			<c:forEach items="${pager.result}" var="img">
 			<ul class="myimg" >
-					<li><span>审核状态：</span>${img.isverify.label}</li>
+					<li><span style="color:#1A94E6;">审核状态：</span>${img.isverify.label}</li>
 					<li><span>上传时间：</span>${img.createTime}</li>
 					<li><span>图片名称：</span>${img.name}</li>
 					<li><span>图片描述：</span>${img.describe}</li>

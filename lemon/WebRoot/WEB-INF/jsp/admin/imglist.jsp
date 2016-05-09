@@ -48,7 +48,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				
 				<td align="center">${item.name}</td>
 				<td align="center">${item.describe}</td>
-				<td align="center">${item.userId}</td>
+				<td align="center">${item.userId},${item.user.username}</td>
 				<td align="center">${item.isverify}</td>
 				<td align="center">${item.createTime}</td>
 				<td align="center">
