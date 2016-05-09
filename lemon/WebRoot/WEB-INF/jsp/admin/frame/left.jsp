@@ -11,9 +11,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 <title>admin-left</title>
 
-
+<%@include file="../acommon.jsp" %>
 </head>
-<body class="l">
-	<a href="${base}/ucenter/imglist.do" target="rightFrame">图片管理</a>
+<body>
+	<ul class="left-m">
+		<li><a href="${base}/ucenter/imglist.do" target="rightFrame">图片管理</a></li>
+		<li><a href="${base}/ucenter/userlist.do" target="rightFrame">用户管理</a></li>
+	</ul>
 </body>
 </html>
