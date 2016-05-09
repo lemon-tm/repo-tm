@@ -1,0 +1,24 @@
+## This is a velocity template
+## to generate a model class from an sql table input
+#set ($table = $sqlTable.Table)
+#set ($class = $utility.makeClassName($sqlTable.EntityName))
+#set ($classVar = $utility.makeFirstLetterLowerCase($class))
+#set ($packagePrefix  = $prop.getProperty("packagePrefix"))
+#set ($packageModot  = $prop.getProperty("packageModot"))
+#set ($keyfield = $sqlTable.getPrimaryKey(0).getColname())
+#set ($keytype  = $sqlTable.getPrimaryKey(0).getAttType())
+#set ($keyVar= $utility.makeVarName($keyfield))
+#set ($keyVarUC = $utility.makeFirstLetterUpperCase($keyVar))
+package ${packagePrefix}.service;
+
+import ${packagePrefix}.service.BaseService;
+##import ${packagePrefix}.entity.${class};
+
+/*
+ *  @author 
+ */
+public interface Ad${class}Service extends BaseService<${class},String>{
+	
+}
+
+
