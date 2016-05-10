@@ -16,9 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.lemon.common.email.EmailSend;
-import com.lemon.common.email.EmailSender;
 import com.lemon.entity.LemonUser;
-import com.lemon.service.ConfigService;
 import com.lemon.service.ImgHouseService;
 import com.lemon.service.LemonUserService;
 import com.lemon.util.FrontUtils;
