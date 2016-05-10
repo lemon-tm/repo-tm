@@ -1,8 +1,10 @@
 package com.lemon.controller;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 
 import javax.annotation.Resource;
+import javax.mail.MessagingException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -13,7 +15,10 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.lemon.common.email.EmailSend;
+import com.lemon.common.email.EmailSender;
 import com.lemon.entity.LemonUser;
+import com.lemon.service.ConfigService;
 import com.lemon.service.ImgHouseService;
 import com.lemon.service.LemonUserService;
 import com.lemon.util.FrontUtils;
@@ -51,14 +56,19 @@ public class LoginCor {
 	
 	
 	@RequestMapping(value="/register.jspx", method = RequestMethod.POST)
-	public String register(LemonUser user, String username,String password, HttpServletRequest request, HttpServletResponse response, ModelMap model){
+	public String register(LemonUser user, String username,String password, HttpServletRequest request, HttpServletResponse response, ModelMap model) throws UnsupportedEncodingException, MessagingException{
 		FrontUtils.frontData(request, model);
 		LemonUser isUser = lemonUserService.findLemonUser(user) ;
 		if(null==isUser){
 			user.setPassword(pwdEncoder.encodePassword(password)) ;
 			lemonUserService.save(user) ;
-//			model.put("user", user) ;
 			request.getSession().setAttribute("user", user) ;
+			
+			//发送邮件给我，配置文件位置email.properties
+			EmailSend emailSend =  new EmailSend();
+			String html = "用户名："+user.getUsername()+"<br/>邮箱："+user.getEmail();
+			emailSend.send("rlemon新用户注册提示邮件",html);
+			
 		}else{
 			request.getSession().setAttribute("user", isUser) ;
 		}
