@@ -25,5 +25,20 @@ public class LemonUserDaoImpl extends BaseDaoImpl<LemonUser,String> implements L
 		query.setMaxResults(1);
 		return (LemonUser) query.uniqueResult();
 	}
+
+	@Override
+	public LemonUser getUser(LemonUser user) {
+		String hql = "from LemonUser bean ";
+		if(user!=null){
+			hql+=" where bean.username=? ";
+		}
+		Query query = getSession().createQuery(hql);
+		if(user!=null){
+			query.setParameter(0, user.getUsername()) ;
+		}
+		// 做一些容错处理，因为毕竟没有在数据库中限定path是唯一的。
+		query.setMaxResults(1);
+		return (LemonUser) query.uniqueResult();
+	}
 	
 }

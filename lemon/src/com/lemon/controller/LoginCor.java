@@ -52,6 +52,24 @@ public class LoginCor {
 		
 	}
 	
+	/**
+	 * 2016-05-11 10:24 hhc add
+	 * 
+	 *  用于判断用户名是否已经被注册
+	 * 
+	 */
+	@RequestMapping(value="/checkUser.jspx", method = RequestMethod.POST)
+	public void checkUserName(String username,HttpServletRequest request, HttpServletResponse response, ModelMap model) throws ServletException, IOException{
+		LemonUser user = new LemonUser() ;
+		user.setUsername(username) ;
+		user = lemonUserService.getUser(user) ;
+		if(null!=user){
+			ResponseUtils.renderJson(response, "true");
+		}else{
+			ResponseUtils.renderJson(response, "false");
+		}
+		
+	}
 	
 	@RequestMapping(value="/register.jspx", method = RequestMethod.POST)
 	public String register(LemonUser user, String username,String password, HttpServletRequest request, HttpServletResponse response, ModelMap model) throws UnsupportedEncodingException, MessagingException{
@@ -70,6 +88,7 @@ public class LoginCor {
 		}else{
 			request.getSession().setAttribute("user", isUser) ;
 		}
+		//返回位置错误，应有注册成功等待邮箱验证页面
 		return "/WEB-INF/jsp/index.jsp" ;
 	}
 	

@@ -6,4 +6,6 @@ public interface LemonUserDao extends BaseDao<LemonUser, String> {
 
 	LemonUser findLemonUser(LemonUser user);
 
+	LemonUser getUser(LemonUser user);
+
 }

@@ -21,6 +21,10 @@ public class LemonUserServiceImpl extends BaseServiceImpl<LemonUser,String> impl
 	public LemonUser findLemonUser(LemonUser user) {
 		return lemonUserDao.findLemonUser(user) ;
 	}
+	@Override
+	public LemonUser getUser(LemonUser user) {
+		return lemonUserDao.getUser(user);
+	}
 
 
 }
