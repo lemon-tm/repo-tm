@@ -38,33 +38,80 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		});
 	
 	});
-	
+
+
+
+var sign = true ;
+function checkusername(username){
+	$.ajax({
+          type:"POST",
+          async : false,
+          //url:"${base}/weplatform/saveproduct.jspx",
+          url:"${base}/checkUser.jspx",
+          data : {username:username,date:new Date()},
+          datatype: "json",//"xml", "html", "script", "json", "jsonp", "text".
+          beforeSend:function(){
+          },
+          success:function(data){
+	         	data = eval(data);
+		    	sign = data ;
+          },
+          complete: function(XMLHttpRequest, textStatus){
+          },
+          error: function(){
+          }         
+       }); 
+	return sign ;
+}
+
 	function dosubmit(){
 		var username=$("#username").val() ;
 		var password=$("#password").val() ;
 		var password2=$("#password2").val() ;
+		var email = $("#email").val() ;
 		
 		if(username){
-		
+			if(username.length<6){
+				alert("请使用大于等于6位的用户名！") ;
+				return ;
+			}else{
+				checkusername(username) ;
+				if(sign){
+					alert("用户名已存在！") ;
+					return ;
+				}
+			}
 		}else{
-			alert("用户名不能为空");
+			alert("用户名不能为空！");
 			return ;
 		}
 		
 		if(password){
-		
+			if(password.length<6){
+				alert("请使用大于等于6位的密码！") ;
+				return ;
+			}
 		}else{
-			alert("密码不能为空") ;
+			alert("密码不能为空！") ;
 			return ;
 		}
 		
+		if(email){
+			var re =/^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/;
+			if(!re.test(email)){
+				alert("邮箱格式不正确，请填写近期使用的邮箱！");
+				return;
+			}
+		}else{
+			alert("邮箱不能为空，请填写近期使用的邮箱！") ;
+			return ;
+		}
 		if(password==password2){
 			mark=true ;
 		}else{
 			mark=false ;
-			msg="密码不一致" ;
+			msg="重复密码不一致！" ;
 		}
-		
 		if(mark){
 			login.submit() ;
 		}else{
@@ -98,6 +145,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<td><input id="password2" name="password2" type="password" value=""  /><span id="pwmsga"></span></td>
 				</tr>
 				<tr>
+					<td align="right"><span class="red p5">*</span>邮箱</td>
+					<td><input id="email" name="email" type="text" value=""  /><span id="emailsg"></span></td>
+				</tr>
+				<tr>
 					<td align="right">手机</td>
 					<td><input id="cellPhone" name="cellPhone" type="text" value="" /><span id="unmsg"></span></td>
 				</tr>
@@ -106,7 +157,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<td><input id="weixin" name="weixin" type="text" value="" /><span id="unmsg" class="red">用于线下交易，请务必填写真实账号</span></td>
 				</tr>
 				<tr>
-					<td colspan="2" align="center"><a href="javascript:void(0);" onclick="javascript:dosubmit();" class="btn" >注册账户</a></td>
+					<td colspan="2" align="center">
+						<input type="hidden" value="0" name="status" />
+						<a href="javascript:void(0);" onclick="javascript:dosubmit();" class="btn" >注册账户</a>
+					</td>
 				</tr>
 			</table>
 	    	
