@@ -137,16 +137,16 @@ function checkusername(username){
 					<td><input id="username" name="username" type="text" value="" /><span id="unmsg"></span></td>
 				</tr>
 				<tr>
+					<td align="right"><span class="red p5">*</span>邮箱地址</td>
+					<td><input id="email" name="email" type="text" value=""  /><span id="emailsg"></span></td>
+				</tr>
+				<tr>
 					<td align="right"><span class="red p5">*</span>账户密码</td>
 					<td><input id="password" name="password" type="password" value="" /><span id="pwmsg"></span></td>
 				</tr>
 				<tr>
 					<td align="right"><span class="red p5">*</span>重复密码</td>
 					<td><input id="password2" name="password2" type="password" value=""  /><span id="pwmsga"></span></td>
-				</tr>
-				<tr>
-					<td align="right"><span class="red p5">*</span>邮箱</td>
-					<td><input id="email" name="email" type="text" value=""  /><span id="emailsg"></span></td>
 				</tr>
 				<tr>
 					<td align="right">手机</td>
