@@ -24,3 +24,5 @@
 .showimg-all{width:980px; margin:0 auto; overflow:hidden;}
 .showimg-l{float:left;}
 .showimg-r{float:left;}
+
+.msg-box li{padding-top:8px;overflow:hidden;}

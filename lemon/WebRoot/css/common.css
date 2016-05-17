@@ -18,3 +18,6 @@ color:#fff;text-decoration: none; padding:5px;}
 .pagelist span,.pagelist a{display:inline-block;border:1px solid #ccc;border-radius:5px;padding:5px 12px;margin:0px 6px;color:#888;}
 .pagelist span.current{background:#f74d58;color:#fff;border-color:#f74d58;}
 .pagelist span.disabled{color:#ccc;}
+
+input {border:0;outline:0;vertical-align:middle;width:324px;border:1px solid #D3D3D3;border-radius:5px;margin-right:15px;margin-top:-1px;padding:3px 0 3px 10px;height:30px;line-height:24px;}
+textarea {border:0;outline:0;vertical-align:middle;width:480px;border:1px solid #D3D3D3;border-radius:5px; padding:3px 0 3px 10px;height:180px;line-height:24px;}
