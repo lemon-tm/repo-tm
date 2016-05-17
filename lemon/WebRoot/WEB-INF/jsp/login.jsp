@@ -49,7 +49,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		if(message){
 			login.submit() ;
 		}else{
-			window.location.href="${base}/to_register.jspx" ;
+			alert("账户名称或密码错误！") ;
+			//window.location.href="${base}/to_register.jspx" ;
 		}
 	}
 	

@@ -33,8 +33,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<thead>
 			<tr>
 				<th width="5%">图片名称</th>
-				<th width="35%">图片描述</th>
+				<th width="30%">图片描述</th>
 				<th width="15%">上传用户</th>
+				<th width="5%">图片状态</th>
 				<th width="5%">审核状态</th>
 				<th width="10%">创建时间</th>
 				<th width="15%">图片路径</th>
@@ -49,6 +50,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<td align="center">${item.name}</td>
 				<td align="center">${item.describe}</td>
 				<td align="center">${item.userId},${item.user.username}</td>
+				<td align="center">${item.status}</td>
 				<td align="center">${item.isverify}</td>
 				<td align="center">${item.createTime}</td>
 				<td align="center">
