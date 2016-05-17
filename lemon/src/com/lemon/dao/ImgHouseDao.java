@@ -9,7 +9,7 @@ import com.lemon.util.Pager;
  */
 public interface ImgHouseDao extends BaseDao<ImgHouse, String>{
 
-	Pager findByUser(Pager page, String userId);
+	Pager findByUser(Pager page, String userId, ImgHouse img);
 
 	Pager getList(Pager pager);
 	

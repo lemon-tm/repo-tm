@@ -9,7 +9,7 @@ import com.lemon.entity.ImgHouse;
  */
 public interface ImgHouseService extends BaseService<ImgHouse,String>{
 
-	Pager findByUser(Pager page, String id);
+	Pager findByUser(Pager page, String id, ImgHouse img);
 
 	Pager getList(Pager pager);
 

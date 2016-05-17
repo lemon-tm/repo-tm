@@ -23,16 +23,12 @@ public class ImgHouseServiceImpl extends BaseServiceImpl<ImgHouse,String> implem
 		super.setBaseDao(imgHouseDao);
 	}
 
-	public Pager findByUser(Pager page,String userId) {
-		return imgHouseDao.findByUser(page, userId) ;
+	public Pager findByUser(Pager page,String userId, ImgHouse img) {
+		return imgHouseDao.findByUser(page, userId, img) ;
 	}
 
 	public Pager getList(Pager pager) {
 		return imgHouseDao.getList(pager) ;
 	}
-
-
-
-	
 
 }

@@ -9,6 +9,8 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.lemon.constant.font.enums.ImgStatusEnum;
+import com.lemon.entity.ImgHouse;
 import com.lemon.entity.LemonUser;
 import com.lemon.service.ImgHouseService;
 import com.lemon.util.FrontUtils;
@@ -25,8 +27,11 @@ public class UCenterCor {
 		FrontUtils.frontData(request, model);
 		LemonUser user = (LemonUser) request.getSession().getAttribute("user") ;
 		page.setpUrl("/ucenter/imglist.jspx") ;
+		
+		ImgHouse img = new ImgHouse() ;
+		img.setStatus(ImgStatusEnum.getImgStatusEnum(2)) ;
 		if(null!=user){
-			page = imgHouseService.findByUser(page, user.getId()) ;
+			page = imgHouseService.findByUser(page, user.getId(),img) ;
 		}
 		model.put("pager", page) ;
 		

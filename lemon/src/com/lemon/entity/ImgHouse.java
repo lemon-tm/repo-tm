@@ -21,6 +21,7 @@ import org.hibernate.annotations.Parameter;
 import org.hibernate.annotations.Type;
 
 import com.lemon.common.bean.ImageBean;
+import com.lemon.constant.font.enums.ImgStatusEnum;
 import com.lemon.constant.font.enums.VerifyEnum;
 
 /**
@@ -36,7 +37,7 @@ public class ImgHouse extends BaseEntity {
 	private String userId;//上传用户
 	private java.util.Date createTime;//诞生时间
 	private java.util.Date uploadTime;//上传时间
-	private Integer status;//状态1、出售2、拍卖3、已出售
+	private ImgStatusEnum status;//状态1、出售2、拍卖3、已出售
 	private String name;//名称
 	private String describe;//描述
 	private VerifyEnum isverify ;//审核状态0审核中1审核通过2审核失败
@@ -165,15 +166,13 @@ public class ImgHouse extends BaseEntity {
 	* @hibernate.property column="status" type="java.lang.Integer" length="10" not-null="false"
 	*/
 	@Column(name = "`status`", length = 10)
-	public Integer getStatus() {
-		return this.status;
+	@Type(type = "com.lemon.constant.CustomEnumType", parameters = {@Parameter(name = "enum", value = "com.lemon.constant.font.enums.ImgStatusEnum")})
+	public ImgStatusEnum getStatus() {
+		return status;
 	}
 
-   /**
-	* Set the status
-	*/
-	public void setStatus(Integer aValue) {
-		this.status = aValue;
+	public void setStatus(ImgStatusEnum status) {
+		this.status = status;
 	}
 
    /**
@@ -186,7 +185,9 @@ public class ImgHouse extends BaseEntity {
 		return this.name;
 	}
 
-   /**
+   
+
+/**
 	* Set the name
 	*/
 	public void setName(String aValue) {

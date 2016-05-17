@@ -29,6 +29,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.lemon.common.UploadUtils;
 import com.lemon.common.bean.ImageBean;
 import com.lemon.common.service.ImageService;
+import com.lemon.constant.font.enums.ImgStatusEnum;
 import com.lemon.constant.font.enums.VerifyEnum;
 import com.lemon.entity.ImgHouse;
 import com.lemon.entity.LemonUser;
@@ -107,7 +108,7 @@ public class UploadCor implements ServletContextAware {
 		imgHouse.setUserId(user.getId()) ;
 		imgHouse.setCreateTime(new Date()) ;
 		imgHouse.setUploadTime(new Date()) ;
-		imgHouse.setStatus(1) ;
+		imgHouse.setStatus(ImgStatusEnum.getImgStatusEnum(1)) ;
 //		imgHouse.setName("") ;
 //		imgHouse.setDescribe("后台假数据describe") ;
 		imgHouse.setIsverify(VerifyEnum.getVerifyEnum(2)) ;
