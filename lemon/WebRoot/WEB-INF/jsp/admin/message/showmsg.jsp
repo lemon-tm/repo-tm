@@ -21,18 +21,25 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<meta name="description" content="红色柠檬网，不一样的柠檬，用于各类用户存储在旅游或外出时随手拍出的图片，或自己创作的图画保存。" />
 	<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
 	
-	<jsp:include  page="./../common/common.jsp"/>
+	<jsp:include  page="./../../common/common.jsp"/>
 	<link rel="stylesheet" type="text/css" href="${base}/css/img-style.css" media="screen"/>
 
 	<link rel="shortcut icon" href="${base}/image/favicon.ico">
  
 </head>
 <script type="text/javascript">
-
+$(document).ready(function(){
+	var message = '${message}' ;
+	if(message){
+		alert(message) ;
+	}
+}) ;
 function dosubmit(){
 	var title=$("#title").val() ;
 	var content=$("#content").val() ;
 	var email = $("#email").val() ;
+	var replyContent = $("#replyContent").val() ;
+	
 	var user = '${user}';
 	
 	if(title){
@@ -54,6 +61,15 @@ function dosubmit(){
 		}
 	}else{
 		alert("内容不能为空！") ;
+		return ;
+	}
+	if(replyContent){
+		if(replyContent.length<6){
+			alert("输入回复内容不能小于6个字符！") ;
+			return ;
+		}
+	}else{
+		alert("回复内容不能为空！") ;
 		return ;
 	}
 	
@@ -78,27 +94,33 @@ function dosubmit(){
 </script>
 
 <body>
-<jsp:include  page="./../common/head.jsp"/>
-<jsp:include  page="./../common/pager.jsp"/>
+
 
 <div class="container">
-	<form name="msg" action="${base}/savemsg.jspx" method="post">
+	<form name="msg" action="${base}/ucenter/replyemail.do" method="post">
 	<ul class="msg-box">
 		
 		<li>
 			<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;标题：</span>
-			<input id="title" name="title" type="text" value="" />
+			<input id="title" name="title" type="text" value="${msg.title }" readonly="readonly" />
 		</li>
 		<li>
 			<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;内容：</span>
-			<textarea id="content" name="content" rows="10" cols="30"></textarea>
+			<textarea id="content" name="content" rows="10" cols="30" readonly="readonly">${msg.content }</textarea>
 		</li>
 		<li>
 			<span>联系邮箱：</span>
-			<input id="email" name="email" type="text" value="${email }" />
+			<input id="email" name="email" type="text" value="${msg.email }" readonly="readonly" />
 		</li>
 		<li>
-			<a href="javascript:void(0);" onclick="javascript:dosubmit();" class="btn" >确定留言</a>
+			<span>回复内容：</span>
+			<textarea id="replyContent" name="replyContent" rows="10" cols="30">${msg.replyContent }</textarea>
+		</li>
+		<li>
+			<input name="id" value="${msg.id}" type="hidden" />
+			<c:if test="${msg.states.value<2 }">
+				<a href="javascript:void(0);" onclick="javascript:dosubmit();" class="btn" >邮件回复</a>
+			</c:if>
 		</li>
 	</ul>
 	</form>
@@ -106,7 +128,5 @@ function dosubmit(){
 	<div class="clear"></div>
 </div>
 
-
-<jsp:include  page="./../common/footer.jsp"/>
 </body>
 </html>

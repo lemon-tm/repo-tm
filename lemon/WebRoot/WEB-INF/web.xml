@@ -23,6 +23,10 @@
   </filter>
   <filter-mapping>
     <filter-name>encoding</filter-name>
+    <url-pattern>*.do</url-pattern>
+  </filter-mapping>
+  <filter-mapping>
+    <filter-name>encoding</filter-name>
     <url-pattern>*.jspx</url-pattern>
   </filter-mapping>
   <filter-mapping>
@@ -43,7 +47,7 @@
     <init-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>
-		/WEB-INF/config/spring-mvc.xml
+			/WEB-INF/config/spring-mvc.xml
 		</param-value>
     </init-param>
     <load-on-startup>1</load-on-startup>

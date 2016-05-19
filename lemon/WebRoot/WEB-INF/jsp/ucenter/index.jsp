@@ -67,11 +67,16 @@ function iFrameHeight() {
 					<dd><a href="${base}/ucenter/imglist.jspx" target="frame">我的图片</a></dd>
 				</dl>
 				<dl>
+					<dt>我的留言</dt>
+					<dd><a href="${base}/ucenter/msglist.jspx" target="frame">留言列表</a></dd>
+				</dl>
+				<dl>
 					<dt>设置</dt>
 					<dd><a href="${base}/ucenter/setUpUser.jspx" target="frame">基本设置</a></dd>
 					<!--  <dd><a href="" target="frame">安全设置</a></dd> -->
 					<dd><a href="${base}/logout.jspx">退出账户</a></dd>
 				</dl>
+				
 			</div>
 			<div class="container-r">
 				<iframe name="frame" class="frame" id="frame" scrolling="no" frameborder="0" onLoad="javascript:iFrameHeight();" ></iframe>
