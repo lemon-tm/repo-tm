@@ -6,6 +6,7 @@ import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
@@ -28,12 +29,43 @@ public class Message extends BaseEntity {
 
 	private String title;//
 	private String content;//
+	private String replyContent;
+	private String email;//
 	private MsgStatesEnum states ;
 	private String userId ;
 	private Date createTime ;
 	private Date readTime ; 
 	private Date replayTime ;
 	
+	private String username ;
+	
+	@Column(name = "replay_content")
+	public String getReplyContent() {
+		return replyContent;
+	}
+
+	public void setReplyContent(String replyContent) {
+		this.replyContent = replyContent;
+	}
+
+	@Transient
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	@Column(name = "email", length = 50)
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
 	@Column(name = "create_time", length = 50)
 	public Date getCreateTime() {
 		return createTime;

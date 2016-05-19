@@ -27,7 +27,7 @@ public class EmailSend {
 	 * 
 	 * 发送邮件
 	 */
-	public void send( String subject, String text)throws MessagingException{
+	public void send( String subject, String text, String toEmail)throws MessagingException{
 		Properties props = System.getProperties();
 		props.put("mail.transport.protocol", "SMTP");
         props.put("mail.smtp.auth", "true");//同时通过验证 
@@ -47,7 +47,14 @@ public class EmailSend {
                 });
         MimeMessage message = new MimeMessage(session);
         Address address = new InternetAddress(PropertyUtilityForEmail.getProperty("mail.server.username"));
-        Address toAaddress = new InternetAddress(PropertyUtilityForEmail.getProperty("mail.to"));
+        Address toAaddress = null ;
+        if(null!=toEmail && !"".equals(toEmail)){
+        	toAaddress = new InternetAddress(toEmail);
+        	
+        }else{
+        	toAaddress = new InternetAddress(PropertyUtilityForEmail.getProperty("mail.to"));
+        }
+        
         
         message.setFrom(address);
         message.setRecipient(MimeMessage.RecipientType.TO, toAaddress);

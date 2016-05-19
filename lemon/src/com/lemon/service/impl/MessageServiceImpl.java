@@ -7,6 +7,7 @@ import com.lemon.service.impl.BaseServiceImpl;
 import com.lemon.dao.MessageDao;
 import com.lemon.entity.Message;
 import com.lemon.service.MessageService;
+import com.lemon.util.Pager;
 
 /*
  *  @author 
@@ -20,6 +21,11 @@ public class MessageServiceImpl extends BaseServiceImpl<Message,String> implemen
 	@Resource(name = "messageDaoImpl")
 	public void setBaseDao(MessageDao messageDao) {
 		super.setBaseDao(messageDao);
+	}
+
+	@Override
+	public Pager getMsgList(Pager page, Message msg) {
+		return messageDao.getMsgList(page, msg);
 	}
 
 }

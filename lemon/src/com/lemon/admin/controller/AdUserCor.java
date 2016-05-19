@@ -1,7 +1,5 @@
 package com.lemon.admin.controller;
 
-import java.util.List;
-
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -12,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.lemon.admin.service.AdLemonUserService;
-import com.lemon.entity.ImgHouse;
 import com.lemon.entity.LemonUser;
 import com.lemon.util.FrontUtils;
 import com.lemon.util.Pager;

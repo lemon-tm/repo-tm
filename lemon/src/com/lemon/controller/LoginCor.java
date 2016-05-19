@@ -83,7 +83,7 @@ public class LoginCor {
 			//发送邮件给我，配置文件位置email.properties
 			EmailSend emailSend =  new EmailSend();
 			String html = "用户名："+user.getUsername()+"<br/>邮箱："+user.getEmail();
-			emailSend.send("rlemon新用户注册提示邮件",html);
+			emailSend.send("rlemon新用户注册提示邮件",html ,null);
 			
 		}else{
 			request.getSession().setAttribute("user", isUser) ;
