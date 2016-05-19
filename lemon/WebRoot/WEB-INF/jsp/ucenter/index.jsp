@@ -74,7 +74,7 @@ function iFrameHeight() {
 					<dt>设置</dt>
 					<dd><a href="${base}/ucenter/setUpUser.jspx" target="frame">基本设置</a></dd>
 					<!--  <dd><a href="" target="frame">安全设置</a></dd> -->
-					<dd><a href="${base}/logout.jspx">退出账户</a></dd>
+					<dd><a href="${base}/logout.jspx" onclick="return confirm('确定退出账户吗？');">退出账户</a></dd>
 				</dl>
 				
 			</div>
