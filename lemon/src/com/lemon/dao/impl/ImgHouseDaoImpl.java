@@ -49,7 +49,7 @@ public class ImgHouseDaoImpl extends BaseDaoImpl<ImgHouse,String> implements Img
 		criteria.add(Restrictions.eq("isverify",VerifyEnum.getVerifyEnum(1)));
 		criteria.add(Restrictions.ne("status",ImgStatusEnum.getImgStatusEnum(2)));
 		if(null!=keywords && !"".equals(keywords)){
-			criteria.add(Restrictions.or(Restrictions.like("name", keywords), Restrictions.like("describe", keywords)));
+			criteria.add(Restrictions.or(Restrictions.like("name", "%"+keywords+"%"), Restrictions.like("describe", "%"+keywords+"%")));
 		}
 		
 		criteria.addOrder(Order.desc("createTime"));
