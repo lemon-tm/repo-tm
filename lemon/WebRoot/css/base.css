@@ -8,7 +8,7 @@
 html,body{width:100%;font-family:"Microsoft Yahei",SimHei,"Helvetica Neue","DejaVu Sans",Tahoma,"Hiragino Sans GB";font-size:100%;font-size:16px;font-size:1em;}
 body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,blockquote,th,td,i {margin:0;padding:0;}
 /* 去掉table cell的边距并让其边重合*/
-table {border-collapse:collapse;border-spacing:0;}
+/*table {border-collapse:collapse;border-spacing:0;}*/
 /* ie bug：th不继承text-align*/
 tr{display:table-row;vertical-align:inherit;border-color:inherit;}
 /* ie6，7，8 bug 显示为行内表现 */
