@@ -82,6 +82,7 @@ function dosubmit(){
 <jsp:include  page="./../common/pager.jsp"/>
 
 <div class="container">
+<span class="tishi">提示：登录后留言，才有地方查看哦！</span>
 	<form name="msg" action="${base}/savemsg.jspx" method="post">
 	<ul class="msg-box">
 		
@@ -99,6 +100,7 @@ function dosubmit(){
 		</li>
 		<li>
 			<a href="javascript:void(0);" onclick="javascript:dosubmit();" class="btn" >确定留言</a>
+			
 		</li>
 	</ul>
 	</form>

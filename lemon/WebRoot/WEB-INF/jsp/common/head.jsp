@@ -3,6 +3,13 @@
 <%@ taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql" %> 
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
+<script type="text/javascript">
+
+function search(){
+	searchf.submit() ;
+}
+
+</script>
 <div class="top">
 	<div class="fl tellus"><a href="${base}/leave-message.jspx">留言</a></div>
 	<c:if test="${empty user.username}">
@@ -16,12 +23,12 @@
 <div class="navigation-box">
 	<ul>
 		<li><a href="${base}/home.jspx">首页</a></li>
-		<li>照片</li>
+		<li><a href="${base}/photograph.jspx">照片</a></li>
 	</ul>
 	<div class="searchdi">
-		<form action="" method="post">
-			<input type="text" value="" name="" id=""  class="searchin" />
-			<input type="button" value="search" name="" id="" class="searchbu" />
+		<form name="searchf" action="${base}/photograph.jspx" method="post">
+			<input type="text" value="${keywords}" name="keywords" id="keywords"  class="searchin" />
+			<input type="button" value="search" onclick="search();" class="searchbu" />
 		</form>
 	</div>
 </div>

@@ -134,7 +134,7 @@ function checkusername(username){
 				</tr>
 				<tr>
 					<td align="right"><span class="red p5">*</span>账户名称</td>
-					<td><input id="username" name="username" type="text" value="" /><span id="unmsg"></span></td>
+					<td><input id="username" name="username" type="text" value="" /><span id="unmsg" class="tishi">提示：登录要用哦！</span></td>
 				</tr>
 				<tr>
 					<td align="right"><span class="red p5">*</span>邮箱地址</td>
@@ -154,7 +154,7 @@ function checkusername(username){
 				</tr>
 				<tr>
 					<td align="right">微信</td>
-					<td><input id="weixin" name="weixin" type="text" value="" /><span id="unmsg" class="red">用于线下交易，请务必填写真实账号</span></td>
+					<td><input id="weixin" name="weixin" type="text" value="" /><span id="unmsg" class="tishi">提示：用于线下交易，请务必填写真实账号</span></td>
 				</tr>
 				<tr>
 					<td colspan="2" align="center">
