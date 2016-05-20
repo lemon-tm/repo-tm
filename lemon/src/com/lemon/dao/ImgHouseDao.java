@@ -12,5 +12,7 @@ public interface ImgHouseDao extends BaseDao<ImgHouse, String>{
 	Pager findByUser(Pager page, String userId, ImgHouse img);
 
 	Pager getList(Pager pager);
+
+	Pager getList(Pager pager, String keywords);
 	
 }

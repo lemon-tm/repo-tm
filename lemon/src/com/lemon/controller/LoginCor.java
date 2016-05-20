@@ -124,7 +124,7 @@ public class LoginCor {
 		ResponseUtils.renderJson(response, json.toString());
 		
 	}
-	@RequestMapping(value="/home.jspx", method=RequestMethod.GET)
+	@RequestMapping(value="/home.jspx", method={RequestMethod.GET,RequestMethod.POST})
 	public String gethome(Pager pager, HttpServletRequest request, HttpServletResponse response, ModelMap model){
 		LemonUser user = (LemonUser) request.getSession().getAttribute("user") ;
 		String pUrl = request.getServletPath() ;
@@ -136,16 +136,18 @@ public class LoginCor {
 		model.put("user", user) ;
 		return "/WEB-INF/jsp/index.jsp" ;
 	}
-	@RequestMapping(value="/home.jspx", method=RequestMethod.POST)
-	public String home(Pager pager, HttpServletRequest request, HttpServletResponse response, ModelMap model){
+	@RequestMapping(value="/photograph.jspx", method={RequestMethod.GET,RequestMethod.POST})
+	public String phpto(String keywords, Pager pager, HttpServletRequest request, HttpServletResponse response, ModelMap model){
 		LemonUser user = (LemonUser) request.getSession().getAttribute("user") ;
 		String pUrl = request.getServletPath() ;
 		pager.setpUrl(pUrl) ;
 		FrontUtils.frontData(request, model) ;
-		pager = imgHouseService.getList(pager) ;
+		pager = imgHouseService.getList(pager, keywords) ;
 		
 		model.put("pager", pager) ;
 		model.put("user", user) ;
-		return "/WEB-INF/jsp/index.jsp" ;
+		model.put("keywords", keywords) ;
+		return "/WEB-INF/jsp/index_photo.jsp" ;
 	}
+	
 }

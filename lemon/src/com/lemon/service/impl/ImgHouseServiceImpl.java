@@ -31,4 +31,10 @@ public class ImgHouseServiceImpl extends BaseServiceImpl<ImgHouse,String> implem
 		return imgHouseDao.getList(pager) ;
 	}
 
+	@Override
+	public Pager getList(Pager pager, String keywords) {
+		// TODO Auto-generated method stub
+		return imgHouseDao.getList(pager, keywords);
+	}
+
 }

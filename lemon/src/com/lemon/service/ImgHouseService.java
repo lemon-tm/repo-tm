@@ -13,6 +13,8 @@ public interface ImgHouseService extends BaseService<ImgHouse,String>{
 
 	Pager getList(Pager pager);
 
+	Pager getList(Pager pager, String keywords);
+
 
 
 	
