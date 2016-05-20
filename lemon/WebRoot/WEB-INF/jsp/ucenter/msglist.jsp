@@ -59,6 +59,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	
 </form>
 <script type="text/javascript">
+/* 
 function verify(value,id){
 	$.ajax({
         type:"POST",
@@ -80,7 +81,8 @@ function verify(value,id){
         error: function(){
         }         
      });
-}
+} 
+*/
 	
 </script>
 

@@ -4,7 +4,7 @@
 .navigation-box ul li{height:59px; line-height:59px; padding:0 16px 0 16px;float:left; border-right:solid 1px #424242;}
 .navigation-box ul li a{ color:#fff;}
 
-.container{padding:25px 50px ; }
+.container{padding:0 50px 25px; }
 .container:before,.container:after { content: ""; display: table; }
 .container:after { clear: both; }
 .imgbox{overflow:hidden;}

@@ -83,7 +83,7 @@ function verify(value,id){
         success:function(data){
        		data = eval(data);
        		if(null!=data.verify){
-       			window.location.href="${base}/ucenter/imglist.do";
+       			window.location.href="${base}/ucenter/imglist.do?pageNumber=${pager.pageNumber}";
        		}
 	    	
         },

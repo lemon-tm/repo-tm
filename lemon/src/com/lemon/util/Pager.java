@@ -2,6 +2,11 @@ package com.lemon.util;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
+
 /**
  * Bean类 - 分页
  */
@@ -16,7 +21,7 @@ public class Pager {
 	}
 
 	private int pageNumber = 1;// 当前页码
-	private int pageSize = 30;// 每页记录数
+	private int pageSize = 10;// 每页记录数
 	private String searchBy;// 查找字段
 	private String keyword;// 查找关键字
 	private String orderBy;// 排序字段
@@ -28,7 +33,12 @@ public class Pager {
 	private String pUrl ;
 	
 	public String getpUrl() {
-		return pUrl;
+		if(null!=pUrl && !"".equals(pUrl)){
+			return pUrl;
+		}else{
+			HttpServletRequest request =  ((ServletRequestAttributes)RequestContextHolder.getRequestAttributes()).getRequest();
+			return request.getServletPath() ;
+		}
 	}
 
 	public void setpUrl(String pUrl) {

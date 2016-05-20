@@ -127,8 +127,7 @@ public class LoginCor {
 	@RequestMapping(value="/home.jspx", method={RequestMethod.GET,RequestMethod.POST})
 	public String gethome(Pager pager, HttpServletRequest request, HttpServletResponse response, ModelMap model){
 		LemonUser user = (LemonUser) request.getSession().getAttribute("user") ;
-		String pUrl = request.getServletPath() ;
-		pager.setpUrl(pUrl) ;
+
 		FrontUtils.frontData(request, model) ;
 		pager = imgHouseService.getList(pager) ;
 		
@@ -139,8 +138,7 @@ public class LoginCor {
 	@RequestMapping(value="/photograph.jspx", method={RequestMethod.GET,RequestMethod.POST})
 	public String phpto(String keywords, Pager pager, HttpServletRequest request, HttpServletResponse response, ModelMap model){
 		LemonUser user = (LemonUser) request.getSession().getAttribute("user") ;
-		String pUrl = request.getServletPath() ;
-		pager.setpUrl(pUrl) ;
+
 		FrontUtils.frontData(request, model) ;
 		pager = imgHouseService.getList(pager, keywords) ;
 		

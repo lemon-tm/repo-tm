@@ -43,7 +43,6 @@ public class MessageCor{
 	public String uImglist(Pager page, HttpServletRequest request, HttpServletResponse response, ModelMap model){
 		FrontUtils.frontData(request, model);
 		LemonUser user = (LemonUser) request.getSession().getAttribute("user") ;
-		page.setpUrl("/ucenter/imglist.jspx") ;
 		
 		Message msg = new Message() ; 
 		
