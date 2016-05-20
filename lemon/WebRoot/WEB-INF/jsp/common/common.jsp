@@ -11,6 +11,8 @@
 <link rel="stylesheet" href="${base}/css/u-style.css">
 
 <script type="text/javascript" src="${base}/js/jquery.js" charset="UTF-8"></script>
+<script type="text/javascript" src="${base}/js/jqueryUI/jquery-ui.js" charset="UTF-8"></script>
+<script type="text/javascript" src="${base}/js/jqueryUI/jquery-ui.css" charset="UTF-8"></script>
 <script type="text/javascript" src="${base}/js/jquery.row-grid.js" charset="UTF-8"></script>
 <script type="text/javascript">
 	$(document).ready(function(){

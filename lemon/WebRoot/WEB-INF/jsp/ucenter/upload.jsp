@@ -48,9 +48,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			</div>
 			<div id="showimgsm" class="showimgsm"></div>
 		</form>
-	<div class="clear"></div>
+		<div class="clear"></div>
 	</div>
-
+	
+<div id="wait"  style="display:none;">
+	<span class="red">图片正在上传...</span>
+</div>
 	
 	
 	
@@ -73,10 +76,21 @@ function imgSubmit(){
 	if($(".div-img").length>6){
 		alert("每次上传图片不得超过6张！") ;
 		return ;
-	} 
+	}
 	saveimgf.submit() ;
+	dialogss() ;
 }
-
+function dialogss() {
+	$("#wait").dialog({
+		autoOpen: false,
+		modal: true,
+		width: 350,
+		height: 215,
+		position: ["center",200]
+		
+	});
+	$("#wait").dialog("open");
+}
 //上传附件
 function uploadMedia() {
 

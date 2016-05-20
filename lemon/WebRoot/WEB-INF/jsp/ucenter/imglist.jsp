@@ -48,7 +48,7 @@ $(function(){
 						<div class="fl"><span style="color:#1A94E6;">审核状态：</span>${img.isverify.label}</div>
 						<div class="fr">
 							<c:if test="${img.isverify.value==2}">
-								<a href="${base}/ucenter/deleteImg.jspx?imgId=${img.id}">删除</a>
+								<a href="${base}/ucenter/deleteImg.jspx?imgId=${img.id}" onclick="return confirm('确定删除吗？');">删除</a>
 							</c:if>
 						</div>
 					</li>
