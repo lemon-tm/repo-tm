@@ -1,7 +1,7 @@
 package com.lemon.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -9,7 +9,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -47,10 +46,11 @@ public class ImgCor {
 	 * 2016-04-26 hhc 添加备注
 	 * 用于首页使用
 	 * 查看大图
+	 * @throws UnsupportedEncodingException 
 	 * 
 	 **/
-	@RequestMapping(value="/imgshow.jspx", method=RequestMethod.GET)
-	public String toImg(String keywords, String imgId, HttpServletRequest request, HttpServletResponse response, ModelMap model){
+	@RequestMapping(value="/imgshow.jspx", method={RequestMethod.GET,RequestMethod.POST})
+	public String toImg(String keywords, String imgId, HttpServletRequest request, HttpServletResponse response, ModelMap model) throws UnsupportedEncodingException{
 		FrontUtils.frontData(request, model);
 		LemonUser user = (LemonUser) request.getSession().getAttribute("user") ;
 		Img img = null ;
@@ -68,7 +68,10 @@ public class ImgCor {
 		}
 		model.put("img", img) ;
 		model.put("imgmsg", imgmsg) ;
-		model.put("keywords", keywords) ;
+		if(null!=keywords){
+			keywords = new String(keywords.getBytes("ISO-8859-1"),"UTF-8");
+			model.put("keywords", keywords) ;
+		}
 		return "/WEB-INF/jsp/showimg.jsp" ;
 	}
 	
