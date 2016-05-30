@@ -1,6 +1,8 @@
 //真相文章曝光图片切换
 (function(){
 	$(function(){
+		var state = $("#state").val() ;
+		$("#stateshow").html(state) ;
 		var len,num,count = 1;
 		var $obj = $(".box_img ul>li");
 		len = parseInt($obj.width()) + parseInt($obj.css("marginLeft"))*2;
@@ -18,18 +20,29 @@
 		$obj.each(function(i){
 			$(this).click(function(){
 				count=i+1;
-				showImg();
+				showImg($(this));
 			});
 		});
 
 		function getlen(count){
 			$obj.each(function(i){
 				if(count==(i+1)){
+					//---------------------------------------
+					var index = $(this).find($(".index")).val() ;
+					$("#index").val(index) ;
+					
+					var imgId = $(this).find($(".imgId")).val() ;
+					$("#imgId").val(imgId) ;
+					
+					state = $(this).find($(".state")).val() ;
+					$("#stateshow").html(state) ;
+					
+					
 					len = parseInt($(this).width()) + parseInt($(this).css("marginLeft"))*2;
 				}
 			});
 		}
-		function showImg(){
+		function showImg(the){
 			len = getlen(count) ;
 			$obj.removeClass("current").eq(count-1).addClass("current");
 			$(".cur_img img").attr("src" , $obj.eq(count-1).find("img").attr("src") );
