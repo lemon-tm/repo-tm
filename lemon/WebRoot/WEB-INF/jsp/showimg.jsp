@@ -28,7 +28,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	
 </head>
 <script type="text/javascript">
-	
+function returnfun(){
+	myform.submit() ;
+}
 </script>
 <body>
 <%@include file="./common/head.jsp" %>
@@ -45,7 +47,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<div>作者名称：${imgmsg.user.trueName}</div>
 			<div>作者微信：${imgmsg.user.weixin}</div>
 		</div>
-		<div style="float:right;"><a href="${base}/photograph.jspx?keywords=${keywords}">返回</a></div>
+		<div style="float:right;">
+			<form name="myform" action="${base}/photograph.jspx" method="post">
+				<input type="hidden" id="keywords" name="keywords" value="${keywords}" />
+			</form>
+			<a href="javascript:;" onclick="returnfun()">返回</a>
+		</div>
 	</div>
 	
 </div>
