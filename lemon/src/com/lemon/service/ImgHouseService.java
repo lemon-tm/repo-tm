@@ -1,15 +1,15 @@
 package com.lemon.service;
 
-import com.lemon.service.BaseService;
-import com.lemon.util.Pager;
 import com.lemon.entity.ImgHouse;
+import com.lemon.entity.ImgMsg;
+import com.lemon.util.Pager;
 
 /*
  *  @author 
  */
 public interface ImgHouseService extends BaseService<ImgHouse,String>{
 
-	Pager findByUser(Pager page, String id, ImgHouse img);
+	Pager findByUser(Pager page, String id, ImgMsg img);
 
 	Pager getList(Pager pager);
 

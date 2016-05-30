@@ -18,6 +18,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.lemon.common.email.EmailSend;
 import com.lemon.entity.LemonUser;
 import com.lemon.service.ImgHouseService;
+import com.lemon.service.ImgMsgService;
+import com.lemon.service.ImgService;
 import com.lemon.service.LemonUserService;
 import com.lemon.util.FrontUtils;
 import com.lemon.util.Pager;
@@ -31,6 +33,12 @@ public class LoginCor {
 	private LemonUserService lemonUserService ;
 	@Resource
 	private ImgHouseService imgHouseService ;
+	
+	@Resource
+	private ImgService imgService ;
+	
+	@Resource
+	private ImgMsgService imgMsgService ;
 	
 	@Resource
 	private PwdEncoder pwdEncoder;
@@ -125,22 +133,27 @@ public class LoginCor {
 		
 	}
 	@RequestMapping(value="/home.jspx", method={RequestMethod.GET,RequestMethod.POST})
-	public String gethome(Pager pager, HttpServletRequest request, HttpServletResponse response, ModelMap model){
+	public String gethome(String keywords, Pager pager, HttpServletRequest request, HttpServletResponse response, ModelMap model){
 		LemonUser user = (LemonUser) request.getSession().getAttribute("user") ;
-
+		
+		pager.setPageSize(30) ;
+		
 		FrontUtils.frontData(request, model) ;
-		pager = imgHouseService.getList(pager) ;
+		pager = imgService.getList(pager, keywords) ;
 		
 		model.put("pager", pager) ;
 		model.put("user", user) ;
+		model.put("keywords", keywords) ;
 		return "/WEB-INF/jsp/index.jsp" ;
 	}
 	@RequestMapping(value="/photograph.jspx", method={RequestMethod.GET,RequestMethod.POST})
 	public String phpto(String keywords, Pager pager, HttpServletRequest request, HttpServletResponse response, ModelMap model){
 		LemonUser user = (LemonUser) request.getSession().getAttribute("user") ;
-
+		
+		pager.setPageSize(30) ;
+		
 		FrontUtils.frontData(request, model) ;
-		pager = imgHouseService.getList(pager, keywords) ;
+		pager = imgService.getList(pager, keywords) ;
 		
 		model.put("pager", pager) ;
 		model.put("user", user) ;

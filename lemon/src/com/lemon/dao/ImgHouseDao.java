@@ -1,7 +1,7 @@
 package com.lemon.dao;
 
-import com.lemon.dao.BaseDao;
 import com.lemon.entity.ImgHouse;
+import com.lemon.entity.ImgMsg;
 import com.lemon.util.Pager;
 
 /*
@@ -9,7 +9,7 @@ import com.lemon.util.Pager;
  */
 public interface ImgHouseDao extends BaseDao<ImgHouse, String>{
 
-	Pager findByUser(Pager page, String userId, ImgHouse img);
+	Pager findByUser(Pager page, String userId, ImgMsg img);
 
 	Pager getList(Pager pager);
 

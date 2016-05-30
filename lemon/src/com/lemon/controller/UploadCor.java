@@ -18,6 +18,7 @@ import net.sf.json.JSONObject;
 
 import org.apache.commons.io.FilenameUtils;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -31,9 +32,13 @@ import com.lemon.common.bean.ImageBean;
 import com.lemon.common.service.ImageService;
 import com.lemon.constant.font.enums.ImgStatusEnum;
 import com.lemon.constant.font.enums.VerifyEnum;
+import com.lemon.entity.Img;
 import com.lemon.entity.ImgHouse;
+import com.lemon.entity.ImgMsg;
 import com.lemon.entity.LemonUser;
 import com.lemon.service.ImgHouseService;
+import com.lemon.service.ImgMsgService;
+import com.lemon.service.ImgService;
 import com.lemon.util.FrontUtils;
 import com.lemon.util.ResponseUtils;
 
@@ -45,7 +50,10 @@ public class UploadCor implements ServletContextAware {
 	
 	@Resource
 	private ImgHouseService imgHouseService ;
-	
+	@Resource
+	private ImgService imgService ;
+	@Resource
+	private ImgMsgService imgMsgService ;
 	/**
 	 * hhc add 2016-04-08 11:03
 	 * 上传图片成功后，调用这个方法完善图片信息
@@ -57,28 +65,77 @@ public class UploadCor implements ServletContextAware {
 	public String saveUploadDes(String imgId,String name, String describes,  HttpServletRequest request,HttpServletResponse response, ModelMap model){
 		
 		FrontUtils.frontData(request, model);
-		
-		ImgHouse imgHouse = null ;
+		ImgMsg imgmsg = null ;
 		
 		if(null!=imgId && !"".equals(imgId)){
-			imgHouse = imgHouseService.get(imgId) ;
+			imgmsg = imgMsgService.get(imgId) ;
 		}
-		if(null!=imgHouse){
+		if(null!=imgmsg){
 			LemonUser user = (LemonUser) request.getSession().getAttribute("user") ;
 			
-			imgHouse.setUserId(user.getId()) ;
-			imgHouse.setUploadTime(new Date()) ;
-			imgHouse.setName(name) ;
-			imgHouse.setDescribe(describes) ;
-			imgHouseService.saveOrUpdate(imgHouse) ;
+			imgmsg.setUploadTime(new Date()) ;
+			imgmsg.setName(name) ;
+			imgmsg.setDescribes(describes) ;
+			imgMsgService.saveOrUpdate(imgmsg) ;
 		}
-		model.put("imgHouse", imgHouse) ;
 		return "/WEB-INF/jsp/ucenter/upload.jsp" ;
 	}
+	
 	/**
 	 * 操作
 	 * 保存图片路径 
-	 * 
+	 * 单张保存
+	 */
+	@Transactional
+	@RequestMapping(value="/ucenter/saveimgone.jspx", method = RequestMethod.POST)
+	public String saveUploadImgOne(String[] imgurl, HttpServletRequest request,HttpServletResponse response, ModelMap model){
+		FrontUtils.frontData(request, model);
+		
+		ImgMsg imgmsg = new ImgMsg() ;
+		
+		LemonUser user = (LemonUser) request.getSession().getAttribute("user") ;
+
+		imgmsg.setUserId(user.getId()) ;
+		imgmsg.setCreateTime(new Date()) ;
+		imgmsg.setUploadTime(new Date()) ;
+		imgmsg.setStates(ImgStatusEnum.getImgStatusEnum(1)) ;
+		
+		String imgMsgId = imgMsgService.save(imgmsg) ;
+		
+		if(null!=imgurl && imgurl.length>0){
+			
+			//List<ImageBean> list = new ArrayList<ImageBean>();
+			for(int i=0; i<imgurl.length; i++){
+				Img imgEntity = new Img() ;
+				
+				String imgurlstr = imgurl[i];
+				
+				//String a = request.getContextPath();//项目名称，如：/jeecms
+				
+				String path = request.getSession().getServletContext().getRealPath("/") ;//服务器路径，如：E://
+				imgurlstr = path+imgurlstr ;//图片在服务器的全路径
+				File file = new File(imgurlstr) ;
+				ImageBean img = imageService.buildImage(file) ;
+				JSONArray jsonArray = JSONArray.fromObject(img);
+				String url = jsonArray.toString() ;
+				
+				imgEntity.setImgUrl(url) ;
+				imgEntity.setIsverify(VerifyEnum.getVerifyEnum(2)) ;
+				imgEntity.setRelationId(imgMsgId) ;
+				
+				imgService.save(imgEntity) ;
+			}
+		}
+		
+		model.put("imgMsgId", imgMsgId) ;
+		return "/WEB-INF/jsp/ucenter/upload_d.jsp" ;
+	}
+	
+	
+	/**
+	 * 操作
+	 * 保存图片路径 
+	 * 批量保存
 	 */
 	@RequestMapping(value="/ucenter/saveimg.jspx", method = RequestMethod.POST)
 	public String saveUploadImg(String[] imgurl, HttpServletRequest request,HttpServletResponse response, ModelMap model){

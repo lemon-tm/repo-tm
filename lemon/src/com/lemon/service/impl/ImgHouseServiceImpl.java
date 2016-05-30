@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import com.lemon.dao.ImgHouseDao;
 import com.lemon.entity.ImgHouse;
+import com.lemon.entity.ImgMsg;
 import com.lemon.service.ImgHouseService;
 import com.lemon.util.Pager;
 
@@ -23,7 +24,7 @@ public class ImgHouseServiceImpl extends BaseServiceImpl<ImgHouse,String> implem
 		super.setBaseDao(imgHouseDao);
 	}
 
-	public Pager findByUser(Pager page,String userId, ImgHouse img) {
+	public Pager findByUser(Pager page,String userId, ImgMsg img) {
 		return imgHouseDao.findByUser(page, userId, img) ;
 	}
 

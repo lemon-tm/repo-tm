@@ -9,6 +9,7 @@ import com.lemon.constant.font.enums.ImgStatusEnum;
 import com.lemon.constant.font.enums.VerifyEnum;
 import com.lemon.dao.ImgHouseDao;
 import com.lemon.entity.ImgHouse;
+import com.lemon.entity.ImgMsg;
 import com.lemon.util.Pager;
 
 /*
@@ -17,14 +18,15 @@ import com.lemon.util.Pager;
 @Repository
 public class ImgHouseDaoImpl extends BaseDaoImpl<ImgHouse,String> implements ImgHouseDao{
 
-	public Pager findByUser(Pager page, String userId, ImgHouse img) {
-		Criteria criteria = getSession().createCriteria(ImgHouse.class);
+	public Pager findByUser(Pager page, String userId, ImgMsg img) {
+		
+		Criteria criteria =getSession().createCriteria(ImgMsg.class);
 		if(null!=userId && !"".equals(userId)){
 			criteria.add(Restrictions.eq("userId",userId));
 		}
 		if(null!=img){
-			if(!"".equals(img.getStatus())){
-				criteria.add(Restrictions.ne("status", img.getStatus())) ;
+			if(!"".equals(img.getStates())){
+				criteria.add(Restrictions.ne("states", img.getStates())) ;
 			}
 		}
 		criteria.addOrder(Order.desc("createTime"));
