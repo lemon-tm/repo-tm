@@ -59,30 +59,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	
 </form>
 <script type="text/javascript">
-/* 
-function verify(value,id){
-	$.ajax({
-        type:"POST",
-       // async : false,
-        url:"${base}/ucenter/isverify.do",
-        data : {imgId:id, verify:value},
-        datatype: "json",//"xml", "html", "script", "json", "jsonp", "text".
-        beforeSend:function(){
-        },
-        success:function(data){
-       		data = eval(data);
-       		if(null!=data.verify){
-       			window.location.href="${base}/ucenter/imglist.do";
-       		}
-	    	
-        },
-        complete: function(XMLHttpRequest, textStatus){
-        },
-        error: function(){
-        }         
-     });
-} 
-*/
 	
 </script>
 

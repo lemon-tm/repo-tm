@@ -45,21 +45,20 @@ $(function(){
 			<c:forEach items="${pager.result}" var="img">
 			<ul class="myimg" >
 					<li style="overflow:hidden;">
-						<div class="fl"><span style="color:#1A94E6;">审核状态：</span>${img.isverify.label}</div>
+						<div class="fl"><span>图片名称：</span>${img.name}</div>
 						<div class="fr">
-							<c:if test="${img.isverify.value==2}">
-								<a href="${base}/ucenter/deleteImg.jspx?imgId=${img.id}" onclick="return confirm('确定删除吗？');">删除</a>
-							</c:if>
+							<a href="${base}/ucenter/deleteImg.jspx?imgId=${img.id}" onclick="return confirm('确定删除吗？');">删除</a>
 						</div>
 					</li>
+					<li><span>图片描述：</span>${img.describes}</li>
 					<li><span>上传时间：</span>${img.createTime}</li>
-					<li><span>图片名称：</span>${img.name}</li>
-					<li><span>图片描述：</span>${img.describe}</li>
 					<li>
-					<c:forEach items="${img.imgurlb}" var="a" varStatus="status">
-						<a href="${base}/ucenter/uimgshow.jspx?imgId=${img.id}&index=${status.index}" class="scrollTop">
-							<img style="height:150px;" src='${base}${a.bigImagePath}' alt="${img.name}" />
-						</a>
+					<c:forEach items="${img.imglist}" var="l" varStatus="status">
+						<c:forEach items="${l.imgurlb}" var="a" >
+							<a href="${base}/ucenter/uimgshow.jspx?imgId=${img.id}&index=${status.index}" class="scrollTop">
+								<img style="height:150px;" src='${base}${a.bigImagePath}' alt="${img.name}" />
+							</a>
+						</c:forEach>
 					</c:forEach>
 					</li>
 					

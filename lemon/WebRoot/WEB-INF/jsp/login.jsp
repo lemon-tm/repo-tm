@@ -60,7 +60,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 <div class="container">
 	<div class="container-in">
-		<form name="login" action="<%=basePath%>home.jspx" method="post">
+		<form name="login" action="<%=basePath%>ucenter/index.jspx" method="post">
 			<table>
 				<tr>
 					<td align="right">登录账户</td>

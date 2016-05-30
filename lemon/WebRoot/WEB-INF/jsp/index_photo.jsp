@@ -32,6 +32,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 $(function(){
 	$(".container").rowGrid({itemSelector: ".container ul li", minMargin: 5, maxMargin: 5, firstItemClass: "first-item"});
 });
+function showimg(imgId){
+	var keywords = $("#keywords").val() ;
+	window.location.href="${base}/imgshow.jspx?imgId="+imgId+"&keywords="+keywords ;
+}
 
 </script>
 
@@ -40,13 +44,13 @@ $(function(){
 <body>
 <jsp:include  page="./common/head.jsp"/>
 <jsp:include  page="./common/pager.jsp"/>
-<div class="clear"></div>
+<div class="clear" style="height:8px;"></div>
 <div class="container">
 	<ul class="imgbox">
 		<c:forEach items="${pager.result}" var="img">
 			<c:forEach items="${img.imgurlb}" var="a" varStatus="status">
 				<li>
-					<a href="${base}/imgshow.jspx?imgId=${img.id}&index=${status.index}"><img height="200" src='${base}${a.thumbnailImagePath}' /></a>
+					<a href="javascript:void(0);" onclick="showimg('${img.id}')"><img height="200" src='${base}${a.thumbnailImagePath}' /></a>
 				</li>
 			</c:forEach>
 		</c:forEach>
@@ -54,7 +58,6 @@ $(function(){
 	
 	<div class="clear"></div>
 </div>
-
 
 <jsp:include  page="./common/footer.jsp"/>
 </body>

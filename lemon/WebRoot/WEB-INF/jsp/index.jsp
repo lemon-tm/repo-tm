@@ -40,7 +40,7 @@ $(function(){
 <body>
 <jsp:include  page="./common/head.jsp"/>
 <jsp:include  page="./common/pager.jsp"/>
-<div class="clear"></div>
+<div class="clear" style="height:8px;"></div>
 <div class="container">
 	<ul class="imgbox">
 		<c:forEach items="${pager.result}" var="img">

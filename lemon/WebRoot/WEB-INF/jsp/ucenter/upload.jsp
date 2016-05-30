@@ -26,7 +26,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 	<div class="container-frame">
 		
-		<form name="saveimgf" action="${base}/ucenter/saveimg.jspx" method="post">
+		<form name="saveimgf" action="${base}/ucenter/saveimgone.jspx" method="post">
 			<!-- 
 			<div class="textareafbox">
 				<span class="blue2 fl">描述：</span><textarea name="describes" class="textareaf fl"></textarea>

@@ -32,19 +32,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </script>
 <body>
 <%@include file="./common/head.jsp" %>
-
+<div class="clear" style="height:8px;"></div>
 <div class="container">
 	<div class="showimg-all">
 		<div class="showimg-l">
-			<img src="${base}${img.imgurlb[index].bigImagePath}" />
+			<img src="${base}${img.imgurlb[0].bigImagePath}" />
 		</div>
 		<div class="showimg-r ml20 lh30">
-			<div>名称：${img.name}</div>
-			<div>描述：${img.describe}</div>
-			<div>上传时间：<fmt:formatDate value="${img.createTime}" pattern="yyyy-MM-dd HH:mm"/></div>
-			<div>作者名称：${img.user.trueName}</div>
-			<div>作者微信：${img.user.weixin}</div>
+			<div>名称：${imgmsg.name}</div>
+			<div>描述：${imgmsg.describes}</div>
+			<div>上传时间：<fmt:formatDate value="${imgmsg.createTime}" pattern="yyyy-MM-dd HH:mm"/></div>
+			<div>作者名称：${imgmsg.user.trueName}</div>
+			<div>作者微信：${imgmsg.user.weixin}</div>
 		</div>
+		<div style="float:right;"><a href="${base}/photograph.jspx?keywords=${keywords}">返回</a></div>
 	</div>
 	
 </div>

@@ -12,7 +12,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <head>
     <base href="<%=basePath%>">
     
-    <title>图片列表页面</title>
+    <title>后台图片列表页面</title>
     
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
@@ -36,7 +36,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<th width="30%">图片描述</th>
 				<th width="15%">上传用户</th>
 				<th width="5%">图片状态</th>
-				<th width="5%">审核状态</th>
 				<th width="10%">创建时间</th>
 				<th width="15%">图片路径</th>
 				<th width="10%">审核</th>
@@ -48,10 +47,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<tr>
 				
 				<td align="center">${item.name}</td>
-				<td align="center">${item.describe}</td>
+				<td align="center">${item.describes}</td>
 				<td align="center">${item.userId},${item.user.username}</td>
-				<td align="center">${item.status}</td>
-				<td align="center">${item.isverify}</td>
+				<td align="center">${item.states}</td>
 				<td align="center">${item.createTime}</td>
 				<td align="center">
 					<a href="${base}/ucenter/showImglist.do?imgId=${item.id}">点击查看图片</a>
@@ -82,8 +80,9 @@ function verify(value,id){
         },
         success:function(data){
        		data = eval(data);
-       		if(null!=data.verify){
-       			window.location.href="${base}/ucenter/imglist.do?pageNumber=${pager.pageNumber}";
+       		if(data.verify){
+       			alert("批量审核操作成功！") ;
+       			//window.location.href="${base}/ucenter/imglist.do?pageNumber=${pager.pageNumber}";
        		}
 	    	
         },
