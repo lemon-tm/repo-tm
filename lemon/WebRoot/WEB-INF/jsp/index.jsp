@@ -39,17 +39,11 @@ $(function(){
 
 <body>
 <jsp:include  page="./common/head.jsp"/>
-<jsp:include  page="./common/pager.jsp"/>
+
 <div class="clear" style="height:8px;"></div>
 <div class="container">
-	<ul class="imgbox">
-		<c:forEach items="${pager.result}" var="img">
-			<c:forEach items="${img.imgurlb}" var="a" varStatus="status">
-				<li>
-					<a href="${base}/imgshow.jspx?imgId=${img.id}&index=${status.index}"><img height="200" src='${base}${a.thumbnailImagePath}' /></a>
-				</li>
-			</c:forEach>
-		</c:forEach>
+	<ul>
+		<li>要么读书，要么旅行，身体和心灵总有一个要在路上</li>
 	</ul>
 	
 	<div class="clear"></div>
