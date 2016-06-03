@@ -23,8 +23,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
 	<%@include file="./../admin/acommon.jsp" %>
+
   </head>
-  
+
 <body>
 	<jsp:include  page="./../common/pager.jsp"/>
 <form id="tableForm" method="post" style="padding-top:5px">
@@ -32,13 +33,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<table class="table" border="0" width="100%" cellspacing="1">
 		<thead>
 			<tr>
-				<th width="5%">图片名称</th>
-				<th width="30%">图片描述</th>
+				<th width="10%">图片名称</th>
+				<th width="24%">图片描述</th>
+				<th width="10%">图片类型</th>
 				<th width="15%">上传用户</th>
 				<th width="5%">图片状态</th>
 				<th width="10%">创建时间</th>
-				<th width="15%">图片路径</th>
-				<th width="10%">审核</th>
+				<th width="10%">图片路径</th>
+				<th width="15%">审核</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -48,6 +50,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				
 				<td align="center">${item.name}</td>
 				<td align="center">${item.describes}</td>
+				<td align="center">${item.category.label}</td>
 				<td align="center">${item.userId},${item.user.username}</td>
 				<td align="center">${item.states}</td>
 				<td align="center">${item.createTime}</td>

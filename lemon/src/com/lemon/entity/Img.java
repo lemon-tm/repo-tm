@@ -37,19 +37,8 @@ public class Img extends BaseEntity {
 	private String imgUrl;//
 	private VerifyEnum isverify;//
 	private java.util.Date verifyTime;//
-	private ImgCategoryEnum category ;
 	private List<ImageBean> imgurlb ;
 	
-	@Column(name = "category")
-	@Type(type = "com.lemon.constant.CustomEnumType", parameters = {@Parameter(name = "enum", value = "com.lemon.constant.font.enums.ImgCategoryEnum")})
-	public ImgCategoryEnum getCategory() {
-		return category;
-	}
-
-	public void setCategory(ImgCategoryEnum category) {
-		this.category = category;
-	}
-
 	@Transient
 	public List<ImageBean> getImgurlb() {
 		if (StringUtils.isEmpty(imgUrl)) {

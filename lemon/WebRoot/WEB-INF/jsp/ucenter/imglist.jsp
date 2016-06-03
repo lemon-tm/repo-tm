@@ -44,23 +44,25 @@ $(function(){
 		<div class="ucontainer-in">
 			<c:forEach items="${pager.result}" var="img">
 			<ul class="myimg" >
-					<li style="overflow:hidden;">
-						<div class="fl"><span>图片名称：</span>${img.name}</div>
-						<div class="fr">
-							<a href="${base}/ucenter/deleteImg.jspx?imgId=${img.id}" onclick="return confirm('确定删除吗？');">删除</a>
-						</div>
-					</li>
-					<li><span>图片描述：</span>${img.describes}</li>
-					<li><span>上传时间：</span>${img.createTime}</li>
-					<li>
-					<c:forEach items="${img.imglist}" var="l" varStatus="status">
-						<c:forEach items="${l.imgurlb}" var="a" >
-							<a href="${base}/ucenter/uimgshow.jspx?imgId=${img.id}&index=${status.index}" class="scrollTop">
-								<img style="height:150px;" src='${base}${a.bigImagePath}' alt="${img.name}" />
-							</a>
-						</c:forEach>
+				<li><span>图片类型：</span>${img.category.label}</li>
+				<li style="overflow:hidden;">
+					<div class="fl"><span>图片名称：</span>${img.name}</div>
+					<div class="fr">
+						<a href="${base}/ucenter/deleteImg.jspx?imgId=${img.id}" onclick="return confirm('确定删除吗？');">删除</a>
+					</div>
+				</li>
+				
+				<li><span>图片描述：</span>${img.describes}</li>
+				<li><span>上传时间：</span>${img.createTime}</li>
+				<li>
+				<c:forEach items="${img.imglist}" var="l" varStatus="status">
+					<c:forEach items="${l.imgurlb}" var="a" >
+						<a href="${base}/ucenter/uimgshow.jspx?imgId=${img.id}&index=${status.index}" class="scrollTop">
+							<img style="height:150px;" src='${base}${a.bigImagePath}' alt="${img.name}" />
+						</a>
 					</c:forEach>
-					</li>
+				</c:forEach>
+				</li>
 					
 			</ul>
 			</c:forEach>

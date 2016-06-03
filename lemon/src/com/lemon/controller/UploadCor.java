@@ -30,6 +30,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.lemon.common.UploadUtils;
 import com.lemon.common.bean.ImageBean;
 import com.lemon.common.service.ImageService;
+import com.lemon.constant.font.enums.ImgCategoryEnum;
 import com.lemon.constant.font.enums.ImgStatusEnum;
 import com.lemon.constant.font.enums.VerifyEnum;
 import com.lemon.entity.Img;
@@ -62,7 +63,7 @@ public class UploadCor implements ServletContextAware {
 	 * 
 	 * */
 	@RequestMapping(value="/ucenter/savedes.jspx", method = RequestMethod.POST)
-	public String saveUploadDes(String imgId,String name, String describes,  HttpServletRequest request,HttpServletResponse response, ModelMap model){
+	public String saveUploadDes(Integer imgcategory, String imgId,String name, String describes,  HttpServletRequest request,HttpServletResponse response, ModelMap model){
 		
 		FrontUtils.frontData(request, model);
 		ImgMsg imgmsg = null ;
@@ -72,7 +73,7 @@ public class UploadCor implements ServletContextAware {
 		}
 		if(null!=imgmsg){
 			LemonUser user = (LemonUser) request.getSession().getAttribute("user") ;
-			
+			imgmsg.setCategory(ImgCategoryEnum.getImgCategoryEnum(imgcategory)) ;
 			imgmsg.setUploadTime(new Date()) ;
 			imgmsg.setName(name) ;
 			imgmsg.setDescribes(describes) ;
@@ -126,6 +127,8 @@ public class UploadCor implements ServletContextAware {
 				imgService.save(imgEntity) ;
 			}
 		}
+		ImgCategoryEnum[] ary = ImgCategoryEnum.values() ;
+		model.put("imgcategoryary", ary) ;
 		
 		model.put("imgMsgId", imgMsgId) ;
 		return "/WEB-INF/jsp/ucenter/upload_d.jsp" ;

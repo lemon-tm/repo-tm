@@ -14,6 +14,7 @@ import org.apache.commons.lang.builder.ToStringBuilder;
 import org.hibernate.annotations.Parameter;
 import org.hibernate.annotations.Type;
 
+import com.lemon.constant.font.enums.ImgCategoryEnum;
 import com.lemon.constant.font.enums.ImgStatusEnum;
 import com.lemon.service.ImgService;
 
@@ -33,11 +34,19 @@ public class ImgMsg extends BaseEntity {
 	private ImgStatusEnum states;//状态1、公开2、删除
 	private String name;//名称
 	private String describes;//描述
-
+	private ImgCategoryEnum category ;//分类
 	private List<Img> imglist ;
-	
 	private LemonUser user ;
 	
+	@Column(name = "category")
+	@Type(type = "com.lemon.constant.CustomEnumType", parameters = {@Parameter(name = "enum", value = "com.lemon.constant.font.enums.ImgCategoryEnum")})
+	public ImgCategoryEnum getCategory() {
+		return category;
+	}
+
+	public void setCategory(ImgCategoryEnum category) {
+		this.category = category;
+	}
 	@Transient
 	public LemonUser getUser() {
 		return user;

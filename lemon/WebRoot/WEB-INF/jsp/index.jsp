@@ -20,7 +20,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<meta name="keywords" content="照片，图片，旅游照，照起来，ps图片，原创图片，保存照片，上传照片，免费保存图片" />
 	<meta name="description" content="红色柠檬网，不一样的柠檬，用于各类用户存储在旅游或外出时随手拍出的图片，或自己创作的图画保存。" />
 	<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
-	
+	<meta name="baidu-site-verification" content="szFiTukJ9Q" />
 	<jsp:include  page="./common/common.jsp"/>
 	<link rel="stylesheet" type="text/css" href="${base}/css/img-style.css" media="screen"/>
 
@@ -44,7 +44,11 @@ $(function(){
 <div class="container">
 	<ul>
 		<li>要么读书，要么旅行，身体和心灵总有一个要在路上</li>
+		
 	</ul>
+	<c:forEach items="${imgcategoryary}" var="category">
+		${category.label}
+	</c:forEach>
 	
 	<div class="clear"></div>
 </div>

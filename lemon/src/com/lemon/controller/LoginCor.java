@@ -2,6 +2,7 @@ package com.lemon.controller;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.util.List;
 
 import javax.annotation.Resource;
 import javax.mail.MessagingException;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.lemon.common.email.EmailSend;
+import com.lemon.constant.font.enums.ImgCategoryEnum;
 import com.lemon.entity.LemonUser;
 import com.lemon.service.ImgHouseService;
 import com.lemon.service.ImgMsgService;
@@ -31,8 +33,6 @@ public class LoginCor {
 
 	@Resource
 	private LemonUserService lemonUserService ;
-	@Resource
-	private ImgHouseService imgHouseService ;
 	
 	@Resource
 	private ImgService imgService ;
@@ -135,12 +135,13 @@ public class LoginCor {
 	@RequestMapping(value="/home.jspx", method={RequestMethod.GET,RequestMethod.POST})
 	public String gethome(String keywords, Pager pager, HttpServletRequest request, HttpServletResponse response, ModelMap model){
 		LemonUser user = (LemonUser) request.getSession().getAttribute("user") ;
-		
 		pager.setPageSize(30) ;
-		
 		FrontUtils.frontData(request, model) ;
+
 		pager = imgService.getList(pager, keywords) ;
+		ImgCategoryEnum[] ary = ImgCategoryEnum.values() ;
 		
+		model.put("imgcategoryary", ary) ;
 		model.put("pager", pager) ;
 		model.put("user", user) ;
 		model.put("keywords", keywords) ;

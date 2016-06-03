@@ -30,9 +30,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<div class="ucontainer-in">
 		<form action="${base}/ucenter/savedes.jspx" method="post">
 			<div class="pb10">
+				<span class="blue2 fl">照片类型：</span>
+				<select name="imgcategory">
+					<c:forEach items="${imgcategoryary}" var="category">
+						<option value="${category.value}">${category.label}</option>
+					</c:forEach>
+				</select>
+				<div class="clear"></div>
+			</div>
+			<div class="pb10">
 				<span class="blue2 fl">照片名称：</span>
 				<input class="fl" type="text" name="name" />
-				</textarea>
 				<div class="clear"></div>
 			</div>
 			<div>
