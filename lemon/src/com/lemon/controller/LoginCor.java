@@ -2,7 +2,6 @@ package com.lemon.controller;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
-import java.util.List;
 
 import javax.annotation.Resource;
 import javax.mail.MessagingException;
@@ -19,10 +18,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.lemon.common.email.EmailSend;
 import com.lemon.constant.font.enums.ImgCategoryEnum;
 import com.lemon.entity.LemonUser;
-import com.lemon.service.ImgHouseService;
 import com.lemon.service.ImgMsgService;
 import com.lemon.service.ImgService;
 import com.lemon.service.LemonUserService;
+import com.lemon.service.PropertiesService;
 import com.lemon.util.FrontUtils;
 import com.lemon.util.Pager;
 import com.lemon.util.ResponseUtils;
@@ -43,6 +42,9 @@ public class LoginCor {
 	@Resource
 	private PwdEncoder pwdEncoder;
 
+	@Resource
+	private PropertiesService propertiesService ;
+	
 	/**
 	 * hhc add 2016-04-08 14:24
 	 * 
@@ -53,7 +55,8 @@ public class LoginCor {
 	 * */
 	@RequestMapping(value="/logout.jspx", method = RequestMethod.GET)
 	public void logout(HttpServletRequest request, HttpServletResponse response, ModelMap model) throws ServletException, IOException{
-		FrontUtils.frontData(request, model);
+		FrontUtils.frontData(request, model , propertiesService) ;
+		
 		request.getSession().removeAttribute("user") ;
 		request.getRequestDispatcher("/home.jspx").forward(request, response) ;
 		
@@ -68,6 +71,8 @@ public class LoginCor {
 	 */
 	@RequestMapping(value="/checkUser.jspx", method = RequestMethod.POST)
 	public void checkUserName(String username,HttpServletRequest request, HttpServletResponse response, ModelMap model) throws ServletException, IOException{
+		FrontUtils.frontData(request, model , propertiesService) ;
+		
 		LemonUser user = new LemonUser() ;
 		user.setUsername(username) ;
 		user = lemonUserService.getUser(user) ;
@@ -81,7 +86,7 @@ public class LoginCor {
 	
 	@RequestMapping(value="/register.jspx", method = RequestMethod.POST)
 	public String register(LemonUser user, String username,String password, HttpServletRequest request, HttpServletResponse response, ModelMap model) throws UnsupportedEncodingException, MessagingException{
-		FrontUtils.frontData(request, model);
+		FrontUtils.frontData(request, model , propertiesService) ;
 		LemonUser isUser = lemonUserService.findLemonUser(user) ;
 		if(null==isUser){
 			user.setPassword(pwdEncoder.encodePassword(password)) ;
@@ -102,13 +107,13 @@ public class LoginCor {
 	
 	@RequestMapping(value="/to_register.jspx", method = RequestMethod.GET)
 	public String toRegister(HttpServletRequest request, HttpServletResponse response, ModelMap model){
-		FrontUtils.frontData(request, model);
+		FrontUtils.frontData(request, model , propertiesService) ;
 		return "/WEB-INF/jsp/register.jsp" ;
 	}
 	
 	@RequestMapping(value="/login.jspx", method = RequestMethod.GET)
 	public String view(HttpServletRequest request, HttpServletResponse response, ModelMap model){
-		FrontUtils.frontData(request, model);
+		FrontUtils.frontData(request, model , propertiesService) ;
 		model.put("to", "test") ;
 		return "/WEB-INF/jsp/login.jsp" ;
 	}
@@ -116,7 +121,7 @@ public class LoginCor {
 	@RequestMapping(value="/login.jspx", method=RequestMethod.POST)
 	public void index(String username, String password, 
 			HttpServletRequest request, HttpServletResponse response, ModelMap model){
-		FrontUtils.frontData(request, model);
+		FrontUtils.frontData(request, model , propertiesService) ;
 		LemonUser user = new LemonUser() ;
 		user.setUsername(username) ;
 		user.setPassword(pwdEncoder.encodePassword(password)) ;
@@ -136,9 +141,9 @@ public class LoginCor {
 	public String gethome(String keywords, Pager pager, HttpServletRequest request, HttpServletResponse response, ModelMap model){
 		LemonUser user = (LemonUser) request.getSession().getAttribute("user") ;
 		pager.setPageSize(30) ;
-		FrontUtils.frontData(request, model) ;
+		FrontUtils.frontData(request, model , propertiesService) ;
 
-		pager = imgService.getList(pager, keywords) ;
+		pager = imgService.getList(pager, keywords, null) ;
 		ImgCategoryEnum[] ary = ImgCategoryEnum.values() ;
 		
 		model.put("imgcategoryary", ary) ;
@@ -148,13 +153,12 @@ public class LoginCor {
 		return "/WEB-INF/jsp/index.jsp" ;
 	}
 	@RequestMapping(value="/photograph.jspx", method={RequestMethod.GET,RequestMethod.POST})
-	public String phpto(String keywords, Pager pager, HttpServletRequest request, HttpServletResponse response, ModelMap model) throws UnsupportedEncodingException{
+	public String phpto(String category, String keywords, Pager pager, HttpServletRequest request, HttpServletResponse response, ModelMap model) throws UnsupportedEncodingException{
 		LemonUser user = (LemonUser) request.getSession().getAttribute("user") ;
-
 		pager.setPageSize(30) ;
-		
-		FrontUtils.frontData(request, model) ;
-		pager = imgService.getList(pager, keywords) ;
+		FrontUtils.frontData(request, model , propertiesService) ;
+
+		pager = imgService.getList(pager, keywords, category) ;
 		
 		model.put("pager", pager) ;
 		model.put("user", user) ;

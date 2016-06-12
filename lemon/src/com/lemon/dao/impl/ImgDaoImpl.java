@@ -34,11 +34,14 @@ public class ImgDaoImpl extends BaseDaoImpl<Img,String> implements ImgDao{
 	}
 
 	@Override
-	public Pager getList(Pager pager, String keywords) {
+	public Pager getList(Pager pager, String keywords, String category) {
 		String sql ="from Img v where v.isverify=:isverify and v.relationId in(" +
 				"select id from ImgMsg m where m.states!=:states " ;
 		if(null!=keywords && keywords.length()>0){
 			sql+=" and m.name like'%"+keywords+"%' " ;
+		}
+		if(null!=category && category.length()>0){
+			sql+=" and m.category='"+category+"' " ;
 		}
 		sql+=")" ;
 		Query q = getSession().createQuery(sql) ;

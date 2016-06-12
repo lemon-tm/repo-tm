@@ -31,8 +31,8 @@ public class ImgServiceImpl extends BaseServiceImpl<Img,String> implements ImgSe
 	}
 
 	@Override
-	public Pager getList(Pager pager, String keywords) {
-		return imgDao.getList(pager, keywords);
+	public Pager getList(Pager pager, String keywords, String category) {
+		return imgDao.getList(pager, keywords, category);
 	}
 
 }

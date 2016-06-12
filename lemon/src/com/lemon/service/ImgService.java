@@ -13,7 +13,7 @@ public interface ImgService extends BaseService<Img,String>{
 
 	List<Img> getListBy(String relationId);
 
-	Pager getList(Pager pager, String keywords);
+	Pager getList(Pager pager, String keywords, String category);
 	
 }
 

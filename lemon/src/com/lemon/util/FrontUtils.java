@@ -7,18 +7,26 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.LocaleEditor;
 import org.springframework.context.MessageSource;
+import org.springframework.ui.ModelMap;
+
+import com.lemon.entity.Properties;
+import com.lemon.service.PropertiesService;
 
 /**
  * 前台工具类
  */
 public class FrontUtils {
-	
+
 	/**
 	 * 部署路径
 	 */
 	public static final String BASE = "base";
+	public static final String TITLE = "title";
+	public static final String KEYWORDS = "keywords";
+	public static final String DESCRIPTION = "description";
 	
 
 	/**
@@ -80,6 +88,21 @@ public class FrontUtils {
 	public static void frontData(HttpServletRequest request, Map<String, Object> map) {
 		String ctx = request.getContextPath() ;
 		map.put(BASE, ctx);
+	}
+
+	public static void frontData(HttpServletRequest request, Map<String, Object> map, 
+			PropertiesService propertiesService) {
+		String ctx = request.getContextPath() ;
+		map.put(BASE, ctx);
+		//获取t./d./k./,现在没用上service没注入进来
+		try {
+			Properties proper = propertiesService.getAllList().get(0) ;
+			map.put(TITLE, proper.getWebTitle()) ;
+			map.put(KEYWORDS, proper.getWebKeywords()) ;
+			map.put(DESCRIPTION, proper.getWebDescription()) ;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		
 	}
 
