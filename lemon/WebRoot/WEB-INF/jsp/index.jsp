@@ -12,20 +12,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <head>
     <base href="<%=basePath%>">
     
-    <title>红色柠檬-我的随拍图片网</title>
-    
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
 	<meta http-equiv="expires" content="0">    
-	<meta name="keywords" content="照片，图片，旅游照，照起来，ps图片，原创图片，保存照片，上传照片，免费保存图片" />
-	<meta name="description" content="红色柠檬网，不一样的柠檬，用于各类用户存储在旅游或外出时随手拍出的图片，或自己创作的图画保存。" />
-	<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
-	<meta name="baidu-site-verification" content="szFiTukJ9Q" />
+	
 	<jsp:include  page="./common/common.jsp"/>
 	<link rel="stylesheet" type="text/css" href="${base}/css/img-style.css" media="screen"/>
 
 	<link rel="shortcut icon" href="${base}/image/favicon.ico">
- 
+<style type="text/css">
+ul.homeimg{overflow:hidden; }
+ul.homeimg li{float:left; width:100px; height:100px; border:solid 1px red;}
+</style> 
 </head>
 
 <script type="text/javascript">
@@ -36,7 +34,6 @@ $(function(){
 </script>
 
 
-
 <body>
 <jsp:include  page="./common/head.jsp"/>
 
@@ -44,15 +41,17 @@ $(function(){
 <div class="container">
 	<ul>
 		<li>要么读书，要么旅行，身体和心灵总有一个要在路上</li>
-		
 	</ul>
-	<c:forEach items="${imgcategoryary}" var="category">
-		${category.label}
-	</c:forEach>
+	<ul class="homeimg">
+		<c:forEach items="${imgcategoryary}" var="category">
+		<li>
+			<a href="${base}/photograph.jspx?category=${category.value}">${category.label}</a>
+		</li>
+		</c:forEach>
+	</ul>
 	
 	<div class="clear"></div>
 </div>
-
 
 <jsp:include  page="./common/footer.jsp"/>
 </body>
