@@ -14,6 +14,7 @@ import com.lemon.constant.font.enums.VerifyEnum;
 import com.lemon.dao.ImgDao;
 import com.lemon.entity.Img;
 import com.lemon.entity.ImgHouse;
+import com.lemon.entity.ImgMsg;
 import com.lemon.util.Pager;
 
 /*
@@ -52,6 +53,22 @@ public class ImgDaoImpl extends BaseDaoImpl<Img,String> implements ImgDao{
 		pager = findPager(pager) ;
 		pager.setResult(q.list()) ;
 		return pager;
+	}
+
+	@Override
+	public List<Img> getListBy(Img img) {
+		
+		String hql = "from Img v where 1=1 " ;
+		if(null!=img && img.getRelationId().length()>0){
+			hql+=" and v.relationId=:relationId" ;
+		}
+		Query q  = getSession().createQuery(hql) ;
+		if(null!=img && img.getRelationId().length()>0){
+			q.setParameter("relationId",  img.getRelationId()) ;
+		}
+		q.setMaxResults(1) ;
+		return q.list();
+		
 	}
 
 }

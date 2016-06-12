@@ -35,4 +35,9 @@ public class ImgServiceImpl extends BaseServiceImpl<Img,String> implements ImgSe
 		return imgDao.getList(pager, keywords, category);
 	}
 
+	@Override
+	public List<Img> getListBy(Img img) {
+		return imgDao.getListBy(img);
+	}
+
 }

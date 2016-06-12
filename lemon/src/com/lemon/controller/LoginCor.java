@@ -2,6 +2,7 @@ package com.lemon.controller;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.util.List;
 
 import javax.annotation.Resource;
 import javax.mail.MessagingException;
@@ -17,6 +18,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.lemon.common.email.EmailSend;
 import com.lemon.constant.font.enums.ImgCategoryEnum;
+import com.lemon.entity.Img;
+import com.lemon.entity.ImgMsg;
 import com.lemon.entity.LemonUser;
 import com.lemon.service.ImgMsgService;
 import com.lemon.service.ImgService;
@@ -143,9 +146,19 @@ public class LoginCor {
 		pager.setPageSize(30) ;
 		FrontUtils.frontData(request, model , propertiesService) ;
 
-		pager = imgService.getList(pager, keywords, null) ;
-		ImgCategoryEnum[] ary = ImgCategoryEnum.values() ;
+		List<ImgMsg> list = imgMsgService.getList() ;
+		for(ImgMsg i:list){
+			if(null!=i){
+				Img img = new Img() ;
+				img.setRelationId(i.getId()) ;
+				List<Img> imglist = imgService.getListBy(img) ;//根据父级id查找列表
+				i.setImglist(imglist) ;
+			}
+		}
 		
+		
+		ImgCategoryEnum[] ary = ImgCategoryEnum.values() ;
+		model.put("list", list) ;
 		model.put("imgcategoryary", ary) ;
 		model.put("pager", pager) ;
 		model.put("user", user) ;
@@ -163,6 +176,7 @@ public class LoginCor {
 		model.put("pager", pager) ;
 		model.put("user", user) ;
 		model.put("keywords", keywords) ;
+		model.put("category", category) ;
 		return "/WEB-INF/jsp/index_photo.jsp" ;
 	}
 	

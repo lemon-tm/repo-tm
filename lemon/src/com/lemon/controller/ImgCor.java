@@ -50,7 +50,7 @@ public class ImgCor {
 	 * 
 	 **/
 	@RequestMapping(value="/imgshow.jspx", method={RequestMethod.GET,RequestMethod.POST})
-	public String toImg(String keywords, String imgId, HttpServletRequest request, HttpServletResponse response, ModelMap model) throws UnsupportedEncodingException{
+	public String toImg(String category, String keywords, String imgId, HttpServletRequest request, HttpServletResponse response, ModelMap model) throws UnsupportedEncodingException{
 		FrontUtils.frontData(request, model);
 		LemonUser user = (LemonUser) request.getSession().getAttribute("user") ;
 		Img img = null ;
@@ -71,6 +71,9 @@ public class ImgCor {
 		if(null!=keywords){
 			keywords = new String(keywords.getBytes("ISO-8859-1"),"UTF-8");
 			model.put("keywords", keywords) ;
+		}
+		if(null!=category){
+			model.put("category", category) ;
 		}
 		return "/WEB-INF/jsp/showimg.jsp" ;
 	}
