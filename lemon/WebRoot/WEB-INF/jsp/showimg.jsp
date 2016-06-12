@@ -50,6 +50,7 @@ function returnfun(){
 		<div style="float:right;">
 			<form name="myform" action="${base}/photograph.jspx" method="post">
 				<input type="hidden" id="keywords" name="keywords" value="${keywords}" />
+				<input type="hidden" id="category" name="category" value="${category}" />
 			</form>
 			<a href="javascript:;" onclick="returnfun()">返回</a>
 		</div>

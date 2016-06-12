@@ -31,7 +31,7 @@ $(function(){
 });
 function showimg(imgId){
 	var keywords = $("#keywords").val() ;
-	window.location.href="${base}/imgshow.jspx?imgId="+imgId+"&keywords="+encodeURIComponent(keywords) ;
+	window.location.href="${base}/imgshow.jspx?imgId="+imgId+"&keywords="+encodeURIComponent(keywords)+"&category=${category}" ;
 }
 
 </script>

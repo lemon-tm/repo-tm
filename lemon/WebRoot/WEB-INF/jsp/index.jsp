@@ -21,14 +21,34 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 	<link rel="shortcut icon" href="${base}/image/favicon.ico">
 <style type="text/css">
-ul.homeimg{overflow:hidden; }
-ul.homeimg li{float:left; width:100px; height:100px; border:solid 1px red;}
+
+ul.inbox{ width:830px; margin:150px auto; overflow:hidden; position:relative;  border:solid 1ps red;}
+ul.inbox li{position:relative; width:160px; height:140px; float:left;padding-right:10px; }
+ul.inbox li span{position:absolute; bottom:5px; left:5px;}
+
+.homeimg {
+    position: absolute;
+    top: 180px;
+    left: 0px;
+    width: 860px;
+    height: 310px;
+    background: #fff;
+    opacity: 0.1;
+    filter: Alpha(opacity=10);
+    zoom: 1;
+    z-index: 9;
+    overflow: hidden;
+    _filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true, sizingMethod=noscale, src="/image/img_area_bg.png");
+    _background: 0 0;
+    _background: 0 0;
+}
+
 </style> 
 </head>
 
 <script type="text/javascript">
 $(function(){
-	$(".container").rowGrid({itemSelector: ".container ul li", minMargin: 5, maxMargin: 5, firstItemClass: "first-item"});
+	//$(".container").rowGrid({itemSelector: ".container ul li", minMargin: 5, maxMargin: 5, firstItemClass: "first-item"});
 });
 
 </script>
@@ -42,10 +62,16 @@ $(function(){
 	<ul>
 		<li>要么读书，要么旅行，身体和心灵总有一个要在路上</li>
 	</ul>
-	<ul class="homeimg">
-		<c:forEach items="${imgcategoryary}" var="category">
+
+	<ul class="inbox">
+		<c:forEach items="${list}" var="imgmsg">
 		<li>
-			<a href="${base}/photograph.jspx?category=${category.value}">${category.label}</a>
+			<a href="${base}/photograph.jspx?category=${imgmsg.category.value}">
+				<c:forEach items="${imgmsg.imglist[0].imgurlb}" var="a" varStatus="status">
+						<img width="160px" alt="${imgmsg.name}" src='${base}${a.thumbnailImagePath}' />
+				</c:forEach>
+				<span style="color:#fff;">${imgmsg.category.label}</span>
+			</a>
 		</li>
 		</c:forEach>
 	</ul>
