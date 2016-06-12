@@ -23,6 +23,7 @@ import com.lemon.service.ImgHouseService;
 import com.lemon.service.ImgMsgService;
 import com.lemon.service.ImgService;
 import com.lemon.service.LemonUserService;
+import com.lemon.service.PropertiesService;
 import com.lemon.util.FrontUtils;
 
 @Controller
@@ -40,6 +41,8 @@ public class ImgCor {
 	@Resource
 	private ImgMsgService imgMsgService ;
 	
+	@Resource
+	private PropertiesService propertiesService ;
 	
 	
 	/**
@@ -51,7 +54,7 @@ public class ImgCor {
 	 **/
 	@RequestMapping(value="/imgshow.jspx", method={RequestMethod.GET,RequestMethod.POST})
 	public String toImg(String category, String keywords, String imgId, HttpServletRequest request, HttpServletResponse response, ModelMap model) throws UnsupportedEncodingException{
-		FrontUtils.frontData(request, model);
+		FrontUtils.frontData(request, model , propertiesService);
 		LemonUser user = (LemonUser) request.getSession().getAttribute("user") ;
 		Img img = null ;
 		ImgMsg imgmsg = null ;
@@ -86,7 +89,7 @@ public class ImgCor {
 	 **/
 	@RequestMapping(value="/ucenter/uimgshow.jspx", method=RequestMethod.GET)
 	public String toUcenterImg(String index, String imgId, HttpServletRequest request, HttpServletResponse response, ModelMap model){
-		FrontUtils.frontData(request, model);
+		FrontUtils.frontData(request, model , propertiesService);
 		LemonUser user = (LemonUser) request.getSession().getAttribute("user") ;
 		ImgMsg img = null ;
 		if(null!=imgId && !"".equals(imgId)){
@@ -115,7 +118,7 @@ public class ImgCor {
 	 **/
 	@RequestMapping(value="/ucenter/deleteImg.jspx", method=RequestMethod.GET)
 	public void deleteImg(String imgId, HttpServletRequest request, HttpServletResponse response, ModelMap model) throws ServletException, IOException{
-		FrontUtils.frontData(request, model);
+		FrontUtils.frontData(request, model , propertiesService);
 		ImgHouse img = null ;
 		if(null!=imgId && !"".equals(imgId)){
 			img = imgHouseService.get(imgId) ;
