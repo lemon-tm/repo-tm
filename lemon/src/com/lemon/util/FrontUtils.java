@@ -24,9 +24,9 @@ public class FrontUtils {
 	 * 部署路径
 	 */
 	public static final String BASE = "base";
-	public static final String TITLE = "title";
-	public static final String KEYWORDS = "keywords";
-	public static final String DESCRIPTION = "description";
+	public static final String TITLE = "webtitle";
+	public static final String KEYWORDS = "webkeywords";
+	public static final String DESCRIPTION = "webdescription";
 	
 
 	/**

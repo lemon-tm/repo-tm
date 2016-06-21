@@ -2,9 +2,6 @@
 <%@ taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql" %> 
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-<title>${title}</title>
-<meta name="keywords" content="${keywords}" />
-<meta name="description" content="${description}" />
 <meta name="baidu-site-verification" content="szFiTukJ9Q" />
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">

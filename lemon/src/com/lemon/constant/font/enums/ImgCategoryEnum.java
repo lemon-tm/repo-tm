@@ -7,7 +7,8 @@ public enum ImgCategoryEnum implements BaseEnum<Integer> {
 	SCENERY("风景",1),
 	CHARACTER("人物",2),
 	SHIWU("实物",3),
-	CHUANGZUO("创作",4);
+	CHUANGZUO("创作",4),
+	FOOD("美食",5);
 	
 	private String label;
 	private Integer value;
