@@ -12,7 +12,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <head>
     <base href="<%=basePath%>">
     
-    
+    <title>${webtitle}</title>
+    <meta name="keywords" content="${webkeywords}" />
+	<meta name="description" content="${webdescription}" />
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
 	<meta http-equiv="expires" content="0">    
