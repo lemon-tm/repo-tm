@@ -18,6 +18,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<li><a href="${base}/ucenter/imglist.do" target="rightFrame">图片管理</a></li>
 		<li><a href="${base}/ucenter/userlist.do" target="rightFrame">用户管理</a></li>
 		<li><a href="${base}/ucenter/msglist.do" target="rightFrame">留言管理</a></li>
+		<li><a href="${base}/ucenter/visit_record_list.do" target="rightFrame">访客记录</a></li>
 	</ul>
 </body>
 </html>

@@ -39,6 +39,10 @@
 	<mvc:interceptors>    
 		<!-- 多个拦截器,顺序执行 -->    
 		<mvc:interceptor>    
+			<mvc:mapping path="/**/*.jspx" /> 
+			<bean class="com.lemon.common.intercept.LogInterceptor" />    
+		</mvc:interceptor>
+		<mvc:interceptor>    
 			<!-- 如果不配置或/**,将拦截所有的Controller -->  
 			<mvc:mapping path="/ucenter/*" /> 
 			<!-- 在界面展示之前做一些通用处理   --> 
