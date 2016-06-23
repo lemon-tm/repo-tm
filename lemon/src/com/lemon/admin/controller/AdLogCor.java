@@ -28,7 +28,7 @@ public class AdLogCor {
 	public String getlogList(Pager pager, HttpServletRequest request, HttpServletResponse response, ModelMap model) {
 		FrontUtils.frontData(request, model);
 		LemonUser user = (LemonUser) request.getSession().getAttribute("user") ;
-
+		pager.setPageSize(100) ;
 		pager = adVisitorRecordService.getList(pager) ;
 		model.put("user", user) ;
 		model.put("pager", pager) ;
