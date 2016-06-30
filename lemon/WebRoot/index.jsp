@@ -27,5 +27,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   4、我上传的图片，还没有审核，是可以删除的，审核通过后不予以删除。前期先做成这样，后期再调整。--已修改
   5、账户名称用于登录，应有提醒。
   6、上传图片分开传，不能传一条 6张
+  
+  
+  
+  7、在用户中心，session过期时登录页面会在iframe里显示
   </body>
 </html>
