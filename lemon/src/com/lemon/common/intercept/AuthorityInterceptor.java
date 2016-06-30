@@ -32,8 +32,9 @@ public class AuthorityInterceptor extends HandlerInterceptorAdapter {
 		LemonUser user =  (LemonUser) request.getSession().getAttribute("user");   
 		
 		if(null==user){
-			request.getRequestDispatcher("/login.jspx").forward(request, response);  
-			return false;  
+			response.sendRedirect("/login.jspx") ;
+			//request.getRequestDispatcher("/login.jspx").forward(request, response);  
+			return false;
 		}else{
 			return true;
 		} 
