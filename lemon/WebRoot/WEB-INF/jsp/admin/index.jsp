@@ -8,8 +8,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <html>
 
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-<title>后台管理</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+	<title>后台管理</title>
+	<link rel="icon" href="${base}/image/rlemon.ico" type="image/x-icon">
 </head>
 <frameset rows="71,*" frameborder="0" border="0" framespacing="0">
 	<frame src="../top.do" name="topFrame" noresize="noresize" id="leftFrame" />
