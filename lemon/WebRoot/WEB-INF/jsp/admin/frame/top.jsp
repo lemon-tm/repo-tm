@@ -23,7 +23,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </head>
 
 <body>
-	rlemon后台管理,欢迎：${user.username}
+	<a href="http://www.rlemon.cn" target="_blank">rlemon</a>后台管理,欢迎：${user.username}
 </body>
 
 </html>
