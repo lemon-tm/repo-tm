@@ -31,5 +31,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   
   
   7、在用户中心，session过期时登录页面会在iframe里显示
+  
+  
+  
+  8、产品应该注重的是用户体验而不是功能怎么实现。
   </body>
 </html>
