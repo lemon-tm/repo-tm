@@ -12,7 +12,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <head>
     <base href="<%=basePath%>">
     
-    <title>用户列表页面</title>
+    <title>访问量统计</title>
     
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
@@ -26,26 +26,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
 <body>
-<c:if test="${pagen!=null}">
-<div style="overflow:hidden;">
-	<span style="float:right;">
-		<a href="${base}/ucenter/visit_record_statistics.do?pageNumber=${pagen}">返回</a>
-	</span>
-</div>
-</c:if>
+	<jsp:include  page="./../common/pager.jsp"/>
 <form id="tableForm" method="post" style="padding-top:5px">
 	
 	<table class="table" border="0" width="100%" cellspacing="1">
 		<thead>
 			<tr>
-				<th width="10%">用户名称</th>
 				<th width="10%">来访IP</th>
-				<th width="20%">访问来源</th>
-				<th width="20%">请求地址</th>
-				<th width="20%">访客浏览器类型</th>
-				<th width="10%">访问时间</th>
-				<!-- <th width="10%">离开时间</th>
-				<th width="2%">操作</th> -->
+				<th width="20%">点击次数</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -53,19 +41,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			
 			<tr>
 				
-				<td align="center">${item.userId}</td>
-				<td align="center">${item.ip}</td>
-				<td align="center">${item.referer}</td>
-				<td align="center">${item.requestUrl}</td>
-				<td align="center">${item.browser}</td>
-				<td align="center">${item.visitTime}</td>
-				<%-- <td align="center">${item.leaveTime}</td>
-				<td align="center">
-					
-					<a href="javascript:void(0);" onclick="verify(1,'${item.id}')">通过</a>
-					<a href="javascript:void(0);" onclick="verify(0,'${item.id}')">不通过</a> 
-					
-				</td> --%>
+				<td align="center"><a href="${base}/ucenter/visit_record_list.do?ip=${item[0]}&pagen=${pager.pageNumber}">${item[0]}</a></td>
+				<td align="center">${item[1]}</td>
 				
 			</tr>
 			</c:forEach>
@@ -73,8 +50,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	</table>
 	
 </form>
-
-<jsp:include  page="./../common/pager.jsp"/>
 <script type="text/javascript">
 	
 </script>

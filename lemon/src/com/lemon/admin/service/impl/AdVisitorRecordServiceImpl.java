@@ -29,4 +29,14 @@ public class AdVisitorRecordServiceImpl extends BaseServiceImpl<VisitorRecord,St
 		return adVisitorRecordDao.getList(pager);
 	}
 
+	@Override
+	public Pager getRecordStatistics(Pager pager) {
+		return adVisitorRecordDao.getRecordStatistics(pager);
+	}
+
+	@Override
+	public Pager getList(Pager pager, VisitorRecord entity) {
+		return adVisitorRecordDao.getRecordStatistics(pager, entity);
+	}
+
 }

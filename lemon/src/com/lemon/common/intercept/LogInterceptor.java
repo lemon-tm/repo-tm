@@ -43,7 +43,7 @@ public class LogInterceptor extends HandlerInterceptorAdapter {
 //        String method = request.getMethod();//得到请求URL地址时使用的方法
 //        String localAddr = request.getLocalAddr();//获取WEB服务器的IP地址
 //        String localName = request.getLocalName();//获取WEB服务器的主机名
-        
+
 		String remoteAddr = getIpAddr(request) ;//得到来访者的IP地址
 		String referer = request.getHeader("Referer") ;//来源页面
         String browser = request.getHeader("User-Agent"); 

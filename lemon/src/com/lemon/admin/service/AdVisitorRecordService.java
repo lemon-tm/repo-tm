@@ -10,6 +10,10 @@ import com.lemon.util.Pager;
 public interface AdVisitorRecordService extends BaseService<VisitorRecord,String>{
 
 	Pager getList(Pager pager);
+
+	Pager getRecordStatistics(Pager pager);
+
+	Pager getList(Pager pager, VisitorRecord entity);
 	
 }
 

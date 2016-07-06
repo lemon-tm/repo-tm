@@ -77,7 +77,9 @@ $(function(){
 		</li>
 		</c:forEach>
 	</ul>
-	
+	<div style="position:absolute;right:10px;bottom:150px;">
+		<script charset="gbk" type="text/javascript" src="http://union.dangdang.com/adapi/bang/?from=P-330383-rlemon"></script>
+	</div>
 	<div class="clear"></div>
 </div>
 

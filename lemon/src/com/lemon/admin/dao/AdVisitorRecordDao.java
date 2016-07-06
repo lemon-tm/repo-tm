@@ -10,5 +10,9 @@ import com.lemon.util.Pager;
 public interface AdVisitorRecordDao extends BaseDao<VisitorRecord, String>{
 
 	Pager getList(Pager pager);
+
+	Pager getRecordStatistics(Pager pager);
+
+	Pager getRecordStatistics(Pager pager, VisitorRecord entity);
 	
 }
