@@ -1,5 +1,6 @@
 package com.lemon.admin.controller;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -50,6 +51,7 @@ public class AdMsgCor {
 		if(null!=msg && msg.getStates().getValue()<2){
 			msg.setReplyContent(msgr.getReplyContent()) ;
 			msg.setStates(MsgStatesEnum.getMsgStatesEnum(2)) ;
+			msg.setReplayTime(new Date()) ;
 			adMessageService.update(msg) ;
 			
 			//发送邮件给我，配置文件位置email.properties
@@ -81,6 +83,7 @@ public class AdMsgCor {
 		Message msg = adMessageService.get(msgId) ;
 		if(null!=msg && msg.getStates().getValue()==0){
 			msg.setStates(MsgStatesEnum.getMsgStatesEnum(1)) ;
+			msg.setReadTime(new Date()) ;
 			adMessageService.update(msg) ;
 		}
 		model.put("user", user) ;

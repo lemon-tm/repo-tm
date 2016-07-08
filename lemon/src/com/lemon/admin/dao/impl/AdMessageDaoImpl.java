@@ -19,7 +19,7 @@ public class AdMessageDaoImpl extends BaseDaoImpl<Message,String> implements AdM
 	public Pager getList(Pager pager) {
 		Criteria criteria = getSession().createCriteria(Message.class);
 		criteria.addOrder(Order.asc("states"));
-		criteria.addOrder(Order.asc("createTime"));
+		criteria.addOrder(Order.desc("createTime"));
 		return findPager(pager, criteria);
 	}
 

@@ -50,8 +50,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<td align="center">${item.email}</td>
 				<td align="center"><span style="color:#1A94E6;">${item.states.label}</span></td>
 				<td align="center">${item.createTime}</td>
-				<td align="center">${item.readTime}</td>
-				<td align="center">${item.replayTime}</td>
+				<td align="center">
+					<c:if test="${item.states.value>=1 }">
+						${item.readTime}
+					</c:if>
+				</td>
+				<td align="center">
+					<c:if test="${item.states.value>=2 }">
+						${item.replayTime}
+					</c:if>
+				</td>
 			</tr>
 			</c:forEach>
 		</tbody>
