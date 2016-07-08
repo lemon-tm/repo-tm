@@ -1,6 +1,7 @@
 package com.lemon.common.intercept;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -9,8 +10,10 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
+import com.lemon.entity.ForbiddenIp;
 import com.lemon.entity.LemonUser;
 import com.lemon.entity.VisitorRecord;
+import com.lemon.service.ForbiddenIpService;
 import com.lemon.service.VisitorRecordService;
 /**
  * 通过这个拦截器，记录匿名登录的用户信息 ，用于统计
@@ -29,6 +32,8 @@ HandlerInterceptorAdapter适配器是Spring MVC为了方便我们使用HandlerIn
 public class LogInterceptor extends HandlerInterceptorAdapter {
 	@Resource
 	private VisitorRecordService visitorRecordService ;
+	@Resource
+	private ForbiddenIpService forbiddenIpService ;
 
 	@Override
 	public boolean preHandle(HttpServletRequest request,
@@ -49,6 +54,12 @@ public class LogInterceptor extends HandlerInterceptorAdapter {
         String browser = request.getHeader("User-Agent"); 
         String requestUrl = request.getRequestURL().toString();//得到请求的URL地址
         
+        List<ForbiddenIp> list = forbiddenIpService.getAllList() ;
+        for(ForbiddenIp b:list){
+        	if(remoteAddr.equals(b.getId())){
+        		return false ;
+        	}
+        }
         VisitorRecord vr = new VisitorRecord() ;
         LemonUser user =  (LemonUser) request.getSession().getAttribute("user");  
         if(null!=user){
