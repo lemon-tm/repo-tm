@@ -56,6 +56,7 @@ public class AdLogCor {
 		model.put("user", user) ;
 		model.put("pager", pager) ;
 		model.put("pagen", pagen) ;
+		model.put("ip", entity.getIp()) ;
 		return "/WEB-INF/jsp/admin/visit_record_list.jsp" ;
 	}
 	/**

@@ -54,12 +54,7 @@ public class LogInterceptor extends HandlerInterceptorAdapter {
         String browser = request.getHeader("User-Agent"); 
         String requestUrl = request.getRequestURL().toString();//得到请求的URL地址
         
-        List<ForbiddenIp> list = forbiddenIpService.getAllList() ;
-        for(ForbiddenIp b:list){
-        	if(remoteAddr.equals(b.getId())){
-        		return false ;
-        	}
-        }
+        
         VisitorRecord vr = new VisitorRecord() ;
         LemonUser user =  (LemonUser) request.getSession().getAttribute("user");  
         if(null!=user){
@@ -71,7 +66,13 @@ public class LogInterceptor extends HandlerInterceptorAdapter {
         vr.setVisitTime(new Date()) ;
         vr.setRequestUrl(requestUrl) ;
         
-        visitorRecordService.save(vr) ;
+        visitorRecordService.save(vr) ;//加字段被封的ip要给标识
+        List<ForbiddenIp> list = forbiddenIpService.getAllList() ;
+        for(ForbiddenIp b:list){
+        	if(remoteAddr.equals(b.getId())){
+        		return false ;
+        	}
+        }
         return true ;
 	}
 	@Override

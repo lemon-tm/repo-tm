@@ -10,7 +10,7 @@
 		<c:choose>
 			<c:when test="${pager.pageNumber > 1}">
 			
-				<a href="${base}${pager.pUrl}?pageNumber=${pager.pageNumber-1}">上一页</a>
+				<a href="${base}${pager.pUrl}?pageNumber=${pager.pageNumber-1}&ip=${ip}">上一页</a>
 			</c:when>
 			<c:otherwise>
 				<span class="disabled">上一页</span>
@@ -21,7 +21,7 @@
 			<c:if test="${status.index==0 && p > 1}"><span>...</span></c:if>
 			<c:choose>
 				<c:when test="${pager.pageNumber !=p}">
-					<a href="${base}${pager.pUrl}?pageNumber=${p}">${p}</a>
+					<a href="${base}${pager.pUrl}?pageNumber=${p}&ip=${ip}">${p}</a>
 					
 				</c:when>
 				<c:otherwise>
@@ -34,7 +34,7 @@
 		<c:choose>
 			<c:when test="${pager.pageNumber < pager.pageCount}">
 			
-				<a href="${base}${pager.pUrl}?pageNumber=${pager.pageNumber+1}">下一页</a>
+				<a href="${base}${pager.pUrl}?pageNumber=${pager.pageNumber+1}&ip=${ip}">下一页</a>
 			</c:when>
 			<c:otherwise>
 				<span class="disabled">下一页</span>
