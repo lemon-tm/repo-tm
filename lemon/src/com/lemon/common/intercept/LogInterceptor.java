@@ -69,8 +69,22 @@ public class LogInterceptor extends HandlerInterceptorAdapter {
         visitorRecordService.save(vr) ;//加字段被封的ip要给标识
         List<ForbiddenIp> list = forbiddenIpService.getAllList() ;
         for(ForbiddenIp b:list){
-        	if(remoteAddr.equals(b.getId())){
+        	if(remoteAddr.equals(b.getIp())){
         		return false ;
+        	}
+        }
+        //如果不是被禁止的ip那么查询他在一秒内访问次数超过5次那么久封掉
+        
+        List<Integer> ilist = visitorRecordService.getBy(vr) ;
+        if(null!=ilist){
+        	for(int i=0; i<ilist.size();i++){
+        		Integer c = Integer.parseInt(ilist.get(i)+"") ;
+        		if(c>4){
+        			ForbiddenIp forbiddenIp = new ForbiddenIp() ;
+        			forbiddenIp.setIp(vr.getIp()) ;
+        			forbiddenIpService.save(forbiddenIp) ;
+        			return false ;
+        		}
         	}
         }
         return true ;

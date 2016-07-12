@@ -1,6 +1,7 @@
 package com.lemon.entity;
 
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
@@ -17,6 +18,16 @@ import org.apache.commons.lang.builder.ToStringBuilder;
 @Table(name = "forbidden_ip")
 public class ForbiddenIp extends BaseEntity {
 
+	private String ip ;
+	
+	@Column(name = "ip", length = 100)
+	public String getIp() {
+		return ip;
+	}
+
+	public void setIp(String ip) {
+		this.ip = ip;
+	}
 
 	/**
 	 * @see java.lang.Object#equals(Object)
