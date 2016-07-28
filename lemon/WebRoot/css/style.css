@@ -21,7 +21,7 @@
 .footer_1{height:30px; text-align:center; color:#999;}
 .footer_2{height:60px; text-align:center; color:#666; padding:8px 0 8px 0; background-color:rgb(0, 0, 0);}
 
-.showimg-all{width:980px; margin:0 auto; overflow:hidden;}
+.showimg-all{ margin:0 auto; overflow:hidden;}
 .showimg-l{float:left;}
 .showimg-r{float:left;}
 

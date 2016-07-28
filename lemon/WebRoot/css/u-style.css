@@ -43,11 +43,11 @@
 
 .article_img{width:100%;vertical-align:middle;}
 .article_img img{vertical-align:middle;}
-.article_img .box_img{height:300px;overflow:hidden;}
+.article_img .box_img{height:171px;overflow:hidden;width:1000px; margin:8px auto;}
 .article_img .box_img a.prev,.article_img .box_img a.next{display:inline-block;width:19px;height:125px;background-color:#f2f3eb;background-image:url(../image/arrow.png);background-repeat:no-repeat;z-index:2;}
 .article_img .box_img a.prev{left:0;top:25px;background-position:0 0;}
 .article_img .box_img a.next{right:0;top:25px;background-position:-18px 0;}
-.article_img .box_img ul{margin-left:20px;}
+.article_img .box_img ul{}
 .article_img .box_img ul li{ overflow:hidden;float:left;display:table-cell;vertical-align:middle;border:1px solid #e8e8e8;margin:9px 5px;filter:alpha(opacity=70);opacity:0.7;}
 .article_img .box_img ul li.current{border-color:#f74d58;filter:alpha(opacity=100);opacity:100;}
 .article_img .box_img ul li a{display:table-cell;vertical-align:middle;}
