@@ -25,7 +25,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <style type="text/css">
 
 ul.inbox{ width:830px; margin:150px auto; overflow:hidden; position:relative;  border:solid 1ps red;}
-ul.inbox li{position:relative; width:160px; height:140px; float:left;padding-right:10px; }
+ul.inbox li{position:relative; height:140px; float:left;margin-right:10px; overflow:hidden;}
 ul.inbox li span{position:absolute; bottom:5px; left:5px;}
 
 .homeimg {
@@ -70,7 +70,7 @@ $(function(){
 		<li>
 			<a href="${base}/photograph.jspx?category=${imgmsg.category.value}">
 				<c:forEach items="${imgmsg.imglist[0].imgurlb}" var="a" varStatus="status">
-						<img width="160px" alt="${imgmsg.name}" src='${base}${a.thumbnailImagePath}' />
+					<img height="140px" alt="${imgmsg.name}" src='${base}${a.thumbnailImagePath}' />
 				</c:forEach>
 				<span style="color:#fff;">${imgmsg.category.label}</span>
 			</a>

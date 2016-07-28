@@ -36,7 +36,7 @@ function returnfun(){
 <div class="container">
 	<div class="showimg-all">
 		<div class="showimg-l">
-			<img src="${base}${img.imgurlb[0].bigImagePath}" />
+			<img src="${base}${img.imgurlb[0].bigImagePath}" alt="${imgmsg.name}" />
 		</div>
 		<div class="showimg-r ml20 lh30">
 			<div>名称：${imgmsg.name}</div>

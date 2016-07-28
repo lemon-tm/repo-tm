@@ -31,9 +31,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 $(function(){
 	$(".container").rowGrid({itemSelector: ".container ul li", minMargin: 5, maxMargin: 5, firstItemClass: "first-item"});
 });
-function showimg(imgId){
+function showimg(imgId,index){
 	var keywords = $("#keywords").val() ;
-	window.location.href="${base}/imgshow.jspx?imgId="+imgId+"&keywords="+encodeURIComponent(keywords)+"&category=${category}" ;
+	//window.location.href="${base}/imgshow.jspx?imgId="+imgId+"&keywords="+encodeURIComponent(keywords)+"&category=${category}" ;
+	window.location.href="${base}/photograph.jspx?index="+index+"&imgId="+imgId+"&keywords="+encodeURIComponent(keywords)+"&category=${category}" ;
 }
 
 </script>
@@ -46,10 +47,10 @@ function showimg(imgId){
 <div class="clear" style="height:8px;"></div>
 <div class="container">
 	<ul class="imgbox">
-		<c:forEach items="${pager.result}" var="img">
+		<c:forEach items="${pager.result}" var="img"  varStatus="s">
 			<c:forEach items="${img.imgurlb}" var="a" varStatus="status">
 				<li>
-					<a href="javascript:void(0);" onclick="showimg('${img.id}')"><img height="200" src='${base}${a.thumbnailImagePath}' /></a>
+					<a href="javascript:void(0);" onclick="showimg('${img.id}','${s.index }')"><img height="200" src='${base}${a.thumbnailImagePath}' alt="${img.name }" /></a>
 				</li>
 			</c:forEach>
 		</c:forEach>
