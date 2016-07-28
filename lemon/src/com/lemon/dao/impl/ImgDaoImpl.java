@@ -33,7 +33,20 @@ public class ImgDaoImpl extends BaseDaoImpl<Img,String> implements ImgDao{
 		q.setParameter("relationId",  relationId) ;
 		return q.list();
 	}
-
+	//这个方法的 总页数 是有问题的 errer
+	private int getTotalCountBy(String sql) {
+		int totalCount = 0;
+		Query q = getSession().createQuery(sql) ;
+		
+		q.setParameter("isverify", VerifyEnum.getVerifyEnum(1)) ;
+		q.setParameter("states", ImgStatusEnum.getImgStatusEnum(2)) ;
+		
+		List list = q.list();
+		if(list!=null){
+			totalCount = list.size();
+		}
+		return totalCount;
+	}
 	@Override
 	public Pager getList(Pager pager, String keywords, String category) {
 		String sql ="from Img v where v.isverify=:isverify and v.relationId in(" +
@@ -44,13 +57,16 @@ public class ImgDaoImpl extends BaseDaoImpl<Img,String> implements ImgDao{
 		if(null!=category && category.length()>0){
 			sql+=" and m.category='"+category+"' " ;
 		}
-		sql+=")" ;
+		sql+=" ) order by v.verifyTime desc" ;
 		Query q = getSession().createQuery(sql) ;
 		q.setParameter("isverify", VerifyEnum.getVerifyEnum(1)) ;
 		q.setParameter("states", ImgStatusEnum.getImgStatusEnum(2)) ;
+		
 		q.setFirstResult((pager.getPageNumber()-1)*pager.getPageSize()) ;
 		q.setMaxResults(pager.getPageSize()) ;
-		pager = findPager(pager) ;
+		
+		pager.setTotalCount(getTotalCountBy(sql)) ;
+//		pager = findPager(pager) ;
 		pager.setResult(q.list()) ;
 		return pager;
 	}
@@ -60,7 +76,7 @@ public class ImgDaoImpl extends BaseDaoImpl<Img,String> implements ImgDao{
 		
 		String hql = "from Img v where 1=1 " ;
 		if(null!=img && img.getRelationId().length()>0){
-			hql+=" and v.relationId=:relationId" ;
+			hql+=" and v.relationId=:relationId " ;
 		}
 		Query q  = getSession().createQuery(hql) ;
 		if(null!=img && img.getRelationId().length()>0){

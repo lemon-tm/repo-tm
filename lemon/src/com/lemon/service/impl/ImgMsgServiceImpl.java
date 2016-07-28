@@ -10,6 +10,7 @@ import com.lemon.dao.ImgMsgDao;
 import com.lemon.entity.Img;
 import com.lemon.entity.ImgMsg;
 import com.lemon.service.ImgMsgService;
+import com.lemon.util.Pager;
 
 /*
  *  @author 
@@ -28,6 +29,12 @@ public class ImgMsgServiceImpl extends BaseServiceImpl<ImgMsg,String> implements
 	@Override
 	public List<ImgMsg> getList() {
 		return imgMsgDao.getList();
+	}
+
+	@Override
+	public Pager findByUser(Pager page, String id, ImgMsg imgmsg) {
+		// TODO Auto-generated method stub
+		return imgMsgDao.findByUser(page,id,imgmsg) ;
 	}
 
 }

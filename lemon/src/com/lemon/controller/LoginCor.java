@@ -165,18 +165,88 @@ public class LoginCor {
 		model.put("keywords", keywords) ;
 		return "/WEB-INF/jsp/index.jsp" ;
 	}
+	/**
+	 *  hhc add 2016-07-21
+	 * 
+	 *  前台滚动图片获取文字信息
+	 *  
+	 *  ajax
+	 * 
+	 */
+	@RequestMapping(value="/scroll_imgmsg.jspx", method=RequestMethod.POST)
+	public void scrollImgMsg(String imgId, 
+			HttpServletRequest request, HttpServletResponse response, ModelMap model){
+		FrontUtils.frontData(request, model , propertiesService) ;
+		
+		ImgMsg msg = new ImgMsg() ;
+		if(null!=imgId){
+			Img img = imgService.get(imgId) ;
+			if(null!=img){
+				msg = imgMsgService.get(img.getRelationId()) ;
+				if(null!=msg && msg.getUserId().length()>0){
+					LemonUser user = lemonUserService.get(msg.getUserId()) ;
+					msg.setUser(user) ;
+				}
+			}
+		}
+		
+		
+		
+		
+		JSONObject json = new JSONObject();
+		
+		json.put("name", msg.getName()) ;
+		json.put("describes", msg.getDescribes()) ;
+		json.put("createTime", msg.getCreateTime()) ;
+		if(null!=msg.getUser()){
+			json.put("trueName", msg.getUser().getTrueName()) ;
+		}
+		
+		ResponseUtils.renderJson(response, json.toString());
+		
+	}
+	
+	
+	
+	/**
+	 * imgId,图片滚动,有值时认为是图片滚动， 否则瀑布流
+	 * 
+	 */
 	@RequestMapping(value="/photograph.jspx", method={RequestMethod.GET,RequestMethod.POST})
-	public String phpto(String category, String keywords, Pager pager, HttpServletRequest request, HttpServletResponse response, ModelMap model) throws UnsupportedEncodingException{
+	public String phpto(String index,String imgId, String category, String keywords, Pager pager, HttpServletRequest request, HttpServletResponse response, ModelMap model) throws UnsupportedEncodingException{
 		LemonUser user = (LemonUser) request.getSession().getAttribute("user") ;
-		pager.setPageSize(30) ;
+		pager.setPageSize(60) ;
 		FrontUtils.frontData(request, model , propertiesService) ;
 
+		if(null!=keywords && null!=imgId){
+			keywords = new String(keywords.getBytes("ISO-8859-1"),"UTF-8");
+			model.put("keywords", keywords) ;
+		}
+		
 		pager = imgService.getList(pager, keywords, category) ;
+		List<Img> list = (List<Img>) pager.getResult() ; 
+		for(Img i:list){
+			if(null!=i && null!=i.getRelationId() && i.getRelationId().length()>0){
+				ImgMsg msg = imgMsgService.get(i.getRelationId()) ;
+				if(null!=msg && msg.getUserId().length()>0){
+					LemonUser u = lemonUserService.get(msg.getUserId()) ;
+					i.setTrueName(u.getTrueName()) ;
+				}
+				i.setName(msg.getName()) ;
+				i.setDescribes(msg.getDescribes()) ;
+				i.setCreateTime(msg.getCreateTime()) ;
+			}
+		}
 		
 		model.put("pager", pager) ;
 		model.put("user", user) ;
-		model.put("keywords", keywords) ;
 		model.put("category", category) ;
+		model.put("keywords", keywords) ;
+		model.put("imgId", imgId) ;
+		if(null!=imgId){
+			model.put("index", index) ;
+			return "/WEB-INF/jsp/scrollshowimg.jsp" ;
+		}
 		return "/WEB-INF/jsp/index_photo.jsp" ;
 	}
 	

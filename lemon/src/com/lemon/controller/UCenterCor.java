@@ -12,10 +12,8 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.lemon.constant.font.enums.ImgCategoryEnum;
 import com.lemon.constant.font.enums.ImgStatusEnum;
 import com.lemon.entity.Img;
-import com.lemon.entity.ImgHouse;
 import com.lemon.entity.ImgMsg;
 import com.lemon.entity.LemonUser;
 import com.lemon.service.ImgHouseService;
@@ -46,7 +44,7 @@ public class UCenterCor {
 		imgmsg.setStates(ImgStatusEnum.getImgStatusEnum(2)) ;//不查询已被删除的图片
 
 		if(null!=user){
-			page = imgHouseService.findByUser(page, user.getId(),imgmsg) ;
+			page = imgMsgService.findByUser(page, user.getId(),imgmsg) ;
 		}
 		if(null!=page){
 			List<ImgMsg> list = (List<ImgMsg>) page.getResult() ;

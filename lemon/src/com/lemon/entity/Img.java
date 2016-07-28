@@ -4,6 +4,7 @@ package com.lemon.entity;
 import java.util.Collections;
 import java.util.List;
 
+import javax.annotation.Resource;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
@@ -23,6 +24,7 @@ import org.hibernate.annotations.Type;
 import com.lemon.common.bean.ImageBean;
 import com.lemon.constant.font.enums.ImgCategoryEnum;
 import com.lemon.constant.font.enums.VerifyEnum;
+import com.lemon.service.ImgMsgService;
 
 /**
  * Img (table = img)
@@ -32,13 +34,53 @@ import com.lemon.constant.font.enums.VerifyEnum;
 @Entity
 @Table(name = "img")
 public class Img extends BaseEntity {
-
+	
 	private String relationId;//
 	private String imgUrl;//
 	private VerifyEnum isverify;//
 	private java.util.Date verifyTime;//
 	private List<ImageBean> imgurlb ;
+	private String name ;
+	private String describes ;
+	private String trueName ;
+	private java.util.Date createTime ;
 	
+	@Transient
+	public java.util.Date getCreateTime() {
+		return createTime;
+	}
+
+	public void setCreateTime(java.util.Date createTime) {
+		this.createTime = createTime;
+	}
+
+	@Transient
+	public String getTrueName() {
+		return trueName;
+	}
+
+	public void setTrueName(String trueName) {
+		this.trueName = trueName;
+	}
+
+	@Transient
+	public String getDescribes() {
+		return describes;
+	}
+
+	public void setDescribes(String describes) {
+		this.describes = describes;
+	}
+
+	@Transient
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
 	@Transient
 	public List<ImageBean> getImgurlb() {
 		if (StringUtils.isEmpty(imgUrl)) {
