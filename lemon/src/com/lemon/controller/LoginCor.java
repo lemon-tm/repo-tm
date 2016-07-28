@@ -215,7 +215,7 @@ public class LoginCor {
 	@RequestMapping(value="/photograph.jspx", method={RequestMethod.GET,RequestMethod.POST})
 	public String phpto(String index,String imgId, String category, String keywords, Pager pager, HttpServletRequest request, HttpServletResponse response, ModelMap model) throws UnsupportedEncodingException{
 		LemonUser user = (LemonUser) request.getSession().getAttribute("user") ;
-		pager.setPageSize(60) ;
+		pager.setPageSize(100) ;
 		FrontUtils.frontData(request, model , propertiesService) ;
 
 		if(null!=keywords && null!=imgId){
