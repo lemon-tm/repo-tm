@@ -39,10 +39,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<c:forEach items="${pager.result}" var="l" varStatus="status">
 					<c:if test="${imgId==l.id}">
 					<div class="showimg-all" style="width:700px;">
-						<div class="showimg-l">
+						<div class="showimg-l" style="t">
 						
 							<c:forEach items="${l.imgurlb}" var="a">
-								<img style="max-height:500px; width:400px;" src='${base}${a.bigImagePath}' alt="${l.name}" />
+								<img style="width:400px; " src='${base}${a.bigImagePath}' alt="${l.name}" />
 							</c:forEach>
 						</div>
 						<div class="showimg-r ml20 lh30" id="imgmsg" style="width:280px;overflow:hidden;">
@@ -64,16 +64,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<c:forEach items="${l.imgurlb}" var="a">
 						<c:choose>
 							<c:when test="${imgId==l.id}">
-								<li class="current" onclick="ajaxData(this)">
+								<li class="current" onclick="ajaxData(this)"  >
 									<input type="hidden" id="imgId" value="${l.id }" />
 									<input type="hidden" id="indexfs" value="${index }" />
 									<img height="160" src='${base}${a.bigImagePath}' alt="${l.name}" />
 								</li>
 							</c:when>
 							<c:otherwise>
-								<li onclick="ajaxData(this)">
+								<li onclick="ajaxData(this)" >
 									<input type="hidden" id="imgId" value="${l.id }" />
-									<img height="160"  src='${base}${a.bigImagePath}' alt="${l.name}" />
+									<img width="160" src='${base}${a.bigImagePath}' alt="${l.name}" />
 								</li>
 							</c:otherwise>
 						</c:choose>
