@@ -65,15 +65,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<c:choose>
 							<c:when test="${imgId==l.id}">
 								<li class="current" onclick="ajaxData(this)"  >
-									<input type="hidden" id="imgId" value="${l.id }" />
-									<input type="hidden" id="indexfs" value="${index }" />
-									<img height="160" src='${base}${a.bigImagePath}' alt="${l.name}" />
+									<div class="imgs">
+										<input type="hidden" id="imgId" value="${l.id }" />
+										<input type="hidden" id="indexfs" value="${index }" />
+										<img width="160" src='${base}${a.bigImagePath}' alt="${l.name}" />
+									</div>
 								</li>
 							</c:when>
 							<c:otherwise>
 								<li onclick="ajaxData(this)" >
-									<input type="hidden" id="imgId" value="${l.id }" />
-									<img width="160" src='${base}${a.bigImagePath}' alt="${l.name}" />
+									<div class="imgs">
+										<input type="hidden" id="imgId" value="${l.id }" />
+										<img width="160" src='${base}${a.bigImagePath}' alt="${l.name}" />
+									</div>
 								</li>
 							</c:otherwise>
 						</c:choose>
