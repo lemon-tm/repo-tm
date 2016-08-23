@@ -21,7 +21,7 @@ public class VisitorRecordDaoImpl extends BaseDaoImpl<VisitorRecord,String> impl
 			String ip = vr.getIp() ;
 			String requestUrl = vr.getRequestUrl() ;
 			if(null!=ip && !"".equals(ip) && null!=requestUrl && !"".equals(requestUrl)){
-				sql+=" and ip='"+ip+"' and requestUrl='"+requestUrl+"' and requestUrl not like '%rlemon%' group by visitTime" ;
+				sql+=" and ip='"+ip+"' and requestUrl='"+requestUrl+"' and requestUrl not like '%lemon%' group by visitTime" ;
 			}
 		}else{
 			return null;

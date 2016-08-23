@@ -21,7 +21,7 @@ public class ImgMsgDaoImpl extends BaseDaoImpl<ImgMsg,String> implements ImgMsgD
 	@Override
 	public List<ImgMsg> getList() {
 		//String hql = "select * from (select * from img_msg where 1=1 order by create_time desc) v GROUP BY v.category" ;
-		String sql = "select * from (select * from img_msg where 1=1 and id in(" +
+		String sql = "select * from (select * from img_msg where 1=1 and states!=2 and id in(" +
 				"select DISTINCT(relation_id) from img where isverify='1' " +
 				") order by create_time desc) v GROUP BY v.category  " ;
 		Query q = getSession().createSQLQuery(sql).addEntity(ImgMsg.class) ;

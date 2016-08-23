@@ -119,12 +119,13 @@ public class ImgCor {
 	@RequestMapping(value="/ucenter/deleteImg.jspx", method=RequestMethod.GET)
 	public void deleteImg(String imgId, HttpServletRequest request, HttpServletResponse response, ModelMap model) throws ServletException, IOException{
 		FrontUtils.frontData(request, model , propertiesService);
-		ImgHouse img = null ;
+		ImgMsg img = null ;
 		if(null!=imgId && !"".equals(imgId)){
-			img = imgHouseService.get(imgId) ;
+			img = imgMsgService.get(imgId) ;
 		}
 		if(null!=img){
-			img.setStatus(ImgStatusEnum.getImgStatusEnum(2)) ;
+			img.setStates(ImgStatusEnum.getImgStatusEnum(2)) ;
+			imgMsgService.save(img) ;
 		}
 		
 		request.getRequestDispatcher("/ucenter/imglist.jspx").forward(request, response) ;
