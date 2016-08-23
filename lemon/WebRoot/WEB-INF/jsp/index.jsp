@@ -44,7 +44,9 @@ ul.inbox li span{position:absolute; bottom:5px; left:5px;}
     _background: 0 0;
     _background: 0 0;
 }
-
+.like li{
+	height:30px; line-height:30px;
+}	
 </style> 
 </head>
 
@@ -61,8 +63,9 @@ $(function(){
 
 <div class="clear" style="height:8px;"></div>
 <div class="container">
-	<ul>
+	<ul class="like">
 		<li>要么读书，要么旅行，身体和心灵总有一个要在路上</li>
+		<li>众里寻他千百回，蓦然回首，那人却在灯火阑珊处</li>
 	</ul>
 
 	<ul class="inbox">

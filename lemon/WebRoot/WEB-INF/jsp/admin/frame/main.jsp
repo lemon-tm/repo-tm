@@ -13,7 +13,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </head>
 <frameset cols="210,*" frameborder="0" border="0" framespacing="0">
 	<frame src="${base }/admin/left.do" name="leftFrame" noresize="noresize" id="leftFrame" />
-	<frame src="${base }/admin/right.do" name="rightFrame" id="rightFrame"  />
+	<frame src="${base }/admin/right.do" name="rightFrame" id="rightFrame"/>
 </frameset>
 <noframes><body></body></noframes>
 </html>

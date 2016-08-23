@@ -12,3 +12,10 @@
 	</div>
 	
 </div>
+
+<script type="text/javascript">
+	$(document).ready(function(){
+		var height = $(document).height();
+		$(".container").css("height",height-60-30-30-60-50) ;
+	});
+</script>

@@ -103,19 +103,21 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <script type="text/javascript">
 
 function ajaxData(p){
-	var imgId = $(p).children("#imgId").val() ; 
+	var imgId = $(p).children().children("#imgId").val() ; 
 	
 	if(imgId){
-		
+	
 	}else{
 		if(p==1){
-			var imgId = $(".box_img ul>li[class='current']").prev().children("#imgId").val() ;
+			imgId = $(".box_img ul>li[class='current']").prev().children("#imgId").val() ;
 		}
 		if(p==2){
-			var imgId = $(".box_img ul>li[class='current']").next().children("#imgId").val() ;
+			imgId = $(".box_img ul>li[class='current']").next().children("#imgId").val() ;
 		}
 	}
+	
 	if(imgId){
+	
 	}else{
 		return ;
 	}

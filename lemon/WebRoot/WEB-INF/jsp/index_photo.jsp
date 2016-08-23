@@ -1,6 +1,6 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
-<%@ taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql" %> 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%
 String path = request.getContextPath();
@@ -43,7 +43,7 @@ function showimg(imgId,index){
 
 <body>
 <jsp:include  page="./common/head.jsp"/>
-<jsp:include  page="./common/pager.jsp"/>
+
 <div class="clear" style="height:8px;"></div>
 <div class="container">
 	<ul class="imgbox">
@@ -55,10 +55,19 @@ function showimg(imgId,index){
 			</c:forEach>
 		</c:forEach>
 	</ul>
-	
+	<jsp:include  page="./common/pager.jsp"/>
 	<div class="clear"></div>
 </div>
+<script type="text/javascript" src="${base}/js/jquery.row-grid.js" charset="UTF-8"></script>
 
 <jsp:include  page="./common/footer.jsp"/>
+<script type="text/javascript">
+$(document).ready(function(){
+	setTimeout(function(){
+		var height = $(document).height();
+		$(".container").css("height",height-60-30-30-60-50-16-5) ;
+	}, 1000);
+});
+</script>
 </body>
 </html>

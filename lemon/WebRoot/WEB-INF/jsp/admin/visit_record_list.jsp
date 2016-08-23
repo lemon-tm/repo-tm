@@ -23,6 +23,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
 	<%@include file="./../admin/acommon.jsp" %>
+  <style type="text/css">
+  	.table td,.td{
+  		word-break: normal;
+  		word-wrap: break-word;
+  	}
+  	.td{
+  		width:600px;
+  	}
+  </style>
   </head>
   
 <body>
@@ -33,46 +42,37 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	</span>
 </div>
 </c:if>
+<div style="clear:both;"></div>
+
 <form id="tableForm" method="post" style="padding-top:5px">
 	
-	<table class="table" border="0" width="100%" cellspacing="1">
+	<table class="table" border="0" width="90%" cellspacing="1" >
 		<thead>
 			<tr>
 				<th width="10%">用户名称</th>
 				<th width="10%">来访IP</th>
 				<th width="20%">访问来源</th>
-				<th width="20%">请求地址</th>
-				<th width="20%">访客浏览器类型</th>
+				<th width="10%">请求地址</th>
+				<th width="10%">访客浏览器类型</th>
 				<th width="10%">访问时间</th>
-				<!-- <th width="10%">离开时间</th>
-				<th width="2%">操作</th> -->
 			</tr>
 		</thead>
 		<tbody>
 			<c:forEach items="${pager.result}" var="item">
-			
 			<tr>
-				
 				<td align="center">${item.userId}</td>
 				<td align="center">${item.ip}</td>
-				<td align="center">${item.referer}</td>
+				<td align="center"><div class="td">${item.referer}</div></td>
 				<td align="center">${item.requestUrl}</td>
 				<td align="center">${item.browser}</td>
 				<td align="center">${item.visitTime}</td>
-				<%-- <td align="center">${item.leaveTime}</td>
-				<td align="center">
-					
-					<a href="javascript:void(0);" onclick="verify(1,'${item.id}')">通过</a>
-					<a href="javascript:void(0);" onclick="verify(0,'${item.id}')">不通过</a> 
-					
-				</td> --%>
-				
 			</tr>
 			</c:forEach>
 		</tbody>
 	</table>
 	
 </form>
+
 
 <jsp:include  page="./../common/pager.jsp"/>
 <script type="text/javascript">
