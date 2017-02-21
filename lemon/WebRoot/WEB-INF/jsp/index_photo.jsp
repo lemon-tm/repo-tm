@@ -33,10 +33,14 @@ window.onload=function(){
 	$(".container").rowGrid({itemSelector: ".container ul li", minMargin: 5, maxMargin: 5, firstItemClass: "first-item"});
 	
 	setTimeout(function(){
-		//var height = $(document).height();
-		//height = height-60-30-30-60-50-16-5;
+		var height = $(document).height();
+		height = height-60-30-30-60-50-16-5;
 		var h = $(".imgbox").height() ;
-		$(".container").css("height",h) ;
+		if(h>height){
+			$(".container").css("height",h) ;
+		}else{
+			$(".container").css("height",height) ;
+		}
 	}, 0);
 }
 //);

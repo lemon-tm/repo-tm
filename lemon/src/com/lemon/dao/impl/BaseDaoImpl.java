@@ -89,7 +89,9 @@ public class BaseDaoImpl<T, PK extends Serializable> implements BaseDao<T, PK> {
 		} else {
 			hql = "from " + entityClass.getName();
 		}
-		return getSession().createQuery(hql).list();
+		Query q = getSession().createQuery(hql) ;
+		q.setCacheable(true) ;
+		return q.list();
 	}
 	
 	public Long getTotalCount() {

@@ -24,10 +24,28 @@
 				hibernate.show_sql=true
 				<!-- hibernate.hbm2ddl.auto=update//自动生成数据库表，如果表存在就更新数据库表字段但是不会删除表中的数据 -->
 				hibernate.format_sql=false
-				<!-- hibernate.query.substitutions=true 1, false 0
-				hibernate.jdbc.batch_size=20
-				hibernate.cache.use_query_cache=false 关闭二级缓存，如果开启需要另行修改配置文件
-				hibernate.current_session_context_class=org.springframework.orm.hibernate4.SpringSessionContext -->
+				hibernate.cache.use_second_level_cache=true
+				
+				<!-- 
+					1、hibernate4的二级缓存配置 org.hibernate.cache.ehcache.EhCacheRegionFactory
+					2、是当spring也配置了ehcache作为缓存时，为了使spring缓存和hibernate缓存使用同一缓存管理器，
+					从而保证缓存的一致性，需要使用org.hibernate.cache.ehcache.SingletonEhCacheRegionFactory。
+					如果仅是hibernate使用ehcache的话，org.hibernate.cache.ehcache.EhCacheRegionFactory即可。
+				-->
+				hibernate.cache.region.factory_class=org.hibernate.cache.SingletonEhCacheRegionFactory
+				<!--
+					hibernate3的二级缓存配置
+					hibernate.cache.provider_class=org.hibernate.cache.EhCacheProvider 
+				-->
+				
+				hibernate.cache.use_query_cache=true
+				
+				<!--
+					hibernate.query.substitutions=true 1, false 0
+					hibernate.jdbc.batch_size=20
+					hibernate.cache.use_query_cache=false 关闭二级缓存，如果开启需要另行修改配置文件
+					hibernate.current_session_context_class=org.springframework.orm.hibernate4.SpringSessionContext 
+				-->
 			</value>
 		</property>
 		
@@ -57,19 +75,6 @@
 	<!-- 配置事务异常封装 -->
   	<bean id="persistenceExceptionTranslationPostProcessor" class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor" />
 	
-    
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	<import resource="application-ehcache.xml"/>
 	
 </beans>

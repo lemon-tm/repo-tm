@@ -19,6 +19,8 @@ public interface ImgMsgService extends BaseService<ImgMsg,String>{
 	List<ImgMsg> getList();
 
 	Pager findByUser(Pager page, String id, ImgMsg imgmsg);
+
+	void getAllListby();
 	
 }
 

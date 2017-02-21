@@ -3,11 +3,11 @@ package com.lemon.service.impl;
 import java.util.List;
 
 import javax.annotation.Resource;
+
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
-import com.lemon.service.impl.BaseServiceImpl;
 import com.lemon.dao.ImgMsgDao;
-import com.lemon.entity.Img;
 import com.lemon.entity.ImgMsg;
 import com.lemon.service.ImgMsgService;
 import com.lemon.util.Pager;
@@ -35,6 +35,12 @@ public class ImgMsgServiceImpl extends BaseServiceImpl<ImgMsg,String> implements
 	public Pager findByUser(Pager page, String id, ImgMsg imgmsg) {
 		// TODO Auto-generated method stub
 		return imgMsgDao.findByUser(page,id,imgmsg) ;
+	}
+
+	@Override
+	@Cacheable(value = "imgMsgList")
+	public void getAllListby() {
+		imgMsgDao.getAllList() ;
 	}
 
 }

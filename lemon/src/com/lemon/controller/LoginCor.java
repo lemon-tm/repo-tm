@@ -222,6 +222,8 @@ public class LoginCor {
 			keywords = new String(keywords.getBytes("ISO-8859-1"),"UTF-8");
 			model.put("keywords", keywords) ;
 		}
+		//缓存测试
+		//imgMsgService.getAllListby() ;
 		
 		pager = imgService.getList(pager, keywords, category) ;
 		List<Img> list = (List<Img>) pager.getResult() ; 

@@ -5,7 +5,6 @@ import java.util.List;
 import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 
-import com.lemon.service.impl.BaseServiceImpl;
 import com.lemon.dao.ImgDao;
 import com.lemon.entity.Img;
 import com.lemon.service.ImgService;
