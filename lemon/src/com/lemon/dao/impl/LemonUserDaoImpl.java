@@ -40,5 +40,14 @@ public class LemonUserDaoImpl extends BaseDaoImpl<LemonUser,String> implements L
 		query.setMaxResults(1);
 		return (LemonUser) query.uniqueResult();
 	}
+
+	@Override
+	public LemonUser findByUsername(String username) {
+		String hql = "from LemonUser where username=:username " ;
+		Query q = getSession().createQuery(hql) ;
+		q.setParameter("username", username) ;
+		
+		return (LemonUser) q.list().get(0) ;
+	}
 	
 }

@@ -9,4 +9,6 @@ public interface LemonUserService extends BaseService<LemonUser,String> {
 
 	LemonUser getUser(LemonUser user);
 
+	LemonUser findByUsername(String username);
+
 }

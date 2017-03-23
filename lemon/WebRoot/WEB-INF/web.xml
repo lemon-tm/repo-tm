@@ -6,6 +6,7 @@
     <param-value>
     	/WEB-INF/config/application-context.xml
     	/WEB-INF/config/spring-hibernate.xml
+    	/WEB-INF/config/shiro-context.xml
     </param-value>
   </context-param>
   <filter>
@@ -21,6 +22,22 @@
     <filter-name>osivFilter</filter-name>
     <filter-class>org.springframework.orm.hibernate4.support.OpenSessionInViewFilter</filter-class>
   </filter>
+  
+  <filter>
+    <filter-name>shiroFilter</filter-name>
+    <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+    <init-param>
+    <!-- 该值缺省为false,表示生命周期由SpringApplicationContext管理,设置为true则表示由ServletContainer管理 -->
+      <param-name>targetFilterLifecycle</param-name>
+      <param-value>true</param-value>
+    </init-param>
+  </filter>
+  
+  <filter-mapping>
+    <filter-name>shiroFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+  
   <filter-mapping>
     <filter-name>encoding</filter-name>
     <url-pattern>*.do</url-pattern>

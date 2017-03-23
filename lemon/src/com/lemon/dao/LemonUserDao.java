@@ -8,4 +8,6 @@ public interface LemonUserDao extends BaseDao<LemonUser, String> {
 
 	LemonUser getUser(LemonUser user);
 
+	LemonUser findByUsername(String username);
+
 }

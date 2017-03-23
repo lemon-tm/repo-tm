@@ -10,19 +10,18 @@
         http://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/cache
         http://www.springframework.org/schema/cache/spring-cache.xsd
-        "
+        " 
        default-lazy-init="true">
-       
-	<cache:annotation-driven cache-manager="cacheManager" />
+
+	<cache:annotation-driven cache-manager="cacheManager" /> 
 	
 	<bean id="ehCacheManager" class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean">
 		<property name="configLocation" value="/WEB-INF/config/ehcache.xml" />
-		<property name="shared" value="true" /><!-- 保证spring和hibernate公用一个缓存管理器 -->
+		<property name="shared" value="true" /> <!-- 保证spring和hibernate公用一个缓存管理器 配置shiro这里必须true（来自网络）-->
 	</bean>
 	
 	<bean id="cacheManager" class="org.springframework.cache.ehcache.EhCacheCacheManager">
 		<property name="cacheManager" ref="ehCacheManager" />
 	</bean>
-	
 	
 </beans>
